@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover,user-scalable=no" />
+    <script defer type="text/javascript" src="https://storage.googleapis.com/esportsbull-assets/web/index.js?_=23012024"></script>
+  </head>
+  <body>
+    <div
+      id="eSportsBullRootDiv"
+      data-page="/"
+      data-currency="USDT"
+      data-token="40abe8e21dc8c65e9e4cd97cd35b4495abe0602d1x02"
+      data-language-code="ENG"
+      data-parent="esportsbet.io"
+    ></div>
+  </body>
+</html>
+<script type="text/javascript">
+  window.addEventListener('goto', function (e) {
+    console.log('[Dev] goto EVENT TRIGGER: ', e)
+    const path = e.detail.path
+    if (path) {
+      document.getElementById('eSportsBullRootDiv').setAttribute('data-page', path)
+    }
+    window.history.pushState({}, '', path)
+    window.dispatchEvent(new CustomEvent('pageChanged', {}))
+  })
+</script>
