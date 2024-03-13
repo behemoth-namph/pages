@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover,user-scalable=no" />
-  </head>
-  <body>
-    <div
-      id="eSportsBullRootDiv"
-      data-page="/"
-      data-currency="USDT"
-      data-token="d75cf0264a6da171f59baa63d5bfa4f7ff129066020x"
-      data-language-code="ENG"
-      data-parent="esportsbet.io"
-    ></div>
-  </body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover,user-scalable=no"
+        />
+    </head>
+    <body>
+        <div
+            id="eSportsBullRootDiv"
+            data-page="/"
+            data-currency="USDT"
+            data-token="5cc90c4dce4ce6fbc40058490c253f140da6ec7d2x02"
+            data-language-code="ENG"
+            data-parent="esportsbet.io"
+        ></div>
+    </body>
 </html>
 <script type="text/javascript">
-  window.addEventListener('goto', function (e) {
-    console.log('[Dev] goto EVENT TRIGGER: ', e)
-    const path = e.detail.path
-    if (path) {
-      document.getElementById('eSportsBullRootDiv').setAttribute('data-page', path)
-    }
-    window.history.pushState({}, '', path)
-    window.dispatchEvent(new CustomEvent('pageChanged', {}))
-  })
+    window.addEventListener("goto", function (e) {
+        console.log("[Dev] goto EVENT TRIGGER: ", e);
+        const path = e.detail.path;
+        if (path) {
+            document
+                .getElementById("eSportsBullRootDiv")
+                .setAttribute("data-page", path);
+        }
+        window.history.pushState({}, "", path);
+        window.dispatchEvent(new CustomEvent("pageChanged", {}));
+    });
 </script>
 <script>
-  const script = document.createElement("script");
-  const today = new Date()
-  script.src = "https://storage.googleapis.com/esportsbull-assets/web/index.js?_=" + today.getTime();
-  script.defer = true;
-  document.body.append(script);
+    const script = document.createElement("script");
+    const today = new Date();
+    script.src =
+        "https://storage.googleapis.com/esportsbull-assets/web/index.js?_=" +
+        today.getTime();
+    script.defer = true;
+    document.body.append(script);
+
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent("initEsportsbull"));
+    }, 2500);
 </script>
