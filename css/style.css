@@ -1035,22 +1035,28 @@ section#about .container {
 /**************************************FOOTER STYLE 3 END***************************************/
 
 #resorts {
-    padding-top: 100px;
+    padding-top: 50px;
     padding-bottom: 50px;
     font-family: "domaine", sans-serif;
+}
+
+#resorts .section-heading {
+    margin-bottom: 50px;
 }
 
 .section-heading h3 {
     font-family: "domaine", sans-serif;
     color: #c7ae61;
-    font-size: 32px;
+    font-size: 44px;
+    font-weight: 400;
     text-transform: math-auto;
 }
 
 .section-heading h2 {
     font-family: "domaine", sans-serif;
     color: #266523;
-    font-size: 60px;
+    font-size: 68px;
+    font-weight: 400;
     text-transform: capitalize;
 }
 
