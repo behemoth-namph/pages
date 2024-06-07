@@ -47,18 +47,7 @@
 
 @media (max-width: 991px) {
     .header_area {
-        -webkit-background: rgba(0, 0, 0, 0)
-            linear-gradient(to right, #00c9fd 0%, #81ee8e 100%) repeat scroll 0
-            0;
-        -moz-background: rgba(0, 0, 0, 0)
-            linear-gradient(to right, #00c9fd 0%, #81ee8e 100%) repeat scroll 0
-            0;
-        -o-background: rgba(0, 0, 0, 0)
-            linear-gradient(to right, #00c9fd 0%, #81ee8e 100%) repeat scroll 0
-            0;
-        background: rgba(0, 0, 0, 0)
-            linear-gradient(to right, #00c9fd 0%, #81ee8e 100%) repeat scroll 0
-            0;
+        background: #011b00;
     }
 }
 
@@ -171,7 +160,7 @@
 /* faq section end*/
 
 /* contact area start*/
-.footer-contact-area {
+/* .footer-contact-area {
     background: url(../img/bg-img/get-it-bottom.jpg) no-repeat center;
     background-size: cover;
     background-attachment: fixed;
@@ -185,5 +174,5 @@
     top: 0;
     left: 0;
     opacity: 0.9;
-}
+} */
 /* contact area end*/
