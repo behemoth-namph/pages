@@ -760,6 +760,7 @@ p {
 .owl-dots {
     z-index: 99;
     margin-top: 30px;
+    text-align: center;
 }
 
 .owl-dot {
@@ -792,14 +793,14 @@ p {
     width: 20px;
     height: 8px;
     border-radius: 2px;
-    background: #000b6b;
+    background: #266522;
 }
 
 .owl-dot.active {
     width: 20px;
     height: 8px;
     border-radius: 2px;
-    background: #000b6b;
+    background: #266522;
 }
 
 .scr-area {
@@ -1252,4 +1253,79 @@ section#about {
     color: #c5af6a;
     margin-bottom: 50px;
     font-size: 40px;
+}
+
+.page_title {
+    font-family: "domaine", sans-serif;
+    color: #c5af6a;
+    padding-top: 36px;
+}
+
+.custom-block .card-image {
+    height: 30vw;
+    max-height: 400px;
+    min-height: 300px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.custom-block {
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.custom-block:hover img {
+    transform: scale(1.2);
+}
+
+.owl-news .col-6.col-md-3 {
+    margin-bottom: 32px;
+}
+
+.custom-block .card-image {
+    position: relative;
+}
+
+.custom-block .card-image img {
+    height: 100%;
+    transition: all 0.5s ease-out;
+    z-index: 1;
+}
+
+.custom-block .card-image .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-left: 20px;
+    z-index: 3;
+}
+
+.custom-block .card-image .content p {
+    color: white;
+    font-size: 14px;
+    font-family: "roboto", sans-serif;
+}
+
+.custom-block .card-image .content h2 {
+    font-family: "domaine", sans-serif;
+    color: #c5af6a;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+.custom-block .card-image .grad {
+    width: 100%;
+    height: 75%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    background-image: linear-gradient(0deg, #000000ad, #ffffff00);
 }

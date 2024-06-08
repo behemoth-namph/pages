@@ -10,6 +10,11 @@ Email: envatoprime@gmail.com
         font-size: 35px;
     }
 
+    .page_title {
+        font-size: 32px;
+        padding-top: 42px;
+    }
+
     .special-area .description_text {
         height: 400px;
     }
@@ -73,6 +78,11 @@ Email: envatoprime@gmail.com
 @media (min-width: 768px) and (max-width: 991px) {
     .wellcome_area img {
         height: 100% !important;
+    }
+
+    .page_title {
+        font-size: 32px;
+        padding-top: 42px;
     }
 
     .special-area .description_text {
@@ -281,13 +291,18 @@ Email: envatoprime@gmail.com
 }
 
 @media (max-width: 767px) {
-	.special-area .description_text {
+    .special-area .description_text {
         height: 300px;
     }
 
-	.special-area .description_text .line {
-		margin-top: 0;
-	}
+    .page_title {
+        font-size: 32px;
+        padding-top: 42px;
+    }
+
+    .special-area .description_text .line {
+        margin-top: 0;
+    }
 
     .special-area .description_text p {
         font-size: 12px !important;
@@ -334,7 +349,7 @@ Email: envatoprime@gmail.com
     }
 
     #about-1 h2 {
-        font-size: 50px;
+        font-size: 46px;
         padding-bottom: 10px;
     }
 
@@ -487,6 +502,9 @@ Email: envatoprime@gmail.com
         margin-top: 10px;
     }
     .section-heading > h2 {
+        font-size: 32px;
+    }
+    #about h2 {
         font-size: 32px;
     }
 
@@ -646,7 +664,7 @@ Email: envatoprime@gmail.com
         min-height: 480px;
     }
     .section-heading > h2 {
-        font-size: 30px;
+        font-size: 32px;
     }
     .mt-220 {
         margin-top: 147px;
@@ -763,7 +781,7 @@ Email: envatoprime@gmail.com
         font-size: 28px;
     }
     section#contact h2 {
-        font-size: 50px;
+        font-size: 46px;
     }
     .footer-social-icon.text-center.section_padding_70 {
         padding-top: 42px;
@@ -897,7 +915,7 @@ Email: envatoprime@gmail.com
     }
 
     .section-heading > h2 {
-        font-size: 30px;
+        font-size: 32px;
     }
     .mt-220 {
         margin-top: 146px;
@@ -1011,7 +1029,7 @@ Email: envatoprime@gmail.com
         font-size: 28px;
     }
     section#contact h2 {
-        font-size: 50px;
+        font-size: 46px;
         padding-bottom: 0px;
     }
     .footer-social-icon.text-center.section_padding_70 {

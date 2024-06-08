@@ -59,18 +59,7 @@
         margin: 20,
         nav: !1,
         stagePadding: 10,
-        responsive: {
-            0: {
-                items: 1,
-                margin: 300,
-            },
-            500: {
-                items: 2,
-            },
-            992: {
-                items: 3,
-            },
-        },
+        items: 1,
     });
 
     //Screenshot Slider
@@ -194,5 +183,9 @@
 
     $window.on("load", function () {
         $(".preeloader").fadeOut(1000);
+    });
+
+    $(".go-resorts").on("click", function () {
+        window.location.href = "resorts.html";
     });
 })(jQuery);
