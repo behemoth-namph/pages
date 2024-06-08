@@ -631,15 +631,14 @@ p {
 
 .wellcome_area img {
     width: 100%;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 120px);
     object-fit: cover;
 }
 
 .wellcome_area .wellcome_text {
-    height: 200px;
+    height: 120px;
     width: 100%;
-    background: url(../img/bg-img/welcome-area.png) no-repeat center;
-    background-size: cover;
+    background: #011b00;
 }
 
 .wellcome_area .wellcome_text .wellcome {
@@ -813,20 +812,14 @@ p {
 
 section#about {
     padding-top: 90px;
-}
-
-section#about .container {
-    margin-bottom: 90px;
+    padding-bottom: 120px;
+    background: #011b00;
 }
 
 .single-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 2px solid #256421;
 }
 
 .single-icon i {
@@ -835,13 +828,12 @@ section#about .container {
 }
 
 .single-icon img {
-    width: 80px;
-    height: 80px;
+    width: 80%;
 }
 
-.single-special > h4 {
-    font-size: 22px;
-    color: indigo;
+.single-special p {
+    font-size: 16px !important;
+    color: white;
 }
 
 .single-icon {
@@ -852,43 +844,48 @@ section#about .container {
 }
 
 .single-special > h4 {
-    color: #333;
-    margin-bottom: 15px;
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
     font-weight: 600;
 }
 
 .single-special {
-    padding: 40px 15px;
+    padding: 40px 20px;
     border-radius: 0px;
     -webkit-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
     height: 100%;
-    border-radius: 15px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
+    background: #266522;
+}
+
+.single-special:hover {
+    background: #c6af67;
+}
+
+.single-special .hover {
+    display: none;
+}
+
+.single-special:hover img {
+    display: none;
+}
+
+.single-special:hover .hover {
+    display: block;
 }
 
 .special_description_content > h2 {
     color: indigo;
     font-size: 48px;
     margin-bottom: 30px;
-}
-
-.single-special:hover {
-    box-shadow: 0px 20px 50px 0px rgba(221, 221, 221, 0.7);
-    -webkit-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-}
-.single-special.effect {
-    box-shadow: 0px 20px 50px 0px rgba(221, 221, 221, 0.7);
-    -webkit-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
 }
 
 .single-special p {
@@ -907,19 +904,23 @@ section#about .container {
 }
 
 .special-area .description_text {
-    height: 330px;
+    height: 480px;
     width: 100%;
-    background: url(../img/bg-img/bg-1.jpg) no-repeat center;
+    background: url(../img/bg-img/bg-7.jpg) no-repeat center;
     background-size: cover;
     position: relative;
+    margin-top: 100px;
+    background-position: top center;
 }
 
 .special-area .description_text p {
-    color: #c1ad74;
+    font-family: "roboto", sans-serif !important;
+    color: #c1ad74 !important;
     text-align: center;
     text-transform: uppercase;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px !important;
+    line-height: 28px;
 }
 
 .special-area .description_text .line {
@@ -927,6 +928,7 @@ section#about .container {
     height: 2px;
     background: #c5b36a;
     margin: 20px auto;
+    margin-top: 130px;
 }
 
 .special-area .description_text .grad {
@@ -940,7 +942,7 @@ section#about .container {
 
 .container-custom {
     position: absolute;
-    bottom: -48%;
+    bottom: -65px;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -961,6 +963,7 @@ section#about .container {
     margin-bottom: 70px;
 }
 .footer-style-3 .footer-box h4 {
+    font-family: "domaine", sans-serif;
     margin: 0 0 25px 0;
     color: #c5af69;
     font-size: 30px;
@@ -1063,13 +1066,24 @@ section#about .container {
 .resorts-block {
     position: relative;
     height: 240px;
-    background-image: url(https://picsum.photos/400/200.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 24px;
-    border-radius: 16px;
     transition: 0.5s;
     cursor: pointer;
+}
+
+.resorts-block.s1 {
+    background-image: url(../img/bg-img/s1.jpg);
+}
+.resorts-block.s2 {
+    background-image: url(../img/bg-img/s2.jpg);
+}
+.resorts-block.s3 {
+    background-image: url(../img/bg-img/s3.jpg);
+}
+.resorts-block.s4 {
+    background-image: url(../img/bg-img/s4.jpg);
 }
 
 .resorts-block:hover {
@@ -1084,7 +1098,6 @@ section#about .container {
     left: 0;
     background-image: linear-gradient(90deg, #000000b3, #ffffff00);
     z-index: 1;
-    border-radius: 16px;
 }
 
 .resorts-block .content {
@@ -1117,7 +1130,9 @@ section#about .container {
 }
 
 .footer-contact-area {
-    background: #011b00;
+    background: url(../img/bg-img/bg-6.png) no-repeat;
+    background-size: cover;
+    background-position: bottom right;
 }
 
 #contact-info h3 {
@@ -1136,34 +1151,103 @@ section#about .container {
 #contact-info input {
     border-radius: 24px;
     height: 48px;
+    padding: 0 24px;
 }
 
 #contact-info button {
+    font-family: "domaine", sans-serif;
     border-radius: 24px;
     height: 48px;
     background: #c4b06a;
     color: white;
     width: 100%;
-    font-size: 24px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#contact-info button:hover {
+    opacity: 0.8;
 }
 
 #contact {
     position: relative;
 }
 
-#contact img {
+#contact .bg-4 {
     position: absolute;
     left: 50%;
-    top: 230px;
+    top: 270px;
     transform: translateX(-110%);
-    width: 500px;
+    width: 550px;
 }
 
 .copyright {
+    font-family: "domaine", sans-serif;
     width: 100%;
     text-align: center;
     font-size: 18px;
     color: #cab469;
     background: #353535;
     padding: 10px;
+}
+
+.btn-resorts {
+    padding: 10px 50px;
+    border-radius: 30px;
+    background: #256421;
+    color: #c5b36a;
+    border: unset;
+    font-size: 24px;
+    cursor: pointer;
+    font-family: "domaine", sans-serif;
+    margin: 32px auto;
+}
+
+.btn-resorts:hover {
+    opacity: 0.8;
+}
+
+.btn-resorts:focus {
+    border: unset;
+    outline: unset;
+}
+
+.wellcome_session {
+    background-image: url(../img/bg-img/bg-wellcome1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#about-1 {
+    padding-top: 100px;
+}
+
+#about-1 h3 {
+    font-family: "domaine", sans-serif;
+    color: #c7ae61;
+    font-size: 42px;
+    font-weight: 400;
+    text-transform: math-auto;
+}
+
+#about-1 h2 {
+    font-family: "domaine", sans-serif;
+    color: #266523;
+    font-size: 70px;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding-bottom: 20px;
+}
+
+#about-1 p {
+    font-family: "domaine", sans-serif;
+    color: black;
+    font-size: 16px;
+}
+
+#about h2 {
+    font-family: "domaine", sans-serif;
+    text-align: center;
+    color: #c5af6a;
+    margin-bottom: 50px;
 }
