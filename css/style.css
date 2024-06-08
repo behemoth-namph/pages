@@ -1131,8 +1131,9 @@ section#about {
 
 .footer-contact-area {
     background: url(../img/bg-img/bg-6.png) no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: bottom right;
+    background-color: #041b03;
 }
 
 #contact-info h3 {
@@ -1250,4 +1251,5 @@ section#about {
     text-align: center;
     color: #c5af6a;
     margin-bottom: 50px;
+    font-size: 40px;
 }
