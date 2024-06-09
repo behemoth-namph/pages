@@ -1204,4 +1204,35 @@ Email: envatoprime@gmail.com
         padding-left: 5px;
     }
     /* blog page css end */
+
+    #infoModal h2 {
+        font-size: 26px;
+    }
+
+    #infoModal h4 {
+        font-size: 14px;
+        padding-bottom: 20px;
+    }
+
+    #infoModal h3 {
+        font-size: 22px;
+        padding-top: 26px;
+        padding-bottom: 16px;
+    }
+}
+
+@media (max-width: 991px) {
+    #infoModal .modal-body {
+        padding: 20px;
+    }
+
+    #infoModal .content {
+        padding: 0 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-lg {
+        max-width: 900px;
+    }
 }
