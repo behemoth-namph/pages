@@ -1316,7 +1316,7 @@ section#about {
 .custom-block .card-image .content h2 {
     font-family: "domaine", sans-serif;
     color: #c5af6a;
-    font-size: 30px;
+    font-size: 24px;
     padding-bottom: 20px;
 }
 
@@ -1343,7 +1343,7 @@ section#about {
     font-size: 32px;
 }
 
-#infoModal h2 {
+.infoModal h2 {
     font-family: "domaine", sans-serif;
     color: #c5af6a;
     font-size: 30px;
@@ -1351,17 +1351,17 @@ section#about {
     text-align: center;
 }
 
-#infoModal .modal-body {
+.infoModal .modal-body {
     padding: 30px 50px;
 }
 
-#infoModal h4 {
+.infoModal h4 {
     font-size: 16px;
     text-align: center;
     padding-bottom: 30px;
 }
 
-#infoModal h3 {
+.infoModal h3 {
     font-family: "domaine", sans-serif;
     color: #c5af6a;
     font-size: 24px;
@@ -1370,34 +1370,78 @@ section#about {
     text-align: center;
 }
 
-#infoModal p {
+.infoModal p {
     color: black;
     font-size: 14px;
 }
 
-#infoModal .slide-img {
+.infoModal .slide-img {
     width: 100%;
     height: 100%;
-    max-height: 350px;
+    max-height: 400px;
 }
 
-#infoModal .slide-img img {
+.infoModal .slide-img img {
     width: 100%;
+    object-fit: cover;
 }
 
-#infoModal .content {
+.infoModal .content {
     padding: 0 48px;
     text-align: center;
 }
 
-#thumbnail-slider {
+.splide.splide--slide {
     margin-top: 8px;
 }
 
-#thumbnail-slider .splide__list {
+.splide.splide--slide .splide__list {
     gap: 4px;
 }
 
 .splide__track--nav > .splide__list > .splide__slide.is-active {
     border: 2px solid #c5af6a !important;
+}
+
+.owl-carousel .owl-item img {
+    object-fit: cover;
+}
+
+.social {
+    position: fixed;
+    bottom: 100px;
+    right: 0;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.social .item {
+    width: 50px;
+    height: 50px;
+    background: #256421;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.social img {
+    width: 30px;
+    height: 30px;
+    color: red;
+}
+
+.social .item.phone {
+    background: #43993a;
+}
+
+.social .item.zalo {
+    background: #266623;
+}
+
+.social .item.messenger {
+    background: #153d0f;
 }

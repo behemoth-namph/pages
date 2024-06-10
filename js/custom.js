@@ -188,4 +188,25 @@
     $(".go-resorts").on("click", function () {
         window.location.href = "resorts.html";
     });
+
+    const phoneList = ["0925363602", "0926363602", "0927363602", "0961363602"];
+    $(".phone").on("click", function () {
+        const callButton = document.getElementById("phone");
+        const phoneNumber =
+            phoneList[Math.floor(Math.random() * phoneList.length)];
+
+        callButton.addEventListener("click", function () {
+            window.location.href = "tel:" + phoneNumber;
+        });
+    });
+
+    $(".zalo").on("click", function () {
+        const sendMessageButton = document.getElementById("zalo");
+        const phoneNumber =
+            phoneList[Math.floor(Math.random() * phoneList.length)];
+
+        sendMessageButton.addEventListener("click", function () {
+            window.location.href = "https://zalo.me/" + phoneNumber;
+        });
+    });
 })(jQuery);

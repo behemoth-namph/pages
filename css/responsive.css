@@ -1205,16 +1205,16 @@ Email: envatoprime@gmail.com
     }
     /* blog page css end */
 
-    #infoModal h2 {
+    .infoModal h2 {
         font-size: 26px;
     }
 
-    #infoModal h4 {
+    .infoModal h4 {
         font-size: 14px;
         padding-bottom: 20px;
     }
 
-    #infoModal h3 {
+    .infoModal h3 {
         font-size: 22px;
         padding-top: 26px;
         padding-bottom: 16px;
@@ -1222,12 +1222,16 @@ Email: envatoprime@gmail.com
 }
 
 @media (max-width: 991px) {
-    #infoModal .modal-body {
+    .infoModal .modal-body {
         padding: 20px;
     }
 
-    #infoModal .content {
+    .infoModal .content {
         padding: 0 10px;
+    }
+
+    .infoModal .slide-img {
+        max-height: 250px;
     }
 }
 
