@@ -181,10 +181,6 @@
         }
     });
 
-    $window.on("load", function () {
-        $(".preeloader").fadeOut(1000);
-    });
-
     $(".go-resorts").on("click", function () {
         window.location.href = "resorts.html";
     });
@@ -194,10 +190,8 @@
         const callButton = document.getElementById("phone");
         const phoneNumber =
             phoneList[Math.floor(Math.random() * phoneList.length)];
-
-        callButton.addEventListener("click", function () {
-            window.location.href = "tel:" + phoneNumber;
-        });
+        console.log(phoneNumber);
+        window.location.href = "tel:" + phoneNumber;
     });
 
     $(".zalo").on("click", function () {
@@ -205,8 +199,10 @@
         const phoneNumber =
             phoneList[Math.floor(Math.random() * phoneList.length)];
 
-        sendMessageButton.addEventListener("click", function () {
-            window.location.href = "https://zalo.me/" + phoneNumber;
-        });
+        window.location.href = "https://zalo.me/" + phoneNumber;
+    });
+
+    $(".messenger").on("click", function () {
+        window.location.href = "http://m.me/111686698608440";
     });
 })(jQuery);
