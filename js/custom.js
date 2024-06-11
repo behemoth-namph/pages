@@ -96,8 +96,6 @@
         },
     });
 
-   
-
     //  Footer Reveal Active Code
     if ($.fn.footerReveal) {
         $("footer").footerReveal({
@@ -178,8 +176,14 @@
         }
     });
 
-    $(".go-resorts").on("click", function () {
-        window.location.href = "resorts.html";
+    $(".go-resorts").on("click", function (e) {
+        const address = e.target.getAttribute("data-source");
+        console.log(address);
+        if (address) {
+            window.location.href = "resorts.html?address=" + address;
+        } else {
+            window.location.href = "resorts.html";
+        }
     });
 
     const phoneList = ["0925363602", "0926363602", "0927363602", "0961363602"];

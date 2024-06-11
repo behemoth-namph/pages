@@ -1445,3 +1445,29 @@ section#about {
 .social .item.messenger {
     background: #153d0f;
 }
+
+#south,
+#north,
+#central,
+#foreign {
+    display: none;
+}
+
+.north #all,
+.south #all,
+.central #all,
+.foreign #all {
+    display: none;
+}
+.north #north {
+    display: flex;
+}
+.south #south {
+    display: flex;
+}
+.central #central {
+    display: flex;
+}
+.foreign #foreign {
+    display: flex;
+}
