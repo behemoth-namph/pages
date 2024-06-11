@@ -44,11 +44,7 @@
 
 /* header area start */
 
-.wellcome_area {
-	background:url(../img/bg-img/welcome-area.jpg) no-repeat center;
-	background-size: cover;
-  background-attachment: fixed;
-}
+
 .wellcome_area::before{
 	position: absolute;
 	content: "";
