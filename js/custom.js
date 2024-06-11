@@ -96,10 +96,7 @@
         },
     });
 
-    // venobox
-    $(".venobox_video").venobox({
-        autoplay: true,
-    });
+   
 
     //  Footer Reveal Active Code
     if ($.fn.footerReveal) {
