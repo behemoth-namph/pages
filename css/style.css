@@ -1075,16 +1075,16 @@ section#about {
 }
 
 .resorts-block.s1 {
-    background-image: url(../img/bg-img/s1.jpeg);
+    background-image: url(../img/bg-img/s1.webp);
 }
 .resorts-block.s2 {
-    background-image: url(../img/bg-img/s2.jpeg);
+    background-image: url(../img/bg-img/s2.webp);
 }
 .resorts-block.s3 {
-    background-image: url(../img/bg-img/s3.jpeg);
+    background-image: url(../img/bg-img/s3.webp);
 }
 .resorts-block.s4 {
-    background-image: url(../img/bg-img/s4.jpeg);
+    background-image: url(../img/bg-img/s4.webp);
 }
 
 .resorts-block:hover {
