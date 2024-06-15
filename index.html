@@ -112,7 +112,17 @@
 
         <!-- ========================= Wellcome Area Start ===================== -->
         <section class="wellcome_area" id="home">
-            <img src="./img/bg-img/bg.jpg" alt="bg" />
+            <picture>
+                <source
+                    media="(min-width: 768px)"
+                    srcset="./img/bg-img/bg-lg.jpeg"
+                />
+                <source
+                    media="(min-width: 320px)"
+                    srcset="./img/bg-img/bg-sm.jpeg"
+                />
+                <img src="./img/bg-img/bg.jpg" alt="bg" />
+            </picture>
             <div class="wellcome_text">
                 <div class="container">
                     <div class="row">
@@ -160,12 +170,17 @@
                     </div>
                     <!-- Single Special Area -->
                     <div class="col-12 col-lg-5">
-                        <img
-                            class="wow fadeInUp"
-                            data-wow-offset="100"
-                            src="img/bg-img/bg-wellcome.jpg"
-                            alt="image"
-                        />
+                        <picture>
+                            <source
+                                media="(min-width: 768px)"
+                                srcset="img/bg-img/bg-wellcome-lg.jpeg"
+                            />
+                            <source
+                                media="(min-width: 320px)"
+                                srcset="img/bg-img/bg-wellcome-sm.jpg"
+                            />
+                            <img src="img/bg-img/bg-wellcome.jpg" alt="bg" />
+                        </picture>
                     </div>
                 </div>
             </div>

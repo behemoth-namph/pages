@@ -907,7 +907,7 @@ section#about {
 .special-area .description_text {
     height: 480px;
     width: 100%;
-    background: url(../img/bg-img/bg-7.jpg) no-repeat center;
+    background: url(../img/bg-img/bg-7.jpeg) no-repeat center;
     background-size: cover;
     position: relative;
     margin-top: 100px;
@@ -1075,16 +1075,16 @@ section#about {
 }
 
 .resorts-block.s1 {
-    background-image: url(../img/bg-img/s1.jpg);
+    background-image: url(../img/bg-img/s1.jpeg);
 }
 .resorts-block.s2 {
-    background-image: url(../img/bg-img/s2.jpg);
+    background-image: url(../img/bg-img/s2.jpeg);
 }
 .resorts-block.s3 {
-    background-image: url(../img/bg-img/s3.jpg);
+    background-image: url(../img/bg-img/s3.jpeg);
 }
 .resorts-block.s4 {
-    background-image: url(../img/bg-img/s4.jpg);
+    background-image: url(../img/bg-img/s4.jpeg);
 }
 
 .resorts-block:hover {
@@ -1215,7 +1215,7 @@ section#about {
 }
 
 .wellcome_session {
-    background-image: url(../img/bg-img/bg-wellcome1.jpg);
+    background-image: url(../img/bg-img/bg-wellcome1.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
 }

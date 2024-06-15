@@ -114,7 +114,17 @@
         <!-- ================ Header Area End ============================-->
 
         <section class="wellcome_area" id="home">
-            <img src="./img/bg-img/bg.jpg" alt="bg" />
+            <picture>
+                <source
+                    media="(min-width: 768px)"
+                    srcset="./img/bg-img/bg-lg.jpeg"
+                />
+                <source
+                    media="(min-width: 320px)"
+                    srcset="./img/bg-img/bg-sm.jpeg"
+                />
+                <img src="./img/bg-img/bg.jpg" alt="bg" />
+            </picture>
             <div class="wellcome_text">
                 <div class="container">
                     <h1 class="page_title">Khu nghỉ dưỡng</h1>
