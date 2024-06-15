@@ -574,10 +574,10 @@ p {
     opacity: 1;
 } */
 .header_area .menu_area #nav .nav-link:hover {
-    color: #286623;
+    color: #c5b36a;
 }
 .header_area .menu_area #nav .nav-item.active .nav-link {
-    color: #286623;
+    color: #c5b36a;
 }
 /* stcicky css */
 
