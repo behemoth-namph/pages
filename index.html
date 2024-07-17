@@ -14,11 +14,7 @@
                 <img src="./images/QH-33.jpg" alt="" />
                 <img src="./images/QH-32.jpg" alt="" />
             </div>
-            <div class="messages">
-                These is only one happiness <br />
-                in this life <br />
-                to love and be loved
-            </div>
+            <div id="typedtext" class="messages"></div>
         </section>
         <section id="love-story">
             <h2 class="title">Câu chuyện của chúng mình...</h2>
@@ -139,4 +135,44 @@
             </div>
         </section>
     </body>
+    <script>
+        // set up text to print, each item in array is new line
+        var aText = new Array(
+            "These is only one happiness",
+            "in this life",
+            "to love and be loved"
+        );
+        var iSpeed = 100; // time delay of print out
+        var iIndex = 0; // start printing array at this posision
+        var iArrLength = aText[0].length; // the length of the text array
+        var iScrollAt = 20; // start scrolling up at this many lines
+
+        var iTextPos = 0; // initialise text position
+        var sContents = ""; // initialise contents variable
+        var iRow; // initialise current row
+
+        function typewriter() {
+            sContents = " ";
+            iRow = Math.max(0, iIndex - iScrollAt);
+            var destination = document.getElementById("typedtext");
+
+            while (iRow < iIndex) {
+                sContents += aText[iRow++] + "<br />";
+            }
+            destination.innerHTML =
+                sContents + aText[iIndex].substring(0, iTextPos) + "_";
+            if (iTextPos++ == iArrLength) {
+                iTextPos = 0;
+                iIndex++;
+                if (iIndex != aText.length) {
+                    iArrLength = aText[iIndex].length;
+                    setTimeout("typewriter()", 500);
+                }
+            } else {
+                setTimeout("typewriter()", iSpeed);
+            }
+        }
+
+        typewriter();
+    </script>
 </html>
