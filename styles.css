@@ -1,0 +1,408 @@
+@font-face {
+    font-family: "bebas";
+    src: url("./fonts/bebas.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "BirdScriptPro";
+    src: url("./fonts/BirdScriptPro.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Bonjour";
+    src: url("./fonts/Bonjour.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "SanFranciscoRegular";
+    src: url("./fonts/SanFranciscoDisplay-Regular.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "SanFranciscoSemibold";
+    src: url("./fonts/SanFranciscoDisplay-Semibold.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "SanFranciscoItalic";
+    src: url("./fonts/SanFranciscoText-Italic.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "SanFranciscoRegularG2";
+    src: url("./fonts/SanFranciscoText-RegularG2.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Portrait";
+    src: url("./fonts/Portrait.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "iCielDomaineDemibold";
+    src: url("./fonts/iCielDomaineDisplay-Demibold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "iCielDomaineDemiboldItalic";
+    src: url("./fonts/iCielDomaineDisplay-DemiboldItalic.ttf")
+        format("truetype");
+}
+
+body {
+    font-family: "SanFranciscoItalic";
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#banner {
+    position: relative;
+}
+
+.background-images-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+
+.background-images-list img {
+    width: calc(100% / 3);
+}
+
+#banner .messages {
+    font-family: "Portrait";
+    font-size: 48px;
+    color: white;
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    rotate: -15deg;
+}
+
+#love-story {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    gap: 16px;
+}
+
+#love-story h2 {
+    font-family: "Portrait";
+    font-weight: 400;
+    font-size: 42px;
+    margin: 0;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+#love-story p {
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+.text-bold {
+    margin-top: 8px !important;
+    font-family: "iCielDomaineDemiboldItalic";
+    font-weight: 700 !important;
+}
+
+#love-story h2.title-1 {
+    font-size: 48px;
+    font-family: "Bonjour";
+}
+
+.vl {
+    margin-top: 24px;
+    border-left: 1px solid black;
+    height: 100px;
+}
+
+/* =========================== */
+
+#ivitation-card {
+    background-image: url("./images/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #841618;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    gap: 16px;
+    color: white;
+    font-family: "SanFranciscoRegular";
+    position: relative;
+}
+
+#ivitation-card .img-bg {
+    height: 680px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(320px) translateY(-150px);
+}
+
+#ivitation-card .img-bg:first-child {
+    transform: translateX(-380px) translateY(-150px);
+}
+
+#ivitation-card .logo {
+    text-align: center;
+    margin-top: 24px;
+}
+
+#ivitation-card .logo img {
+    width: 100px;
+}
+
+#ivitation-card .title {
+    margin-top: 24px;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 28px;
+}
+
+#ivitation-card .groom {
+    margin-top: 24px;
+    font-family: "Bonjour";
+    text-transform: uppercase;
+    font-size: 42px;
+    line-height: 44px;
+    transform: translateX(-100px);
+}
+
+#ivitation-card .bride {
+    font-family: "Bonjour";
+    font-size: 42px;
+    line-height: 44px;
+    transform: translateX(100px);
+}
+
+#ivitation-card .address-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 24px;
+}
+
+.address-block .address-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+#ivitation-card .address-item .title {
+    font-size: 14px;
+    font-family: "iCielDomaineDemiboldItalic";
+    text-transform: "math-auto";
+}
+
+.time {
+    font-size: 24px;
+}
+
+.lunar {
+    font-size: 16px;
+}
+
+.address {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.message {
+    font-family: "Portrait";
+    font-size: 30px;
+    margin-top: 48px;
+    margin-bottom: 48px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.actions .btn {
+    width: 200px;
+    background-color: white;
+    color: #841618;
+    font-family: "SanFranciscoRegular";
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.actions .btn:hover {
+    transform: translateY(-5px);
+}
+
+/* ============================== */
+
+#gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+#gallery .title {
+    margin-top: 50px;
+    font-size: 28px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "iCielDomaineDemiboldItalic";
+}
+
+#gallery .sub-title {
+    font-family: "Portrait";
+    font-size: 30px;
+    text-align: center;
+    transform: translateX(130px);
+}
+
+#gallery .images-list {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#gallery .images-list .top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#gallery .images-list .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#gallery .images-list .item {
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+#gallery .images-list .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#gallery .images-list .top .item {
+    width: 300px;
+    height: 600px;
+}
+
+#gallery .images-list .top .item:first-child,
+#gallery .images-list .top .item:last-child {
+    width: 240px;
+}
+
+#gallery .images-list .bottom .item {
+    width: 300px;
+    height: 420px;
+}
+
+/* ============================== */
+
+#gift {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+#gift .title {
+    font-family: "iCielDomaineDemiBoldItalic";
+    font-size: 30px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#gift .sub-title {
+    margin-top: 24px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#gift .qr-code {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+#gift .qr-code .item {
+    width: 500px;
+    border-radius: 24px;
+    border: 2px solid black;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#gift .qr-code .item:last-child {
+    padding: 12px 8px;
+}
+
+#gift .qr-code .item img {
+    width: 100%;
+    border-radius: 24px;
+}
+
+#gift .thanks {
+    margin-top: 32px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#gift .thanks p {
+    padding: 0;
+    margin: 0;
+}
+
+#gift .thanks p:first-child {
+    margin-top: 16px;
+    font-family: "Portrait";
+    font-size: 36px;
+    margin-bottom: 24px;
+}
+
+#gift .thanks p:last-child {
+    font-size: 28px;
+    text-transform: uppercase;
+    font-family: "iCielDomaineDemiBold";
+    margin-bottom: 50px;
+}

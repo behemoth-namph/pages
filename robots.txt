@@ -1,9 +1,0 @@
-User-agent: *
-Disallow: /home/
-Disallow: /index.html
-
-User-agent: Googlebot
-Disallow: /resorts/
-Disallow: /resorts.html
-
-Sitemap: https://thetreetravel.vn/sitemap.xml
