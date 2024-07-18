@@ -7,6 +7,10 @@
         <link rel="stylesheet" href="styles.css" />
         <link rel="icon" type="image/png" href="./images/logo.png" />
         <link rel="stylesheet" href="./animate.css" />
+        <link rel="stylesheet" href="./bootstrap.min.css" />
+        <script src="jquery-1.12.4.min.js"></script>
+        <script src="popper.min.js"></script>
+        <script src="bootstrap.min.js"></script>
     </head>
     <body>
         <section id="banner">
@@ -101,9 +105,13 @@
                 Rất hân hạnh được đón tiếp!
             </div>
             <div class="actions wow fadeInUp" data-wow-offset="100">
-                <div class="btn">Xác nhận tham dự</div>
-                <div class="btn">Gửi lời chúc</div>
-                <div class="btn">Gửi quà</div>
+                <div class="btn" data-toggle="modal" data-target="#infoModal1">
+                    Xác nhận tham dự
+                </div>
+                <div class="btn" data-toggle="modal" data-target="#infoModal2">
+                    Gửi lời chúc
+                </div>
+                <div class="btn" onclick="scrollFunction()">Gửi quà</div>
             </div>
         </section>
         <section id="gallery">
@@ -201,6 +209,70 @@
                 </p>
             </div>
         </section>
+
+        <div
+            class="modal fade"
+            id="infoModal1"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="infoModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="confirm-modal">
+                        <div class="image-block">
+                            <img src="./images/QH-35.jpg" alt="img" />
+                        </div>
+                        <div class="content">
+                            <div class="title">Xác nhận tham dự</div>
+                            <div class="sub-title">Lễ thành hôn</div>
+                            <img src="./images/text1.png" alt="img" />
+
+                            <input
+                                type="text"
+                                placeholder="Tên hoặc số điện thoại của bạn"
+                            />
+                            <div class="btn">Xác nhận</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="modal fade"
+            id="infoModal2"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="infoModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="confirm-modal">
+                        <div class="image-block">
+                            <img src="./images/QH-59.jpg" alt="img" />
+                        </div>
+                        <div class="content">
+                            <div class="title">Lời chúc</div>
+                            <div class="sub-title1">
+                                Trân trọng cảm ơn những lời chúc tốt đẹp <br />
+                                đến đám cưới của chúng mình
+                            </div>
+
+                            <input type="text" placeholder="Tên của bạn..." />
+                            <textarea
+                                name=""
+                                placeholder="Lời chúc của bạn..."
+                                rows="4"
+                            ></textarea>
+                            <div class="btn">Gửi đi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
     <script>
         // set up text to print, each item in array is new line
@@ -246,5 +318,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW().init();
+    </script>
+    <script>
+        function scrollFunction() {
+            const element = document.getElementById("gift");
+            element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
     </script>
 </html>

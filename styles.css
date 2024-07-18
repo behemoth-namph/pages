@@ -425,6 +425,113 @@ body {
     margin-bottom: 50px;
 }
 
+.confirm-modal {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.image-block {
+    width: 40%;
+    padding: 30px;
+    background: url(./images/bg.jpg) no-repeat center center;
+    background-size: 135%;
+}
+
+.image-block img {
+    width: 100%;
+}
+
+.confirm-modal .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    width: 60%;
+    padding-left: 40px;
+}
+
+.confirm-modal .content .title {
+    font-family: "Portrait";
+    font-size: 40px;
+    font-weight: 500;
+    color: #831716;
+}
+
+.confirm-modal .content .sub-title {
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #831716;
+}
+
+.confirm-modal .content .sub-title1 {
+    width: 100%;
+    font-size: 14px;
+    color: #831716;
+}
+
+.confirm-modal .content img {
+    width: 72%;
+    transform: translateX(-8px);
+}
+
+.confirm-modal .content input {
+    width: 100%;
+    border: 1.5px solid #831716;
+    padding: 8px;
+    border-radius: 8px;
+    color: #831716;
+}
+
+.confirm-modal .content input::placeholder {
+    color: #831716;
+    opacity: 1; /* Firefox */
+}
+
+.confirm-modal .content input::-ms-input-placeholder {
+    /* Edge 12-18 */
+    color: #831716;
+}
+
+.confirm-modal .content textarea {
+    width: 100%;
+    border: 1.5px solid #831716;
+    padding: 8px;
+    border-radius: 8px;
+    color: #831716;
+}
+
+.confirm-modal .content textarea::placeholder {
+    color: #831716;
+    opacity: 1; /* Firefox */
+}
+
+.confirm-modal .content textarea::-ms-input-placeholder {
+    /* Edge 12-18 */
+    color: #831716;
+}
+
+.confirm-modal .content .btn {
+    width: 100%;
+    background: #831716;
+    color: white;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-family: "iCielDomaineDemiBold";
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 2px;
+    font-size: 18px;
+}
+
 @media (max-width: 1440px) {
     #banner .messages {
         font-size: 3.2vw;
@@ -615,7 +722,7 @@ body {
 
     #gift .thanks p:last-child {
         font-size: 5vw;
-        margin-bottom: 30px;
+        margin-bottom: 60px;
     }
 
     .actions {
@@ -625,5 +732,23 @@ body {
     .actions .btn {
         width: 40%;
         font-size: 3vw;
+    }
+}
+
+
+@media (max-width: 991px) {
+    .confirm-modal {
+        flex-direction: column;
+        width: 100%;
+        padding: 16px 16px 32px;
+    }
+
+    .image-block {
+        width: 100%;
+    }
+
+    .confirm-modal .content {
+        width: 100%;
+        padding-left: 0;
     }
 }
