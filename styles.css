@@ -532,6 +532,12 @@ body {
     font-size: 18px;
 }
 
+.btn.btn-close {
+    display: none !important;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+
 @media (max-width: 1440px) {
     #banner .messages {
         font-size: 3.2vw;
@@ -735,7 +741,6 @@ body {
     }
 }
 
-
 @media (max-width: 991px) {
     .confirm-modal {
         flex-direction: column;
@@ -750,5 +755,9 @@ body {
     .confirm-modal .content {
         width: 100%;
         padding-left: 0;
+    }
+
+    .btn.btn-close {
+        display: block !important;
     }
 }
