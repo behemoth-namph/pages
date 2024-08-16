@@ -40,13 +40,8 @@
                 height: 100%;
                 object-fit: cover;
             }
-            .detail-header .header-bg.sp {
-                display: none;
-            }
             @media only screen and (max-width: 767px) {
-                .detail-header .header-bg {
-                    display: none;
-                }
+         
                 .detail-header .header-bg.sp {
                     display: block;
                     height: 200px !important;
@@ -183,39 +178,40 @@
             <div data-v-6522fc27="" class="news-detail">
                 <div data-v-6522fc27="" class="news-detail-container">
                     <div data-v-61ae9839="" class="detail-header">
-                        <picture>
-                            <source
-                                media="(max-width:768px)"
-                                srcset="
-                                    https://storage.googleapis.com/article-generator/dev/banners/lol/46119_preview.webp
-                                "
-                            />
-                            <img
-                                src="https://storage.googleapis.com/article-generator/dev/banners/lol/46119_banner.webp"
-                                alt="banner"
-                                rel="preload"
-                                fetchpriority="high"
-                            />
-                        </picture>
+                        <div class="header-bg">
+                            <picture>
+                                <source
+                                    media="(max-width:768px)"
+                                    srcset="
+                                        https://storage.googleapis.com/article-generator/dev/banners/lol/46119_preview.webp
+                                    "
+                                />
+                                <img
+                                    src="https://storage.googleapis.com/article-generator/dev/banners/lol/46119_banner.webp"
+                                    alt="banner"
+                                    rel="preload"
+                                    fetchpriority="high"
+                                />
+                            </picture>
 
-                       
-                        <div data-v-61ae9839="" class="header-flag">
-                            <svg
-                                data-v-db90e710=""
-                                data-v-61ae9839=""
-                                class="active svg-icon svg-icon--global"
-                                xmlns="http://www.w3.org/2000/svg"
-                                style="
-                                    width: 22px;
-                                    height: 22px;
-                                    font-size: 22px;
-                                "
-                            >
-                                <use
+                            <div data-v-61ae9839="" class="header-flag">
+                                <svg
                                     data-v-db90e710=""
-                                    xlink:href="#livestream-global"
-                                ></use>
-                            </svg>
+                                    data-v-61ae9839=""
+                                    class="active svg-icon svg-icon--global"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    style="
+                                        width: 22px;
+                                        height: 22px;
+                                        font-size: 22px;
+                                    "
+                                >
+                                    <use
+                                        data-v-db90e710=""
+                                        xlink:href="#livestream-global"
+                                    ></use>
+                                </svg>
+                            </div>
                         </div>
                         <div data-v-61ae9839="" class="header-info">
                             <div data-v-61ae9839="" class="league-name">
