@@ -175,10 +175,11 @@
             }
 
             #loading-test {
-              img {
-                width: 100%;
-                height: 200px;
-              }
+                img {
+                    width: 100%;
+                    height: 200px;
+                    opacity: 0.1;
+                }
             }
         </style>
     </head>
@@ -192,14 +193,12 @@
         ></div>
         <div id="loading-test">
             <img
-                data-v-61ae9839=""
                 src="https://storage.googleapis.com/article-generator/dev/banners/lol/46119_preview.webp"
                 alt="banner"
                 rel="preload"
                 fetchpriority="high"
             />
             <img
-                data-v-61ae9839=""
                 src="https://storage.googleapis.com/article-generator/dev/banners/lol/46119_banner.webp"
                 alt="banner"
                 rel="preload"
@@ -219,7 +218,7 @@
 
         const loading = document.getElementById("loading-test");
         if (loading) {
-            loading.style.display = "none";
+            // loading.style.display = "none";
         }
     });
     document.head.appendChild(scriptEle);
