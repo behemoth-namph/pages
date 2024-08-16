@@ -1,54 +1,2100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Test performance</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <script src="./index.js" id="kero-script"></script>
-    <style>
-        .header-bg {
-          width: 100% !important;
-          height: 400px !important;
-        }
+    <head>
+        <meta charset="utf-8" />
+        <title>Test performance</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+        <script src="./index.js" id="kero-script"></script>
+        <style>
+            .news-detail {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 32px;
+            }
 
-        .header-bg img {
-          width: 100% !important;
-          height: 400px !important;
-        }
+            .news-detail-container {
+                flex: 1;
+            }
 
-        .detail-header .header-bg.sp {
-          width: 100% !important;
-          height: 200px !important;
-          display: inline-block;
-          aspect-ratio: unset;
-        }
+            @media only screen and (max-width: 1200px) {
+                .news-detail {
+                    flex-direction: column;
+                }
 
-        .detail-header .header-bg.sp img {
-          width: 100% !important;
-          height: 200px !important;
-        }
+                .news-detail-container {
+                    width: 100%;
+                }
+            }
 
-        .detail-header .header-info {
-          display: none !important;
-        }
-    </style>
-  </head>
+            .detail-header {
+                position: relative;
+            }
+            .detail-header .header-bg {
+                aspect-ratio: 3.5791666667;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 16px;
+                background-color: #272631;
+            }
+            .detail-header .header-bg img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .detail-header .header-bg.sp {
+                display: none;
+            }
+            @media only screen and (max-width: 767px) {
+                .detail-header .header-bg {
+                    display: none;
+                }
+                .detail-header .header-bg.sp {
+                    display: block;
+                    aspect-ratio: 1.7916666667;
+                }
+            }
+            .detail-header .header-flag {
+                align-items: center;
+                background-color: #2d2c38;
+                border-radius: 8px;
+                display: flex;
+                height: 30px;
+                justify-content: center;
+                position: absolute;
+                right: 12px;
+                top: 12px;
+                z-index: 2;
+                width: 30px;
+            }
+            .detail-header .header-info {
+                width: 100%;
+                position: absolute;
+                right: 50%;
+                top: 5%;
+                z-index: 1;
+                transform: translateX(50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+            }
+            .detail-header .header-info .match-date {
+                font-size: 1.1vw;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                color: white;
+            }
+            .detail-header .header-info .league-name {
+                padding: 0 16px;
+                font-size: 32px;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                color: white;
+            }
+            @media screen and (max-width: 1920px) {
+                .detail-header .header-info {
+                    top: 6%;
+                }
+                .detail-header .header-info .league-name {
+                    font-size: 1.7vw;
+                }
+            }
+            @media screen and (max-width: 1200px) {
+                .detail-header .header-info {
+                    top: 4%;
+                }
+                .detail-header .header-info .match-date {
+                    font-size: 1.5vw;
+                }
+                .detail-header .header-info .league-name {
+                    font-size: 2.3vw;
+                }
+            }
+            @media screen and (max-width: 768px) {
+                .detail-header .header-info {
+                    top: 6%;
+                }
+                .detail-header .header-info .match-date {
+                    font-size: 2.5vw;
+                }
+                .detail-header .header-info .league-name {
+                    font-size: 3.8vw;
+                }
+            }
+            .detail-info {
+                margin-top: 24px;
+            }
+            @media only screen and (max-width: 576px) {
+                .detail-info {
+                    margin-top: 16px;
+                }
+            }
+            .detail-info .detail-meta {
+                display: flex;
+                gap: 8px;
+            }
+            .detail-info .detail-meta .meta-tag {
+                align-items: center;
+                background-color: #edc81b;
+                border-radius: 4px;
+                display: flex;
+                height: 19px;
+                justify-content: center;
+            }
+            .detail-info .detail-meta .meta-tag span {
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                color: #131317;
+                text-transform: uppercase;
+                padding: 4px 8px;
+            }
+            .detail-info .detail-meta .meta-time span {
+                color: #fff;
+                font-size: 12px;
+                font-weight: 400;
+                letter-spacing: 0.02em;
+            }
+        </style>
+    </head>
 
-  <body style="background-color: rgb(3, 16, 25);">
-    <div id="newsArticleRootDiv" data-match-id="44922" data-sport-type="lol" data-region-id="50" style="padding: 0 16px;"></div>
-    <div
-      id="toroRootDiv"
-      data-user-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjM3MTU4NDQsImlhdCI6MTcyMzYyOTQ0NCwic3ViIjoiNDY0NzQ3NTM5OTkwMzE3OSIsInVzZXJuYW1lIjoiaGFjY291bnQwNyJ9.mC_lLy50PMIXCvswwHZe06Wuxv7ANhw_TEXSHOTDYIQ"
-      data-language="en-us"
-      data-currency="DJT"
-    ></div>
-  </body>
+    <body style="background-color: rgb(3, 16, 25)">
+        <div
+            id="newsArticleRootDiv"
+            data-match-id="46119"
+            data-sport-type="lol"
+            data-region-id="50"
+            data-init="1"
+            data-v-app=""
+        >
+            <div data-v-6522fc27="" class="news-detail">
+                <div data-v-6522fc27="" class="news-detail-container">
+                    <div data-v-61ae9839="" class="detail-header">
+                        <div data-v-61ae9839="" class="header-bg">
+                            <img
+                                data-v-61ae9839=""
+                                src="https://storage.googleapis.com/article-generator/dev/banners/lol/46119_banner.webp"
+                                alt="banner"
+                                rel="preload"
+                                fetchpriority="high"
+                            />
+                        </div>
+                        <div data-v-61ae9839="" class="header-bg sp">
+                            <img
+                                data-v-61ae9839=""
+                                src="https://storage.googleapis.com/article-generator/dev/banners/lol/46119_preview.webp"
+                                alt="banner"
+                                rel="preload"
+                                fetchpriority="high"
+                            />
+                        </div>
+                        <div data-v-61ae9839="" class="header-flag">
+                            <svg
+                                data-v-db90e710=""
+                                data-v-61ae9839=""
+                                class="active svg-icon svg-icon--global"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="
+                                    width: 22px;
+                                    height: 22px;
+                                    font-size: 22px;
+                                "
+                            >
+                                <use
+                                    data-v-db90e710=""
+                                    xlink:href="#livestream-global"
+                                ></use>
+                            </svg>
+                        </div>
+                        <div data-v-61ae9839="" class="header-info">
+                            <div data-v-61ae9839="" class="league-name">
+                                LCS 2024 Championship
+                            </div>
+                            <div data-v-61ae9839="" class="match-date">
+                                19 August 03:00
+                            </div>
+                        </div>
+                    </div>
+                    <div data-v-61ae9839="" class="detail-info">
+                        <div data-v-61ae9839="" class="detail-meta">
+                            <div data-v-61ae9839="" class="meta-tag">
+                                <span data-v-61ae9839="">prediction</span>
+                            </div>
+                            <div data-v-61ae9839="" class="meta-time">
+                                <span data-v-61ae9839="">2024-08-16</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        data-v-085f1f7c=""
+                        data-v-6522fc27=""
+                        class="detail-content"
+                    >
+                        <div data-v-085f1f7c="" class="content-container">
+                            <div data-v-085f1f7c="" class="master-title">
+                                <h1 data-v-085f1f7c="">
+                                    FlyQuest VS NRG Esports
+                                </h1>
+                                <p data-v-085f1f7c="" class="sub-title">
+                                    *Stats used to make these predictions are
+                                    based on both teams past 25 games
+                                </p>
+                            </div>
+                            <h2
+                                data-v-65bfb877=""
+                                data-v-085f1f7c=""
+                                class="header-title"
+                                isresetodds="false"
+                            >
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                to Win BO5 Series
+                            </h2>
+                            <p
+                                data-v-22be621e=""
+                                data-v-085f1f7c=""
+                                isresetodds="false"
+                            >
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                has a significantly higher win rate of 48%
+                                compared to
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/NRG Esports/76"
+                                    target="_blank"
+                                    >NRG Esports</a
+                                >' 32%. Their stronger team statistics like a
+                                higher First 10 Kills Rate of 56% against NRG's
+                                12% give them an edge in critical moments. Given
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >'s lower odds of 1.129, they are the safer bet
+                                to win the series.
+                            </p>
+                            <div
+                                data-v-0547c446=""
+                                data-v-085f1f7c=""
+                                class="match-status-list"
+                                isresetodds="false"
+                            >
+                                <div
+                                    data-v-0547c446=""
+                                    class="match-status-content"
+                                >
+                                    <div
+                                        data-v-0547c446=""
+                                        class="match-status-content-wrp"
+                                    >
+                                        <div
+                                            data-v-0547c446=""
+                                            class="team-info-wrp block-title"
+                                        >
+                                            Last 5 games Head to head History
+                                        </div>
+                                        <div
+                                            data-v-0547c446=""
+                                            class="team-info-wrp"
+                                        >
+                                            <div
+                                                data-v-0547c446=""
+                                                class="team-info"
+                                            >
+                                                <div
+                                                    data-v-0547c446=""
+                                                    class="team-logo"
+                                                >
+                                                    <img
+                                                        data-v-0547c446=""
+                                                        src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/fb1f0d6b-296b-4a58-91e8-1042350fb61e.png"
+                                                        alt="logo"
+                                                    />
+                                                </div>
+                                                <div
+                                                    data-v-0547c446=""
+                                                    class="team-name"
+                                                >
+                                                    FLY
+                                                </div>
+                                            </div>
+                                            <div
+                                                data-v-0547c446=""
+                                                class="team-info"
+                                            >
+                                                <div
+                                                    data-v-0547c446=""
+                                                    class="team-logo"
+                                                >
+                                                    <img
+                                                        data-v-0547c446=""
+                                                        src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/c6989254-3336-4472-879b-9920fc290dc7.png"
+                                                        alt="logo"
+                                                    />
+                                                </div>
+                                                <div
+                                                    data-v-0547c446=""
+                                                    class="team-name"
+                                                >
+                                                    NRG
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            data-v-55b6fb27=""
+                                            data-v-0547c446=""
+                                            class="match-status-container"
+                                        >
+                                            <div
+                                                data-v-55b6fb27=""
+                                                class="statistic-row"
+                                            >
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <svg
+                                                        data-v-d832802a=""
+                                                        data-v-55b6fb27=""
+                                                        class="active svg-icon svg-icon--crown"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        style="
+                                                            width: 24px;
+                                                            height: 24px;
+                                                            font-size: 24px;
+                                                        "
+                                                    >
+                                                        <use
+                                                            data-v-d832802a=""
+                                                            xlink:href="#livestream-crown"
+                                                        ></use></svg
+                                                    ><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status win"
+                                                        >Win</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-info statistic-col"
+                                                >
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="league-name"
+                                                    >
+                                                        LCS 2024 Summer Season
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="start-time"
+                                                    >
+                                                        2024-06-24
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="match-score-wrp"
+                                                    >
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score win"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >2</span
+                                                            >
+                                                        </div>
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >1</span
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <!--v-if--><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status"
+                                                        >Lose</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            data-v-55b6fb27=""
+                                            data-v-0547c446=""
+                                            class="match-status-container"
+                                        >
+                                            <div
+                                                data-v-55b6fb27=""
+                                                class="statistic-row"
+                                            >
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <svg
+                                                        data-v-d832802a=""
+                                                        data-v-55b6fb27=""
+                                                        class="active svg-icon svg-icon--crown"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        style="
+                                                            width: 24px;
+                                                            height: 24px;
+                                                            font-size: 24px;
+                                                        "
+                                                    >
+                                                        <use
+                                                            data-v-d832802a=""
+                                                            xlink:href="#livestream-crown"
+                                                        ></use></svg
+                                                    ><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status win"
+                                                        >Win</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-info statistic-col"
+                                                >
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="league-name"
+                                                    >
+                                                        LCS 2024 Spring Season
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="start-time"
+                                                    >
+                                                        2024-03-10
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="match-score-wrp"
+                                                    >
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score win"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >1</span
+                                                            >
+                                                        </div>
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >0</span
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <!--v-if--><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status"
+                                                        >Lose</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            data-v-55b6fb27=""
+                                            data-v-0547c446=""
+                                            class="match-status-container"
+                                        >
+                                            <div
+                                                data-v-55b6fb27=""
+                                                class="statistic-row"
+                                            >
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <!--v-if--><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status"
+                                                        >Lose</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-info statistic-col"
+                                                >
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="league-name"
+                                                    >
+                                                        LCS 2024 Spring Season
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="start-time"
+                                                    >
+                                                        2024-01-29
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="match-score-wrp"
+                                                    >
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >0</span
+                                                            >
+                                                        </div>
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score win"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >1</span
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <svg
+                                                        data-v-d832802a=""
+                                                        data-v-55b6fb27=""
+                                                        class="active svg-icon svg-icon--crown"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        style="
+                                                            width: 24px;
+                                                            height: 24px;
+                                                            font-size: 24px;
+                                                        "
+                                                    >
+                                                        <use
+                                                            data-v-d832802a=""
+                                                            xlink:href="#livestream-crown"
+                                                        ></use></svg
+                                                    ><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status win"
+                                                        >Win</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            data-v-55b6fb27=""
+                                            data-v-0547c446=""
+                                            class="match-status-container"
+                                        >
+                                            <div
+                                                data-v-55b6fb27=""
+                                                class="statistic-row"
+                                            >
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <!--v-if--><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status"
+                                                        >Lose</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-info statistic-col"
+                                                >
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="league-name"
+                                                    >
+                                                        LCS 2023 Summer Season
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="start-time"
+                                                    >
+                                                        2023-07-13
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="match-score-wrp"
+                                                    >
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >0</span
+                                                            >
+                                                        </div>
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score win"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >1</span
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <svg
+                                                        data-v-d832802a=""
+                                                        data-v-55b6fb27=""
+                                                        class="active svg-icon svg-icon--crown"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        style="
+                                                            width: 24px;
+                                                            height: 24px;
+                                                            font-size: 24px;
+                                                        "
+                                                    >
+                                                        <use
+                                                            data-v-d832802a=""
+                                                            xlink:href="#livestream-crown"
+                                                        ></use></svg
+                                                    ><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status win"
+                                                        >Win</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            data-v-55b6fb27=""
+                                            data-v-0547c446=""
+                                            class="match-status-container"
+                                        >
+                                            <div
+                                                data-v-55b6fb27=""
+                                                class="statistic-row"
+                                            >
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <svg
+                                                        data-v-d832802a=""
+                                                        data-v-55b6fb27=""
+                                                        class="active svg-icon svg-icon--crown"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        style="
+                                                            width: 24px;
+                                                            height: 24px;
+                                                            font-size: 24px;
+                                                        "
+                                                    >
+                                                        <use
+                                                            data-v-d832802a=""
+                                                            xlink:href="#livestream-crown"
+                                                        ></use></svg
+                                                    ><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status win"
+                                                        >Win</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-info statistic-col"
+                                                >
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="league-name"
+                                                    >
+                                                        LCS 2023 Summer Season
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="start-time"
+                                                    >
+                                                        2023-06-30
+                                                    </div>
+                                                    <div
+                                                        data-v-55b6fb27=""
+                                                        class="match-score-wrp"
+                                                    >
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score win"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >1</span
+                                                            >
+                                                        </div>
+                                                        <div
+                                                            data-v-55b6fb27=""
+                                                            class="match-score"
+                                                        >
+                                                            <span
+                                                                data-v-55b6fb27=""
+                                                                >0</span
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-55b6fb27=""
+                                                    class="match-status-wrp statistic-col"
+                                                >
+                                                    <!--v-if--><span
+                                                        data-v-55b6fb27=""
+                                                        class="match-status"
+                                                        >Lose</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                data-v-612dbe32=""
+                                data-v-085f1f7c=""
+                                class="match-status-list"
+                                isresetodds="false"
+                            >
+                                <div
+                                    data-v-612dbe32=""
+                                    class="match-status-content"
+                                >
+                                    <div
+                                        data-v-612dbe32=""
+                                        class="match-status-content-wrp"
+                                    >
+                                        <div
+                                            data-v-612dbe32=""
+                                            class="team-info-wrp block-title"
+                                        >
+                                            Last 5 games performance
+                                        </div>
+                                        <div
+                                            data-v-5ae480b4=""
+                                            data-v-612dbe32=""
+                                            class="match-list-wrp"
+                                        >
+                                            <div
+                                                data-v-5ae480b4=""
+                                                class="match-list"
+                                            >
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="team-info"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="team-logo"
+                                                    >
+                                                        <img
+                                                            data-v-5ae480b4=""
+                                                            src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/fb1f0d6b-296b-4a58-91e8-1042350fb61e.png"
+                                                            alt="logo"
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="team-name"
+                                                    >
+                                                        FLY
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/298af47e-5174-49bd-9f21-6b5a2cbd15a9.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            C9
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                0
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result lose"
+                                                        >
+                                                            Lose
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-08-12
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/bf95cad6-7b3d-40c2-945e-224e4e2fc2b6.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            SRB
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                1
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result win"
+                                                        >
+                                                            Win
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-08-05
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/eadb24ac-9eac-4efe-aa8f-d1e266ffd806.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            100T
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                1
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result win"
+                                                        >
+                                                            Win
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-07-29
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/c16bd1d3-9280-4b98-beb4-b97b63710a20.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            IMT
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                0
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result win"
+                                                        >
+                                                            Win
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-07-21
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/9344d6d1-20de-43fc-b6d1-55cd04bbd0e7.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            G2
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                1
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result lose"
+                                                        >
+                                                            Lose
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-07-06
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                data-v-5ae480b4=""
+                                                class="match-list"
+                                            >
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="team-info"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="team-logo"
+                                                    >
+                                                        <img
+                                                            data-v-5ae480b4=""
+                                                            src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/c6989254-3336-4472-879b-9920fc290dc7.png"
+                                                            alt="logo"
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="team-name"
+                                                    >
+                                                        NRG
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/293dab55-7890-4764-bc09-0b5b51dd94cc.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            TL
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                0
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result lose"
+                                                        >
+                                                            Lose
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-08-11
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/4aaedde3-6780-4d8a-a7cd-4d1389597d78.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            DIG
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                0
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result lose"
+                                                        >
+                                                            Lose
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-08-04
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/298af47e-5174-49bd-9f21-6b5a2cbd15a9.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            C9
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                0
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result lose"
+                                                        >
+                                                            Lose
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-07-28
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/bf95cad6-7b3d-40c2-945e-224e4e2fc2b6.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            SRB
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                0
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result win"
+                                                        >
+                                                            Win
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-07-22
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    data-v-5ae480b4=""
+                                                    class="match-item"
+                                                >
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="opponent-info"
+                                                    >
+                                                        <label
+                                                            data-v-5ae480b4=""
+                                                            for=""
+                                                            >VS</label
+                                                        >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="logo"
+                                                        >
+                                                            <img
+                                                                data-v-5ae480b4=""
+                                                                src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/c16bd1d3-9280-4b98-beb4-b97b63710a20.png"
+                                                                alt="logo"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="name"
+                                                        >
+                                                            IMT
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="score-info"
+                                                    >
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score"
+                                                        >
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item win"
+                                                            >
+                                                                2
+                                                            </div>
+                                                            <div
+                                                                data-v-5ae480b4=""
+                                                                class="score-item lose"
+                                                            >
+                                                                0
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            data-v-5ae480b4=""
+                                                            class="score-result win"
+                                                        >
+                                                            Win
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        data-v-5ae480b4=""
+                                                        class="date"
+                                                    >
+                                                        2024-06-28
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                data-v-4ec723fd=""
+                                data-v-085f1f7c=""
+                                class="content-odds-widget"
+                            >
+                                <div data-v-4ec723fd="" class="header">
+                                    <div
+                                        data-v-4ec723fd=""
+                                        class="live-odds lol"
+                                    >
+                                        <span data-v-4ec723fd="" class=""
+                                            >Live Odds</span
+                                        >
+                                    </div>
+                                    <div data-v-4ec723fd="" class="game-type">
+                                        BO5 Series Win
+                                    </div>
+                                </div>
+                                <div data-v-4ec723fd="" class="odds-list">
+                                    <div data-v-4ec723fd="" class="odds-item">
+                                        <div
+                                            data-v-4ec723fd=""
+                                            class="bg-gradient"
+                                        >
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="name"
+                                            >
+                                                FlyQuest
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="odds"
+                                            >
+                                                1.133
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="effect"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                    <div data-v-4ec723fd="" class="odds-item">
+                                        <div
+                                            data-v-4ec723fd=""
+                                            class="bg-gradient"
+                                        >
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="name"
+                                            >
+                                                NRG Esports
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="odds"
+                                            >
+                                                5.969
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="effect"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2
+                                data-v-65bfb877=""
+                                data-v-085f1f7c=""
+                                class="header-title"
+                                isresetodds="false"
+                            >
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                to Get First to 5 Kills in Game 1
+                            </h2>
+                            <p
+                                data-v-22be621e=""
+                                data-v-085f1f7c=""
+                                isresetodds="false"
+                            >
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >'s First 5 Kills Rate is 48%, slightly better
+                                than
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/NRG Esports/76"
+                                    target="_blank"
+                                    >NRG Esports</a
+                                >' 44%. Furthermore,
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >'s average kill difference (0.2) is stronger
+                                than NRG's (-4.88), suggesting
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                is more likely to dominate early skirmishes.
+                                With odds of 1.466,
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                is favored to reach 5 kills first.
+                            </p>
+                            <div
+                                data-v-4ec723fd=""
+                                data-v-085f1f7c=""
+                                class="content-odds-widget"
+                            >
+                                <div data-v-4ec723fd="" class="header">
+                                    <div
+                                        data-v-4ec723fd=""
+                                        class="live-odds lol"
+                                    >
+                                        <span data-v-4ec723fd="" class=""
+                                            >Live Odds</span
+                                        >
+                                    </div>
+                                    <div data-v-4ec723fd="" class="game-type">
+                                        Game 1 First to 5 Kills
+                                    </div>
+                                </div>
+                                <div data-v-4ec723fd="" class="odds-list">
+                                    <div data-v-4ec723fd="" class="odds-item">
+                                        <div
+                                            data-v-4ec723fd=""
+                                            class="bg-gradient"
+                                        >
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="name"
+                                            >
+                                                FlyQuest
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="odds"
+                                            >
+                                                1.482
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="effect"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                    <div data-v-4ec723fd="" class="odds-item">
+                                        <div
+                                            data-v-4ec723fd=""
+                                            class="bg-gradient"
+                                        >
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="name"
+                                            >
+                                                NRG Esports
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="odds"
+                                            >
+                                                2.595
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="effect"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2
+                                data-v-65bfb877=""
+                                data-v-085f1f7c=""
+                                class="header-title"
+                                isresetodds="false"
+                            >
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                to Secure First Dragon in Game 1
+                            </h2>
+                            <p
+                                data-v-22be621e=""
+                                data-v-085f1f7c=""
+                                isresetodds="false"
+                            >
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                has a 56% First Dragon Rate, marginally higher
+                                than
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/NRG Esports/76"
+                                    target="_blank"
+                                    >NRG Esports</a
+                                >' 52%. This slight advantage, combined with
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >'s better overall win rate, makes them a more
+                                reliable choice. The odds of 1.669 favor
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                for this event, indicating they are expected to
+                                secure the first dragon.
+                            </p>
+                            <div
+                                data-v-4ec723fd=""
+                                data-v-085f1f7c=""
+                                class="content-odds-widget"
+                            >
+                                <div data-v-4ec723fd="" class="header">
+                                    <div
+                                        data-v-4ec723fd=""
+                                        class="live-odds lol"
+                                    >
+                                        <span data-v-4ec723fd="" class=""
+                                            >Live Odds</span
+                                        >
+                                    </div>
+                                    <div data-v-4ec723fd="" class="game-type">
+                                        Game 1 First Dragon
+                                    </div>
+                                </div>
+                                <div data-v-4ec723fd="" class="odds-list">
+                                    <div data-v-4ec723fd="" class="odds-item">
+                                        <div
+                                            data-v-4ec723fd=""
+                                            class="bg-gradient"
+                                        >
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="name"
+                                            >
+                                                FlyQuest
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="odds"
+                                            >
+                                                1.693
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="effect"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                    <div data-v-4ec723fd="" class="odds-item">
+                                        <div
+                                            data-v-4ec723fd=""
+                                            class="bg-gradient"
+                                        >
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="name"
+                                            >
+                                                NRG Esports
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="odds"
+                                            >
+                                                2.129
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="effect"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2
+                                data-v-65bfb877=""
+                                data-v-085f1f7c=""
+                                class="header-title"
+                                isresetodds="false"
+                            >
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                to Draw First Blood in Game 1
+                            </h2>
+                            <p
+                                data-v-22be621e=""
+                                data-v-085f1f7c=""
+                                isresetodds="false"
+                            >
+                                Both teams have an identical First Blood Rate of
+                                48%. However,
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >'s better overall performance metrics,
+                                including their higher win rate and kill
+                                statistics, give them a slight edge. With odds
+                                of 1.618,
+                                <a
+                                    href="/stats/lol/teams/details/profile/Global/FlyQuest/102"
+                                    target="_blank"
+                                    >FlyQuest</a
+                                >
+                                is slightly more likely to secure the first
+                                blood.
+                            </p>
+                            <div
+                                data-v-4ec723fd=""
+                                data-v-085f1f7c=""
+                                class="content-odds-widget"
+                            >
+                                <div data-v-4ec723fd="" class="header">
+                                    <div
+                                        data-v-4ec723fd=""
+                                        class="live-odds lol"
+                                    >
+                                        <span data-v-4ec723fd="" class=""
+                                            >Live Odds</span
+                                        >
+                                    </div>
+                                    <div data-v-4ec723fd="" class="game-type">
+                                        Game 1 First Blood
+                                    </div>
+                                </div>
+                                <div data-v-4ec723fd="" class="odds-list">
+                                    <div data-v-4ec723fd="" class="odds-item">
+                                        <div
+                                            data-v-4ec723fd=""
+                                            class="bg-gradient"
+                                        >
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="name"
+                                            >
+                                                FlyQuest
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="odds"
+                                            >
+                                                1.64
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="effect"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                    <div data-v-4ec723fd="" class="odds-item">
+                                        <div
+                                            data-v-4ec723fd=""
+                                            class="bg-gradient"
+                                        >
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="name"
+                                            >
+                                                NRG Esports
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="odds"
+                                            >
+                                                2.22
+                                            </div>
+                                            <div
+                                                data-v-4ec723fd=""
+                                                class="effect"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                data-v-1e7fb986=""
+                                data-v-085f1f7c=""
+                                class="news-teams-info"
+                            >
+                                <h2 data-v-1e7fb986="">More about the Teams</h2>
+                                <div data-v-1e7fb986="" class="content-list">
+                                    <div
+                                        data-v-1e7fb986=""
+                                        class="content-item"
+                                    >
+                                        <img
+                                            data-v-1e7fb986=""
+                                            src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/fb1f0d6b-296b-4a58-91e8-1042350fb61e.png"
+                                            alt="logo"
+                                        /><button
+                                            data-v-1e7fb986=""
+                                            type="button"
+                                        >
+                                            FLY Team statistics
+                                        </button>
+                                    </div>
+                                    <div
+                                        data-v-1e7fb986=""
+                                        class="content-item"
+                                    >
+                                        <img
+                                            data-v-1e7fb986=""
+                                            src="https://stat1-mlycdn.bmyy520.com/lol/Content/images/uploaded/team/c6989254-3336-4472-879b-9920fc290dc7.png"
+                                            alt="logo"
+                                        /><button
+                                            data-v-1e7fb986=""
+                                            type="button"
+                                        >
+                                            NRG Team statistics
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-v-62348182="" data-v-6522fc27="" class="related-news">
+                    <div data-v-62348182="" class="header">
+                        <h2 data-v-62348182="">Related News</h2>
+                    </div>
+                    <div data-v-62348182="" class="news-list">
+                        <div data-v-62348182="" class="news-item">
+                            <div data-v-62348182="" class="thumbnail">
+                                <img
+                                    data-v-62348182=""
+                                    src="https://storage.googleapis.com/article-generator/dev/banners/lol/46118_preview.webp"
+                                    alt="thumbnail"
+                                />
+                                <div data-v-62348182="" class="league-name">
+                                    LCS 2024 Championship
+                                </div>
+                                <div data-v-62348182="" class="date">
+                                    18 August 03:00
+                                </div>
+                            </div>
+                            <div data-v-62348182="" class="content">
+                                <h3 data-v-62348182="" class="title">
+                                    100 Thieves VS Dignitas
+                                </h3>
+                                <div data-v-62348182="" class="date">
+                                    2024-08-15
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-62348182="" class="news-item">
+                            <div data-v-62348182="" class="thumbnail">
+                                <img
+                                    data-v-62348182=""
+                                    src="https://storage.googleapis.com/article-generator/dev/banners/lol/44919_preview.png"
+                                    alt="thumbnail"
+                                />
+                                <div data-v-62348182="" class="league-name">
+                                    LCK 2024 Summer - Group Stage
+                                </div>
+                                <div data-v-62348182="" class="date">
+                                    16 August 15:00
+                                </div>
+                            </div>
+                            <div data-v-62348182="" class="content">
+                                <h3 data-v-62348182="" class="title">
+                                    Kwangdong Freecs VS DRX
+                                </h3>
+                                <div data-v-62348182="" class="date">
+                                    2024-08-13
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-62348182="" class="news-item">
+                            <div data-v-62348182="" class="thumbnail">
+                                <img
+                                    data-v-62348182=""
+                                    src="https://storage.googleapis.com/article-generator/dev/banners/lol/46106_preview.png"
+                                    alt="thumbnail"
+                                />
+                                <div data-v-62348182="" class="league-name">
+                                    LPL 2024 Summer Playoffs
+                                </div>
+                                <div data-v-62348182="" class="date">
+                                    16 August 17:00
+                                </div>
+                            </div>
+                            <div data-v-62348182="" class="content">
+                                <h3 data-v-62348182="" class="title">
+                                    Top Esports VS Anyone's Legend
+                                </h3>
+                                <div data-v-62348182="" class="date">
+                                    2024-08-13
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-62348182="" class="news-item">
+                            <div data-v-62348182="" class="thumbnail">
+                                <img
+                                    data-v-62348182=""
+                                    src="https://storage.googleapis.com/article-generator/dev/banners/lol/44921_preview.png"
+                                    alt="thumbnail"
+                                />
+                                <div data-v-62348182="" class="league-name">
+                                    LCK 2024 Summer - Group Stage
+                                </div>
+                                <div data-v-62348182="" class="date">
+                                    16 August 17:30
+                                </div>
+                            </div>
+                            <div data-v-62348182="" class="content">
+                                <h3 data-v-62348182="" class="title">
+                                    Generation Gaming VS Nongshim RedForce
+                                </h3>
+                                <div data-v-62348182="" class="date">
+                                    2024-08-13
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-62348182="" class="news-item">
+                            <div data-v-62348182="" class="thumbnail">
+                                <img
+                                    data-v-62348182=""
+                                    src="https://storage.googleapis.com/article-generator/dev/banners/lol/44922_preview.png"
+                                    alt="thumbnail"
+                                />
+                                <div data-v-62348182="" class="league-name">
+                                    LCK 2024 Summer - Group Stage
+                                </div>
+                                <div data-v-62348182="" class="date">
+                                    17 August 13:00
+                                </div>
+                            </div>
+                            <div data-v-62348182="" class="content">
+                                <h3 data-v-62348182="" class="title">
+                                    Dplus KIA VS KT Rolster
+                                </h3>
+                                <div data-v-62348182="" class="date">
+                                    2024-08-14
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--v-if-->
+        </div>
+        <div
+            id="toroRootDiv"
+            data-user-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjM3MTU4NDQsImlhdCI6MTcyMzYyOTQ0NCwic3ViIjoiNDY0NzQ3NTM5OTkwMzE3OSIsInVzZXJuYW1lIjoiaGFjY291bnQwNyJ9.mC_lLy50PMIXCvswwHZe06Wuxv7ANhw_TEXSHOTDYIQ"
+            data-language="en-us"
+            data-currency="DJT"
+        ></div>
+    </body>
 </html>
-<script type="text/javascript">
-</script>
+<script type="text/javascript"></script>
