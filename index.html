@@ -3,14 +3,36 @@
     <head>
         <meta charset="utf-8" />
         <title>Test performance</title>
-        <meta name="viewport" content="minimum-scale=1, maximum-scale=3, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
+        <meta
+            name="viewport"
+            content="minimum-scale=1, maximum-scale=3, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <script
+            src="https://storage.googleapis.com/esportsbull-assets/stg/web/index.js?_=1724144584"
+            id="kero-esports-widget"
+            data-nscript="afterInteractive"
+            data-ready="true"
+        ></script>
         <style type="text/css"></style>
     </head>
 
-    <body style="background-color: rgb(3, 16, 25)">
-       <img src="https://esb-assets.esb.io/public/header/esportsbet_small.svg" alt="logo">
+    <body style="background-color: rgb(3, 16, 25)" onload="onloadEvent()">
+        <div
+            id="eSportsBullRootDiv"
+            data-page="/"
+            data-currency="DJT"
+            data-token="20d374819c1b6c77c10a57dcb62fbf99f3beab471x02"
+            data-user-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQyMzA2MTgsImlhdCI6MTcyNDE0NDIxOCwic3ViIjoiNDY0NzQ3NTM5OTkwMzE3OSIsInVzZXJuYW1lIjoiaGFjY291bnQwNyJ9.txYlJWIF02WPFQxBfP0ziy8Sjm2G3p3Fvpk91vonLj0"
+            data-language-code="EN-US"
+            data-parent="esportsbet.io"
+        ></div>
     </body>
 </html>
 <script type="text/javascript"></script>
+<script>
+    function onloadEvent() {
+        window.dispatchEvent(new CustomEvent("initEsportsBull"));
+    }
+</script>
