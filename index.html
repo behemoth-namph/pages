@@ -15,10 +15,25 @@
             data-nscript="afterInteractive"
             data-ready="true"
         ></script>
-        <style type="text/css"></style>
+        <style type="text/css">
+          #loading-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999999999;
+            background: #272631;
+            border-radius: unset;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        </style>
     </head>
 
     <body style="background-color: rgb(3, 16, 25)" onload="onloadEvent()">
+        <div id="loading-bg">loading</div>
         <div
             id="eSportsBullRootDiv"
             data-page="/"
@@ -34,5 +49,9 @@
 <script>
     function onloadEvent() {
         window.dispatchEvent(new CustomEvent("initEsportsBull"));
+        setTimeout(() => {
+          const element = document.getElementById("loading-bg");
+          element.style.display = "none";
+        }, 500);
     }
 </script>
