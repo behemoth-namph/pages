@@ -12,24 +12,21 @@
         <script
             src="https://storage.googleapis.com/esportsbull-assets/stg/web/index.js?_=1724144584"
             id="kero-esports-widget"
-            data-nscript="afterInteractive"
-            data-ready="true"
-            async
         ></script>
         <style type="text/css">
-          #loading-bg {
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 9999999999;
-            background: #272631;
-            border-radius: unset;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
+            #loading-bg {
+                width: 100vw;
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 9999999999;
+                background: #272631;
+                border-radius: unset;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         </style>
     </head>
 
@@ -51,8 +48,8 @@
     function onloadEvent() {
         window.dispatchEvent(new CustomEvent("initEsportsBull"));
         setTimeout(() => {
-          const element = document.getElementById("loading-bg");
-          element.style.display = "none";
+            const element = document.getElementById("loading-bg");
+            element.style.display = "none";
         }, 500);
     }
 </script>
