@@ -9,47 +9,14 @@
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <script
-            src="https://storage.googleapis.com/esportsbull-assets/stg/web/index.js?_=1724144584"
-            id="kero-esports-widget"
-        ></script>
-        <style type="text/css">
-            #loading-bg {
-                width: 100vw;
-                height: 100vh;
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 9999999999;
-                background: #272631;
-                border-radius: unset;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        </style>
+        <script src="./w2e.js"></script>
     </head>
 
     <body style="background-color: rgb(3, 16, 25)" onload="onloadEvent()">
-        <div id="loading-bg">loading</div>
-        <div
-            id="eSportsBullRootDiv"
-            data-page="/"
-            data-currency="DJT"
-            data-token="20d374819c1b6c77c10a57dcb62fbf99f3beab471x02"
-            data-user-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQyMzA2MTgsImlhdCI6MTcyNDE0NDIxOCwic3ViIjoiNDY0NzQ3NTM5OTkwMzE3OSIsInVzZXJuYW1lIjoiaGFjY291bnQwNyJ9.txYlJWIF02WPFQxBfP0ziy8Sjm2G3p3Fvpk91vonLj0"
-            data-language-code="EN-US"
-            data-parent="esportsbet.io"
-        ></div>
+        <div id="pluginRenderDiv" data-page="/"></div>
     </body>
 </html>
 <script type="text/javascript"></script>
 <script>
-    function onloadEvent() {
-        window.dispatchEvent(new CustomEvent("initEsportsBull"));
-        setTimeout(() => {
-            const element = document.getElementById("loading-bg");
-            element.style.display = "none";
-        }, 500);
-    }
+    function onloadEvent() {}
 </script>
