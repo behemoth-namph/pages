@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
 
-  <body></body>
+  <body>
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"> </fb:login-button>
+  </body>
 </html>
 <script>
   window.fbAsyncInit = function () {
@@ -22,7 +24,7 @@
     FB.AppEvents.logPageView()
 
     FB.getLoginStatus(function (response) {
-      console.log('[DEV] FB LOGIN STATUS: ', response);
+      console.log('[DEV] FB LOGIN STATUS: ', response)
     })
   }
   ;(function (d, s, id) {
@@ -36,4 +38,10 @@
     js.src = 'https://connect.facebook.net/en_US/sdk.js'
     fjs.parentNode.insertBefore(js, fjs)
   })(document, 'script', 'facebook-jssdk')
+
+  function checkLoginState() {
+    FB.getLoginStatus(function (response) {
+      statusChangeCallback(response)
+    })
+  }
 </script>
