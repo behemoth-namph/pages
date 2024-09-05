@@ -1,47 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Webpack App</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  </head>
+    <head>
+        <meta charset="utf-8" />
+        <title>Webpack App</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <body>
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"> </fb:login-button>
-  </body>
+        <link
+            rel="preload stylesheet"
+            href="https://watch-to-earn-api-dev.kero.io/assets/style.css?_=1725522675"
+        />
+        <script src="https://esb-assets.esb.io/public/js/dayjs.min.js"></script>
+        <script
+            src="https://watch-to-earn-api.kero.io/assets/index.js?_=1725522675"
+            id="kero-script"
+            defer
+        ></script>
+    </head>
+
+    <body style="background: rgb(3, 16, 25)">
+        <div
+            id="mainEventRootDiv"
+            style="width: 100%; height: 600px; overflow: hidden"
+        ></div>
+
+        <div id="upcomingMatchRootDiv"></div>
+        <div id="myBetRootDiv"></div>
+        <div id="toroRootDiv" data-language="en-us" data-currency="DJT"></div>
+        <script>
+            setTimeout(() => {
+                window.dispatchEvent(
+                    new CustomEvent("initMainEvent", {
+                        detail: {
+                            layout: "MAIN_EVENT",
+                        },
+                    })
+                );
+            }, 100);
+        </script>
+    </body>
 </html>
-<script>
-  window.fbAsyncInit = function () {
-    FB.init({
-      appId: '476196325250664',
-      cookie: true,
-      xfbml: true,
-      version: 'v20.0'
-    })
-
-    FB.AppEvents.logPageView()
-
-    FB.getLoginStatus(function (response) {
-      console.log('[DEV] FB LOGIN STATUS: ', response)
-    })
-  }
-  ;(function (d, s, id) {
-    var js,
-      fjs = d.getElementsByTagName(s)[0]
-    if (d.getElementById(id)) {
-      return
-    }
-    js = d.createElement(s)
-    js.id = id
-    js.src = 'https://connect.facebook.net/en_US/sdk.js'
-    fjs.parentNode.insertBefore(js, fjs)
-  })(document, 'script', 'facebook-jssdk')
-
-  function checkLoginState() {
-    FB.getLoginStatus(function (response) {
-      statusChangeCallback(response)
-    })
-  }
-</script>
