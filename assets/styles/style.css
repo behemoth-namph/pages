@@ -54,7 +54,9 @@ header .logo {
 }
 
 header .logo img {
+  aspect-ratio: auto 400 / 54;
   width: 400px;
+  height: auto;
 }
 
 main {
@@ -83,6 +85,8 @@ main .container {
   max-width: 100vw;
   mix-blend-mode: screen;
   min-width: 600px;
+  aspect-ratio: auto 1200 / 1030;
+  height: auto;
 }
 
 /* HERO BANNER */
@@ -176,6 +180,8 @@ img.gradient {
   max-width: 100vw;
   mix-blend-mode: screen;
   min-width: 600px;
+  aspect-ratio: auto 1200 / 848;
+  height: auto;
 }
 
 /* PROMOTIONS */
