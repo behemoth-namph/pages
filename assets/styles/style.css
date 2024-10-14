@@ -434,6 +434,12 @@ footer button:hover {
     margin-bottom: 28px;
   }
 
+  #phone-banner img {
+    width: 100%;
+    aspect-ratio: auto 768 / 659;
+    height: auto;
+  }
+
   .promotions {
     flex-direction: column;
     padding: 20px 30px;
@@ -442,6 +448,12 @@ footer button:hover {
   .promotion-item {
     border-radius: 20px;
     width: 100%;
+  }
+
+  .promotion-item img {
+    height: auto;
+    width: 100%;
+    aspect-ratio: auto 768 / 466;
   }
 
   #hero-banner {
@@ -507,6 +519,12 @@ footer button:hover {
     display: block;
     margin-top: 20px;
   }
+
+  #coin-banner img {
+    width: 100%;
+    aspect-ratio: auto 768 / 542;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -517,5 +535,23 @@ footer button:hover {
 
   .bg-planet {
     background-position: -670px -165px;
+  }
+
+  #phone-banner img {
+    width: 100%;
+    aspect-ratio: auto 480 / 412;
+    height: auto;
+  }
+
+  #coin-banner img {
+    width: 100%;
+    aspect-ratio: auto 480 / 340;
+    height: auto;
+  }
+
+  .promotion-item img {
+    height: auto;
+    width: 100%;
+    aspect-ratio: auto 480 / 291;
   }
 }
