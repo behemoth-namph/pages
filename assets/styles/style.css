@@ -115,7 +115,7 @@ img.hero {
   bottom: 350px;
   left: -382px;
 }
-img.light-2 {
+img.light {
   position: absolute;
   width: 500px !important;
   min-width: 100px !important;
@@ -362,7 +362,7 @@ footer button:hover {
     left: -345px;
   }
 
-  img.light-2 {
+  img.light {
     right: unset;
     left: 400px;
     width: 450px !important;
@@ -473,7 +473,7 @@ footer button:hover {
     bottom: 377px;
   }
 
-  img.light-2 {
+  img.light {
     position: absolute;
     width: 190px !important;
     min-width: 100px !important;
