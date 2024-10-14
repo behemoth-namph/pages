@@ -6,8 +6,9 @@
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.svg" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
+      rel="preload stylesheet"
       crossorigin="anonymous"
+      as="style"
     />
     <link rel="stylesheet" href="./assets/styles/style.css" />
     <title>
@@ -52,6 +53,23 @@
     <link rel="preload" as="image" href="./assets/images/phone.webp" />
     <link rel="preload" as="image" href="./assets/images/phone-mobile.webp" />
   </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: #0a081e;
+      font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-size: 14px;
+      font-weight: 400;
+      color: #ffffff;
+    }
+  </style>
   <body>
     <header>
       <div class="logo">

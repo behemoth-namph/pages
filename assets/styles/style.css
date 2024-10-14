@@ -1,20 +1,4 @@
 /* CLEAR CSS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  overflow-x: hidden;
-  background: #0a081e;
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-size: 14px;
-  font-weight: 400;
-  color: #ffffff;
-}
-
 a {
   text-decoration: none;
   font-weight: 800;
