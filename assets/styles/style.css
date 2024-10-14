@@ -502,6 +502,8 @@ footer button:hover {
     display: block !important;
     width: 100vw;
     mix-blend-mode: normal !important;
+    height: auto;
+    aspect-ratio: auto 480 / 482;
   }
 
   #hero-banner-mobile {
