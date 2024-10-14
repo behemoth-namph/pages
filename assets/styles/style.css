@@ -142,10 +142,10 @@ img.light-2 {
 
 img.gradient {
   position: absolute;
-  top: 75px;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 400px;
+  height: 556px;
   z-index: 2;
   mix-blend-mode: normal !important;
 }
