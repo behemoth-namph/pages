@@ -62,7 +62,7 @@ main .container {
   overflow: hidden;
   max-width: 100vw;
   position: relative;
-  min-height: 600px;
+  min-height: 1000px;
 }
 
 #phone-banner img {
@@ -350,6 +350,10 @@ footer button:hover {
 
   #hero-banner {
     height: 1100px;
+  }
+
+  #phone-banner {
+    min-height: 600px;
   }
 
   img.gradient {
