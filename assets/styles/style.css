@@ -251,8 +251,10 @@ figure {
 }
 
 .promotion-item img {
-  width: 100%;
   display: block;
+  height: auto;
+  width: 100%;
+  aspect-ratio: auto 750 / 456;
 }
 
 img.tris {
