@@ -85,7 +85,7 @@
     <main>
       <div class="container">
         <div id="phone-banner">
-          <picture>
+          <picture class="wow fadeInUp">
             <source
               media="(max-width: 768px)"
               srcset="./assets/images/phone-mobile.webp"
@@ -118,25 +118,25 @@
           <div class="bg-planet"></div>
           <img
             src="./assets/images/bg-gradient.webp"
-            class="gradient"
+            class="gradient wow fadeInUp"
             alt="img"
             loading="lazy"
           />
           <img
             src="./assets/images/hero.webp"
-            class="hero"
+            class="hero wow fadeInUp"
             alt="img"
             loading="lazy"
           />
           <img
             src="./assets/images/tris.webp"
-            class="tris"
+            class="tris wow fadeInUp"
             alt="img"
             loading="lazy"
           />
           <img
             src="./assets/images/light.webp"
-            class="light"
+            class="light wow fadeInUp"
             alt="img"
             loading="lazy"
           />
@@ -154,7 +154,9 @@
         <div id="hero-banner-mobile">
           <img
             src="./assets/images/mobile.webp"
-            class="hero-banner-mobile"
+            class="hero-banner-mobile wow fadeInUp"
+            data-wow-delay="0.2s"
+            data-wow-duration="1s"
             width="480"
             height="482"
             alt="img"
@@ -170,7 +172,7 @@
         </div>
 
         <div id="coin-banner">
-          <picture>
+          <picture class="wow fadeInUp">
             <source
               media="(max-width: 480px)"
               srcset="./assets/images/coin-mobile.webp"
@@ -206,7 +208,7 @@
         <div class="promotions">
           <div class="promotion-item">
             <figure>
-              <picture>
+              <picture class="wow fadeInUp">
                 <source
                   media="(max-width: 480px)"
                   srcset="./assets/images/pro1-mobile.webp"
@@ -235,7 +237,7 @@
           </div>
           <div class="promotion-item">
             <figure>
-              <picture>
+              <picture class="wow fadeInUp">
                 <source
                   media="(max-width: 480px)"
                   srcset="./assets/images/pro2.webp"
@@ -263,7 +265,7 @@
             </figure>
           </div>
           <div class="promotion-item">
-            <figure>
+            <figure class="wow fadeInUp">
               <picture>
                 <source
                   media="(max-width: 480px)"
@@ -292,7 +294,7 @@
             </figure>
           </div>
           <div class="promotion-item">
-            <figure>
+            <figure class="wow fadeInUp">
               <picture>
                 <source
                   media="(max-width: 480px)"
@@ -336,6 +338,15 @@
         <button id="footer-btn">Win now</button>
       </div>
     </footer>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+      crossorigin="anonymous"
+      as="script"
+    ></script>
+    <script>
+      new WOW().init();
+    </script>
   </body>
 </html>
 
