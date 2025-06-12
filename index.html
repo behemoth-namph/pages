@@ -1,18 +1,1104 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>billiard community</title>
-    <script type="module" crossorigin src="/assets/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D75Cssze.css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Index - QuickStart Bootstrap Template</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+
+    <!-- =======================================================
+  * Template Name: QuickStart
+  * Template URL: https://bootstrapmade.com/quickstart-bootstrap-startup-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
   </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+
+  <body class="index-page">
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center"
+      >
+        <a href="index.html" class="logo d-flex align-items-center me-auto">
+          <img src="assets/img/logo.png" alt="" />
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html#hero" class="active">Trang chủ</a></li>
+            <li><a href="index.html#about">Giới thiệu</a></li>
+            <li><a href="index.html#features">Chức năng</a></li>
+            <li><a href="index.html#services">Dịch vụ</a></li>
+            <li><a href="index.html#contact">Liên hệ</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+        <a class="btn-getstarted" href="index.html#about">Tìm hiểu ngay</a>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Hero Section -->
+      <section id="hero" class="hero section">
+        <div class="hero-bg">
+          <img src="assets/img/hero-bg-light.webp" alt="" />
+        </div>
+        <div class="container text-center">
+          <div
+            class="d-flex flex-column justify-content-center align-items-center"
+          >
+            <h1 data-aos="fade-up">Chào mừng bạn đến <span>VIBICO</span></h1>
+            <p data-aos="fade-up" data-aos-delay="100">
+              Chúng tôi luôn sẵng sàng hỗ trợ để giải đáp mọi thắc mắc của bạn
+              liên quan tới hệ thống của chúng tôi<br />
+            </p>
+            <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+              <a href="#about" class="btn-get-started">Tìm hiểu ngay</a>
+              <a
+                href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                class="glightbox btn-watch-video d-flex align-items-center"
+                ><i class="bi bi-play-circle"></i><span>Xem video</span></a
+              >
+            </div>
+            <img
+              src="assets/img/hero-services-img.webp"
+              class="img-fluid hero-img"
+              alt=""
+              data-aos="zoom-out"
+              data-aos-delay="300"
+            />
+          </div>
+        </div>
+      </section>
+      <!-- /Hero Section -->
+
+      <!-- Featured Services Section -->
+      <section
+        id="featured-services"
+        class="featured-services section light-background"
+      >
+        <div class="container">
+          <div class="row gy-4">
+            <div
+              class="col-xl-4 col-lg-6"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0">
+                  <i class="bi bi-people"></i>
+                </div>
+                <div>
+                  <h4 class="title">
+                    <a href="#" class="stretched-link">Người chơi billiard</a>
+                  </h4>
+                  <p class="description">
+                    Đăng ký tham gia giải đấu, xem lịch sử thi đấu, tìm đối thủ,
+                    tìm hiểu và chia sẻ kiến thức trực tuyến, ...
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-xl-4 col-lg-6"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0">
+                  <i class="bi bi-person-vcard"></i>
+                </div>
+                <div>
+                  <h4 class="title">
+                    <a href="#" class="stretched-link"
+                      >Chủ câu lạc bộ billiard</a
+                    >
+                  </h4>
+                  <p class="description">
+                    Tạo và quản lý, vận hành giải đấu, xác minh thông tin người
+                    chơi, lưu trữ lịch sử thành tích thi đấu,...
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-xl-4 col-lg-6"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0">
+                  <i class="bi bi-cart3"></i>
+                </div>
+                <div>
+                  <h4 class="title">
+                    <a href="#" class="stretched-link">Gian hàng trực tuyến</a>
+                  </h4>
+                  <p class="description">
+                    Dành cho các shop bán dụng cụ, dịch vụ liên quan đến
+                    billiard theo hình thức trực tuyến (sắp ra mắt...)
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Service Item -->
+          </div>
+        </div>
+      </section>
+      <!-- /Featured Services Section -->
+
+      <!-- About Section -->
+      <section id="about" class="about section">
+        <div class="container">
+          <div class="row gy-4">
+            <div
+              class="col-lg-6 content"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <p class="who-we-are">Chào mừng bạn đến với Vibico</p>
+              <h3>Vibico là gì?</h3>
+              <p class="fst-italic">
+                Điểm đến lý tưởng dành cho những người đam mê môn thể thao
+                billiard tại Việt Nam và trên toàn thế giới! Vibico là một nền
+                tảng trực tuyến được thiết kế để kết nối các tay cơ từ nghiệp dư
+                đến chuyên nghiệp, tạo ra một không gian chia sẻ kiến thức, kinh
+                nghiệm và niềm đam mê với bộ môn billiard.
+              </p>
+              <p>Vibico tự tin là một hệ thống:</p>
+              <ul>
+                <li>
+                  <i class="bi bi-check-circle"></i>
+                  <span>
+                    <b>Tiện lợi</b> thân thiện, dễ dùng, bất kỳ ai cũng có thể
+                    sử dụng một cách đơn giản
+                  </span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle"></i>
+                  <span>
+                    <b>Kết nối</b>: Sân chơi chung hướng tới cộng đồng, cầu nối
+                    mọi niềm đam mê billiards
+                  </span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle"></i>
+                  <span>
+                    <b>Chuyên nghiệp</b> Thay đổi hoàn toàn trải nghiệm khi tổ
+                    chức và tham gia các giải đấu
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="col-lg-6 about-images"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="row gy-4">
+                <div class="col-lg-6">
+                  <img
+                    src="assets/img/about-company-1.png"
+                    class="img-fluid h-100"
+                    alt=""
+                  />
+                </div>
+                <div class="col-lg-6">
+                  <div class="row gy-4">
+                    <div class="col-lg-12">
+                      <img
+                        src="assets/img/about-company-2.png"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col-lg-12">
+                      <img
+                        src="assets/img/about-company-3.png"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /About Section -->
+
+      <!-- Clients Section -->
+      <!-- <section id="clients" class="clients section">
+      <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
+          <div class="col-xl-2 col-md-3 col-6 client-logo">
+            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="" />
+          </div>
+          
+
+          <div class="col-xl-2 col-md-3 col-6 client-logo">
+            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="" />
+          </div>
+          
+
+          <div class="col-xl-2 col-md-3 col-6 client-logo">
+            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="" />
+          </div>
+          
+
+          <div class="col-xl-2 col-md-3 col-6 client-logo">
+            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="" />
+          </div>
+          
+
+          <div class="col-xl-2 col-md-3 col-6 client-logo">
+            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="" />
+          </div>
+          
+
+          <div class="col-xl-2 col-md-3 col-6 client-logo">
+            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="" />
+          </div>
+          
+        </div>
+      </div>
+    </section> -->
+      <!-- /Clients Section -->
+
+      <!-- Features Section -->
+      <!-- <section id="features" class="features section"> -->
+      <!-- <div class="container section-title pb-0" data-aos="fade-up">
+          <h2>Tại Vibico, bạn có thể làm gì?</h2>
+          <p>
+            Đăng ký tài khoản miễn phí để tham gia Vibico ngay hôm nay và bắt
+            đầu hành trình billiard của bạn!
+          </p>
+        </div> -->
+
+      <!-- <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-5 d-flex align-items-center">
+            <ul class="nav nav-tabs" data-aos="fade-up" data-aos-delay="100">
+              <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+                  <i class="bi bi-binoculars"></i>
+                  <div>
+                    <h4 class="d-none d-lg-block">
+                      Tổ chức và tham gia giải đấu
+                    </h4>
+                    <p>
+                      Tạo hoặc tham gia các giải đấu billiard trực tuyến hoặc tại địa phương, tranh tài với bạn bè và giành những phần thưởng hấp dẫn.
+                    </p>
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+                  <i class="bi bi-box-seam"></i>
+                  <div>
+                    <h4 class="d-none d-lg-block">
+                      Học hỏi và phát triển
+                    </h4>
+                    <p>
+                      Truy cập các tài liệu hướng dẫn, video kỹ thuật, khóa học trực tuyến... để nâng cao kỹ năng chơi billiard của bạn.
+                    </p>
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+                  <i class="bi bi-brightness-high"></i>
+                  <div>
+                    <h4 class="d-none d-lg-block">
+                      Mua bán trực tuyến và đánh giá sản phẩm
+                    </h4>
+                    <p>
+                      Khám phá các sản phẩm billiard
+                      chất lượng cao như gậy cơ, lơ, găng tay chuyên dụng, bàn bi-a... Đọc đánh giá từ cộng đồng để chọn được sản
+                      phẩm phù hợp nhất.
+                    </p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            
+          </div>
+
+          <div class="col-lg-6">
+            <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+              <div class="tab-pane fade active show" id="features-tab-1">
+                <img src="assets/img/tabs-1.jpg" alt="" class="img-fluid" />
+              </div>
+              
+
+              <div class="tab-pane fade" id="features-tab-2">
+                <img src="assets/img/tabs-2.jpg" alt="" class="img-fluid" />
+              </div>
+              
+
+              <div class="tab-pane fade" id="features-tab-3">
+                <img src="assets/img/tabs-3.jpg" alt="" class="img-fluid" />
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- </section> -->
+      <!-- /Features Section -->
+
+      <!-- Features Details Section -->
+      <section id="features" class="features-details section">
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Tại Vibico, bạn có thể làm gì?</h2>
+          <p>
+            Đăng ký tài khoản miễn phí để tham gia Vibico ngay hôm nay và bắt
+            đầu hành trình billiard của bạn!
+          </p>
+        </div>
+
+        <div class="container">
+          <div class="row gy-4 justify-content-between features-item">
+            <div
+              class="col-lg-5 d-flex align-items-center order-2 order-lg-1"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="content">
+                <h3>Học hỏi và phát triển</h3>
+                <p>
+                  Các chức năng đa dạng phục vụ cho nhu cầu tìm hiểu, giao lưu
+                  trao đổi kiến thức, kinh nghiệm về bộ môn billiards của người
+                  chơi
+                </p>
+                <ul>
+                  <li>
+                    <i class="bi bi-play-circle flex-shrink-0"></i>
+                    Truy cập các tài liệu hướng dẫn, video kỹ thuật, khóa học
+                    trực tuyến... để nâng cao kỹ năng
+                  </li>
+                  <li>
+                    <i class="bi bi-pencil-square flex-shrink-0"></i>
+                    Tự tạo và đăng tải nội dung chia sẻ kiến thức của mình dưới
+                    hình thức blog hoặc khoá học
+                  </li>
+                  <li>
+                    <i class="bi bi-chat-square-text flex-shrink-0"></i>
+                    Diễn đàn chung để thảo luận về các chủ đề liên quan đến
+                    billiards
+                  </li>
+                </ul>
+                <p></p>
+                <a
+                  href="https://dev-academy.vibico.co/"
+                  target="_blank"
+                  class="btn more-btn"
+                >
+                  Khám phá ngay
+                </a>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-6 order-1 order-lg-2"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <img src="assets/img/features-2.png" class="img-fluid" alt="" />
+            </div>
+          </div>
+
+          <div class="row gy-4 justify-content-between features-item">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <img src="assets/img/features-1.png" class="img-fluid" alt="" />
+            </div>
+
+            <div
+              class="col-lg-5 d-flex align-items-center"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="content">
+                <h3>Tổ chức và tham gia giải đấu</h3>
+                <p>
+                  Tạo hoặc tham gia các giải đấu billiard trực tuyến hoặc tại
+                  địa phương, tranh tài với bạn bè và giành những phần thưởng
+                  hấp dẫn.
+                </p>
+                <ul>
+                  <li>
+                    <i class="bi bi-diagram-3 flex-shrink-0"></i>
+                    Sử dụng hệ thống quản lý của Vibico để hỗ trợ tổ chức giải
+                    đấu một cách hiệu quả, tiện lợi, chuyên nghiệp
+                  </li>
+                  <li>
+                    <i class="bi bi-clipboard-check flex-shrink-0"></i>
+                    Đăng ký tham gia vào giải đấu, cập nhật các thông tin mới
+                    nhất về giải đấu nhanh chóng và chính xác
+                  </li>
+                </ul>
+                <p></p>
+                <a
+                  href="https://dev-admin.vibico.co/tournaments"
+                  target="_blank"
+                  class="btn more-btn"
+                >
+                  Giải đấu đang diễn ra
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Features Item -->
+
+          <div class="row gy-4 justify-content-between features-item">
+            <div
+              class="col-lg-5 d-flex align-items-center order-2 order-lg-1"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="content">
+                <h3>Mua bán trực tuyến và đánh giá sản phẩm</h3>
+                <p>
+                  Khám phá các sản phẩm billiard chất lượng cao như gậy cơ, lơ,
+                  găng tay chuyên dụng, bàn bi-a...
+                </p>
+                <p>
+                  Đọc đánh giá từ cộng đồng để chọn được sản phẩm phù hợp nhất
+                </p>
+                <p>
+                  Hoặc tự mở các gian hàng trực tuyến kinh doanh vật phẩm/dịch
+                  vụ liên quan đến billiards.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-6 order-1 order-lg-2"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <img src="assets/img/features-3.webp" class="img-fluid" alt="" />
+            </div>
+          </div>
+          <!-- Features Item -->
+        </div>
+      </section>
+      <!-- /Features Details Section -->
+
+      <!-- Services Section -->
+      <section id="services" class="services section light-background">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Các dịch vụ của chúng tôi</h2>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container">
+          <div class="row g-5">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="service-item item-cyan position-relative">
+                <i class="bi bi-file-play icon"></i>
+                <div>
+                  <h3>Cung cấp nội dung xoay quanh billiards</h3>
+                  <p>
+                    Các bài chia sẽ kiến thức, bài luyện giải hình bi dạng hình
+                    ảnh hoặc video, các khoá học trực tuyến cung cấp kiến thức
+                    theo nhiều cấp độ, với chi phí linh hoạt phù hợp cho mọi đối
+                    tượng
+                  </p>
+                  <!-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> -->
+                </div>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-item item-orange position-relative">
+                <i class="bi bi-card-checklist icon"></i>
+                <div>
+                  <h3>Công cụ tạo khoá học & quản lý học viên</h3>
+                  <p>
+                    Hỗ trợ cơ thủ tạo các khoá học online với nội dung đa dạng
+                    và quản lý danh sách học viên tham gia, tiến độ học tập, lưu
+                    trữ bài tập,...một cách đơn giản, tiện lợi, khoa học
+                  </p>
+                  <!-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> -->
+                </div>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+              <div class="service-item item-teal position-relative">
+                <i class="bi bi-diagram-3 icon"></i>
+                <div>
+                  <h3>Công cụ hỗ trợ tạo và vận hành giải đấu</h3>
+                  <p>
+                    Hỗ trợ các chủ CLB tổ chức giải đấu billiards một cách
+                    chuyên nghiệp, hiệu quả trong mọi phương diện: quản lý danh
+                    sách và trạng thái người tham gia, cơ sở vật chất, phân chia
+                    cặp đấu, tiến độ giải đấu,...
+                  </p>
+                  <!-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> -->
+                </div>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+              <div class="service-item item-red position-relative">
+                <i class="bi bi-bounding-box-circles icon"></i>
+                <div>
+                  <h3>Mạng xã hội mini và chợ trực tuyến</h3>
+                  <p>
+                    Diễn đàn giao lưu trao đổi, chia sẻ kiến thức và đạt đánh
+                    giá cao để đạt điểm thưởng, ưu đãi từ hệ thống. Chợ trực
+                    tuyến ngay trên Vibico nơi có thể mua bán các vật phẩm và
+                    dịch vụ liên quan đến billiards (Sắp ra mắt...)
+                  </p>
+                  <!-- <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a> -->
+                </div>
+              </div>
+            </div>
+            <!-- End Service Item -->
+          </div>
+        </div>
+      </section>
+      <!-- /Services Section -->
+
+      <!-- Faq Section -->
+      <section id="faq" class="faq section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Các câu hỏi thường gặp</h2>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+              <div class="faq-container">
+                <div class="faq-item faq-active">
+                  <h3>
+                    Tôi không có nhiều kiến thức về billiards thì nên bắt đầu
+                    tìm hiểu từ đâu?
+                  </h3>
+                  <div class="faq-content">
+                    <p>
+                      <span>
+                        Vibico có đa dạng các nội dung kiến thức dành cho người
+                        mới bắt đầu tập chơi billiards! Bạn hoàn toàn có thể bắt
+                        đầu từ nội dung miễn phí trên hệ thống:
+                      </span>
+                      <br />
+                      <span>
+                        ・Các bài blog chia sẻ kiến thức cơ bản, các mẹo luyện
+                        tập hiệu quả.
+                        <a
+                          href="https://dev-academy.vibico.co/"
+                          target="_blank"
+                        >
+                          Xem tại đây »
+                        </a>
+                      </span>
+                      <br />
+                      <span>
+                        ・Hệ thống bài hình bi luyện tập kỹ năng đánh bóng, điều
+                        bóng.
+                        <a
+                          href="https://dev-academy.vibico.co/drills"
+                          target="_blank"
+                        >
+                          Xem ngay »
+                        </a>
+                      </span>
+                      <br />
+                      <span>
+                        Hoặc tham gia vào các khoá học kiến thức cơ bản do các
+                        cơ thủ uy tín hướng dẫn để được hướng dẫn và giải đáp
+                        bài bản, chi tiết. Tìm kiếm khoá học phù hợp
+                        <a
+                          href="https://dev-academy.vibico.co/courses"
+                          target="_blank"
+                        >
+                          tại đây
+                        </a>
+                      </span>
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+
+                <div class="faq-item">
+                  <h3>
+                    Tôi không rành về công nghệ thì có thể tạo khóa học được
+                    không?
+                  </h3>
+                  <div class="faq-content">
+                    <p>
+                      <span>
+                        Không cần lo lắng, bạn hoàn toàn có thể tự tạo khoá học
+                        trên Vibico!
+                      </span>
+                      <br />
+                      <span>
+                        Chúng tôi đã thiết kế hệ thống đơn giản hoá tối đa cho
+                        người dùng, đảm bảo bạn chỉ cần có nội dung chia sẻ theo
+                        các hình thức văn bản hoặc video là có thể đăng tải. Bạn
+                        sẽ không cần tải và cài đặt các phần mềm phức tạp khác,
+                        mọi thứ đều được thực hiện trực tiếp trên trang web của
+                        Vibico.
+                      </span>
+                      <br />
+                      <span>
+                        Ngoài ra, đội ngũ Vibico luôn sẵn sàng hỗ trợ, giải đáp
+                        các thắc mắc của bạn trong quá trình tạo để có thể phát
+                        hành một khoá học hoàn chỉnh. Hãy đăng ký tài khoản và
+                        trải nghiệm ngay hôm nay!
+                      </span>
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+
+                <div class="faq-item">
+                  <h3>
+                    Tôi là chủ CLB, làm thế nào để được hệ thống hỗ trợ tổ chức
+                    giải đấu?
+                  </h3>
+                  <div class="faq-content">
+                    <p>
+                      <span>
+                        Quý khách hàng có nhu cầu sử dụng hệ thống quản lý CLB
+                        và giải đấu xin vui lòng liên hệ với Vibico theo thông
+                        tin liên hệ dưới đây để được cấp tài khoản sử dụng và
+                        hướng dẫn sử dụng hệ thống:
+                      </span>
+                      <br />
+                      <span> ・<b>Số điện thoại</b>: 0987654321 </span>
+                      <br />
+                      <span> ・<b>Email</b>: support@vibico.vn </span>
+                      <br />
+                      <span>
+                        Toà nhà Nam Đô Complex - 609 Trương Định - Thịnh Liệt -
+                        Hoàng Mai - Hà Nội
+                      </span>
+                      <br />
+                      <span>
+                        Trong quá trình sử dụng, Vibico luôn đồng hành để hỗ trợ
+                        và giải đáp thắc mắc khi cần!
+                      </span>
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+
+                <div class="faq-item">
+                  <h3>Sử dụng hệ thống có tốn phí không?</h3>
+                  <div class="faq-content">
+                    <p>
+                      <span>
+                        ・Đối với người dùng muốn tìm kiếm, học hỏi kiến thức về
+                        billiard, Vibico có nhiều nội dung hoàn toàn miễn phí!
+                        Với những nội dung nâng cao hoặc các khoá học có yêu cầu
+                        trả phí, mức phí cũng sẽ được hiển thị rõ ràng và bạn
+                        hoàn toàn có thể quyết định có trả phí để xem nội dung
+                        hay không.
+                      </span>
+                      <br />
+                      <span>
+                        ・Đối với các cơ thủ có nhu cầu chia sẻ kiến thức theo
+                        hình thức khoá học, hoặc các chủ CLB có nhu cầu sử dụng
+                        hệ thống để hỗ trợ quản lý CLB và tổ chức giải đấu, hệ
+                        thống hiện đang được <b>miễn phí dùng thử</b> trong giai
+                        đoạn thử nghiệm. Sau đó, trước khi tiến hành thu phí
+                        dịch vụ/phí vận hành, chúng tôi sẽ có thông báo cụ thể
+                        cho quý khách hàng đang sử dụng dịch vụ.
+                      </span>
+                      <br />
+                      <span>
+                        Vui lòng liên hệ với chúng tôi
+                        <a href="#contact" target="_blank">tại đây</a> để được
+                        tư vấn thêm
+                      </span>
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+              </div>
+            </div>
+            <!-- End Faq Column-->
+          </div>
+        </div>
+      </section>
+      <!-- /Faq Section -->
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="testimonials section light-background">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Phản hồi từ khách hàng</h2>
+          <p>
+            Chúng tôi rất vui khi nhận được sự phản hồi tích cực và các ý kiến
+            góp ý của khách hàng để có thể mang lại những dịch vụ tốt nhất
+          </p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": true
+                },
+                "breakpoints": {
+                  "320": {
+                    "slidesPerView": 1,
+                    "spaceBetween": 40
+                  },
+                  "1200": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 1
+                  }
+                }
+              }
+            </script>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-half"></i>
+                  </div>
+                  <p>
+                    Tôi từng thuê 2–3 người để điều hành giải đấu, nhưng giờ chỉ
+                    cần VIBICO. Hệ thống tự xếp trận, báo bàn, cập nhật điểm số…
+                    rất mượt. Thành viên CLB của tôi cũng thích vì mọi thứ đều
+                    rõ ràng, dễ theo dõi
+                  </p>
+                  <div class="profile mt-auto">
+                    <img
+                      src="assets/img/testimonials/testimonials-1.webp"
+                      class="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Tấn Thành</h3>
+                    <h4>Chủ CLB bida Định Công</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i><i class="bi-star-fill"></i>
+                  </div>
+                  <p>
+                    Khi thử tạo khóa học trên VIBICO, tôi bất ngờ vì hệ thống hỗ
+                    trợ rất tốt – từ thiết kế nội dung, đăng tải đến tương tác
+                    với người học. Tôi có thể chia sẻ kinh nghiệm thực chiến của
+                    mình đến nhiều người hơn, ngay cả khi họ không đến được CLB
+                  </p>
+                  <div class="profile mt-auto">
+                    <img
+                      src="assets/img/testimonials/testimonials-4.webp"
+                      class="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Đắc Trường</h3>
+                    <h4>Cơ thủ chuyên nghiệp</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    Tôi không ngờ lại có nơi tập hợp nhiều nội dung chất lượng
+                    thế này. Mỗi người hướng dẫn đều có phong cách riêng, xem
+                    rất thích. Không phải chỉ có ‘lớp học’, mà giống như được
+                    nghe chia sẻ bí kíp từ các đàn anh trong nghề.
+                  </p>
+                  <div class="profile mt-auto">
+                    <img
+                      src="assets/img/testimonials/testimonials-3.webp"
+                      class="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Nam Phạm</h3>
+                    <h4>Cơ thủ nghiệp dư</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i><i class="bi-star-half"></i>
+                  </div>
+                  <p>
+                    Tôi mới biết đến bida chưa lâu nhưng nhờ VIBICO mà học nhanh
+                    hơn hẳn. Có video hướng dẫn cơ bản từng bước, dễ hiểu. Lúc
+                    đầu hơi ngợp nhưng dùng một lúc là quen liền
+                  </p>
+                  <div class="profile mt-auto">
+                    <img
+                      src="assets/img/testimonials/testimonials-5.webp"
+                      class="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Nguyễn Thái</h3>
+                    <h4>Người chơi mới</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+      <!-- /Testimonials Section -->
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Liên hệ</h2>
+          <p>Hãy liên hệ với chúng tôi để biết thêm thông tin về chúng tôi</p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="row gy-4">
+            <div class="col-lg-6">
+              <div
+                class="info-item d-flex flex-column justify-content-center align-items-center"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <i class="bi bi-geo-alt"></i>
+                <h3>Địa chỉ</h3>
+                <p>
+                  Toà nhà Nam Đô Complex - 609 Trương Định - Thịnh Liệt - Hoàng
+                  Mai - Hà Nội
+                </p>
+              </div>
+            </div>
+            <!-- End Info Item -->
+
+            <div class="col-lg-3 col-md-6">
+              <div
+                class="info-item d-flex flex-column justify-content-center align-items-center"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <i class="bi bi-telephone"></i>
+                <h3>Số điện thoại</h3>
+                <p>+1 5589 55488 55</p>
+              </div>
+            </div>
+            <!-- End Info Item -->
+
+            <div class="col-lg-3 col-md-6">
+              <div
+                class="info-item d-flex flex-column justify-content-center align-items-center"
+                data-aos="fade-up"
+                data-aos-delay="400"
+              >
+                <i class="bi bi-envelope"></i>
+                <h3>Email</h3>
+                <p>support@vibico.vn</p>
+              </div>
+            </div>
+            <!-- End Info Item -->
+          </div>
+
+          <div class="row gy-4 mt-1">
+            <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5980.865020498634!2d105.84203367676301!3d20.98030128943848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad5aab5e467b%3A0xe488c222a66a927a!2zNjA5IMSQLiBUcsawxqFuZyDEkOG7i25oLCBUw6JuIE1haSwgSG_DoG5nIE1haSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e1!3m2!1svi!2s!4v1749610862255!5m2!1svi!2s"
+                frameborder="0"
+                style="border: 0; width: 100%; height: 400px"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <!-- End Google Maps -->
+          </div>
+        </div>
+      </section>
+      <!-- /Contact Section -->
+    </main>
+
+    <footer id="footer" class="footer position-relative light-background">
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span class="sitename">VIBICO</span>
+            </a>
+            <div class="footer-contact pt-3">
+              <p>Chính sách sử dụng</p>
+              <p>Điều khoản bảo mật</p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Danh mục</h4>
+            <ul>
+              <li><a href="#">Trang chủ</a></li>
+              <li><a href="#">Giới thiệu</a></li>
+              <li><a href="#">Dịch vụ</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Dịch vụ của chúng tôi</h4>
+            <ul>
+              <li><a href="#">Tổ chức giải đấu</a></li>
+              <li><a href="#">Học trực tuyến</a></li>
+              <li><a href="#">Mua sắm online</a></li>
+              <li><a href="#">Tìm người chơi billiard</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-12 footer-newsletter">
+            <h4>Liên hệ với chúng tôi</h4>
+            <div class="social-links d-flex mt-4">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+            <!-- <p>
+              Subscribe to our newsletter and receive the latest news about our
+              products and services!
+            </p>
+            <form
+              action="forms/newsletter.php"
+              method="post"
+              class="php-email-form"
+            >
+              <div class="newsletter-form">
+                <input type="email" name="email" /><input
+                  type="submit"
+                  value="Subscribe"
+                />
+              </div>
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">
+                Your subscription request has been sent. Thank you!
+              </div>
+            </form> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="container copyright text-center mt-4">
+        <p>Copyright © 2025 Vibico || All Rights Reserved</p>
+        <!-- <div class="credits"> -->
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+        <!-- </div> -->
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
