@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1640">
+<title>SpecMate v1 · 02 · Canvas — SRS</title>
+<style>
+:root{
+  --bg:oklch(97% .012 80);
+  --surface:oklch(99% .005 80);
+  --fg:oklch(20% .02 60);
+  --muted:oklch(48% .015 60);
+  --subtle:oklch(68% .01 70);
+  --border:oklch(89% .012 80);
+  --hairline:oklch(93% .01 80);
+  --accent:oklch(58% .16 35);
+  --accent-soft:oklch(94% .025 35);
+  --ok:oklch(50% .13 145);
+  --ok-soft:oklch(94% .04 145);
+  --warn:oklch(55% .14 70);
+  --warn-soft:oklch(95% .04 70);
+  --danger:oklch(52% .17 25);
+  --danger-soft:oklch(95% .03 25);
+  --font-display:'Iowan Old Style','Charter',Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono:ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--surface);color:var(--fg);font-family:var(--font-body);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;height:100vh;overflow:hidden}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;margin:0}
+h2{font-size:22px}
+h3{font-size:15px;line-height:1.3}
+h4{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+p{margin:0}
+.kicker{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600;font-family:var(--font-mono)}
+.muted{color:var(--muted)}
+.subtle{color:var(--subtle)}
+.mono{font-family:var(--font-mono)}
+a{color:var(--accent);text-decoration:none;cursor:pointer}
+button{cursor:pointer;font-family:inherit}
+
+/* appbar */
+.appbar{display:flex;align-items:center;padding:10px 24px;border-bottom:1px solid var(--hairline);background:var(--surface);gap:14px;height:48px;flex-shrink:0}
+.appbar__brand{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--fg);text-decoration:none;cursor:pointer}
+.appbar__brand span{color:var(--accent)}
+.appbar__crumbs{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.appbar__crumbs a{color:var(--muted)}
+.appbar__crumbs a:hover{color:var(--fg);text-decoration:underline}
+.appbar__crumbs b{color:var(--fg);font-weight:500}
+.appbar__sep{color:var(--subtle)}
+.appbar__spacer{flex:1}
+.appbar__hello{font-size:11px;color:var(--muted)}
+.appbar__hello b{color:var(--fg);font-weight:500}
+.appbar__icon{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:11px}
+
+/* shell — 2 columns: snapshot + right tabs */
+.shell{display:grid;grid-template-columns:1fr 540px;height:calc(100vh - 49px)}
+
+/* CANVAS centre */
+.canvas{background:oklch(96% .01 70);overflow:hidden;display:flex;flex-direction:column}
+.canvas__bar{padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--hairline);display:flex;align-items:center;gap:10px;font-size:12px;flex-wrap:wrap}
+.canvas__nav{display:flex;gap:4px}
+.canvas__zoom{display:flex;gap:0;border:1px solid var(--border);border-radius:5px;overflow:hidden}
+.canvas__zoom button{height:26px;padding:0 10px;background:var(--surface);border:none;font-size:11px;color:var(--muted);border-right:1px solid var(--border);font-family:inherit}
+.canvas__zoom button:last-child{border-right:none}
+.canvas__zoom button:hover{background:var(--hairline);color:var(--fg)}
+.canvas__zoom button.on{background:var(--hairline);color:var(--fg)}
+.canvas__meta{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11px}
+.canvas__meta b{color:var(--fg);font-weight:500}
+.canvas__spacer{flex:1}
+.canvas__url{font-family:var(--font-mono);font-size:10px;color:var(--subtle);background:var(--bg);padding:4px 8px;border-radius:4px;border:1px solid var(--hairline);max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.canvas__tools{display:flex;gap:6px}
+.tool-btn{height:26px;padding:0 10px;font-size:11px;border:1px solid var(--border);background:var(--surface);color:var(--fg);border-radius:5px;font-family:inherit;display:inline-flex;align-items:center;gap:5px;transition:background .12s}
+.tool-btn:hover{background:var(--hairline)}
+.tool-btn--on{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.tool-btn--accent{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.tool-btn--accent:hover{background:oklch(52% .16 35);color:var(--surface)}
+.canvas__tools-sep{width:1px;height:18px;background:var(--hairline);align-self:center}
+
+.snap{flex:1;overflow:auto;padding:24px;background:repeating-linear-gradient(135deg,oklch(95% .008 70),oklch(95% .008 70) 8px,oklch(93% .008 70) 8px,oklch(93% .008 70) 16px);position:relative}
+.snap__art{background:var(--surface);border:1px solid var(--border);border-radius:6px;min-height:600px;max-width:880px;margin:0 auto;position:relative;box-shadow:0 1px 0 oklch(94% .01 70 / .8),0 6px 18px oklch(20% .02 50 / .04);padding:34px 38px;font-family:var(--font-display);color:var(--fg)}
+.snap__art h2{font-family:var(--font-display);font-size:28px;font-weight:400;letter-spacing:-.02em;margin-bottom:8px}
+.snap__art p.deck{color:var(--muted);font-size:14px;margin-bottom:28px}
+.snap__art .form-block{background:oklch(98% .008 70);border:1px solid var(--hairline);border-radius:6px;padding:22px 24px;max-width:380px;margin:0 auto;font-family:var(--font-body)}
+.snap__art .form-block h3{font-size:18px;font-family:var(--font-display);font-weight:500;margin-bottom:16px}
+.snap__art .form-block .field-mock{height:36px;background:var(--surface);border:1px solid var(--border);border-radius:5px;margin-bottom:12px}
+.snap__art .form-block .button-mock{height:36px;background:var(--fg);border-radius:5px;margin-top:18px}
+.snap__art .footer-mock{margin-top:32px;padding-top:18px;border-top:1px solid var(--hairline);font-size:11px;color:var(--subtle);font-family:var(--font-mono);text-align:center;letter-spacing:.08em;text-transform:uppercase}
+
+.pin{position:absolute;width:24px;height:24px;background:var(--accent);color:var(--surface);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;font-weight:600;cursor:pointer;box-shadow:0 1px 0 oklch(40% .12 35),0 2px 6px oklch(58% .16 35 / .3);transform:translate(-50%,-50%);z-index:5;transition:transform .12s,background .2s,opacity .2s}
+.pin:hover{transform:translate(-50%,-50%) scale(1.18)}
+.pin--acted{background:var(--warn);box-shadow:0 1px 0 oklch(38% .14 70),0 2px 6px oklch(55% .14 70 / .3)}
+.pin--done{background:var(--ok);opacity:.65;box-shadow:0 1px 0 oklch(35% .12 145),0 2px 6px oklch(50% .13 145 / .3)}
+.pin--active{outline:3px solid oklch(94% .025 35);outline-offset:2px;transform:translate(-50%,-50%) scale(1.1)}
+.box{position:absolute;border:2px solid var(--accent);background:oklch(58% .16 35 / .08);border-radius:2px;z-index:4;cursor:pointer;transition:border-color .2s,background .2s}
+.box--acted{border-color:var(--warn);background:oklch(55% .14 70 / .08)}
+.box--done{border-color:var(--ok);background:oklch(50% .13 145 / .08);opacity:.7}
+.box__label{position:absolute;top:-20px;left:-2px;font-family:var(--font-mono);font-size:9px;background:var(--accent);color:var(--surface);padding:1px 5px;border-radius:2px;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;transition:background .2s}
+.box--acted .box__label{background:var(--warn)}
+.box--done .box__label{background:var(--ok)}
+
+/* legend */
+.legend{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 14px;display:flex;gap:18px;font-size:10px;color:var(--muted);font-family:var(--font-mono);letter-spacing:.04em;text-transform:uppercase;box-shadow:0 2px 8px oklch(20% .02 50 / .05)}
+.legend__dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle}
+
+/* RIGHT side: 3-tab panel */
+.side{border-left:1px solid var(--hairline);display:flex;flex-direction:column;background:var(--surface);overflow:hidden}
+.side__tabs{display:flex;border-bottom:1px solid var(--hairline);padding:0 18px;background:oklch(98% .008 70)}
+.side__tab{padding:14px 0;margin-right:24px;font-size:12px;color:var(--muted);border-bottom:2px solid transparent;font-weight:500;font-family:inherit;background:transparent;border-left:none;border-right:none;border-top:none}
+.side__tab:hover{color:var(--fg)}
+.side__tab--on{color:var(--fg);border-bottom-color:var(--fg)}
+.side__tab b{font-family:var(--font-mono);font-size:10px;color:var(--subtle);margin-left:6px;font-weight:600}
+.side__tab--on b{color:var(--accent)}
+
+.side__panel{flex:1;overflow:hidden;display:none;flex-direction:column}
+.side__panel--on{display:flex}
+
+/* buttons */
+.btn-mini{height:26px;padding:0 10px;font-size:11px;font-weight:500;border-radius:4px;border:1px solid var(--border);background:var(--surface);color:var(--fg);font-family:inherit;transition:background .12s,transform .05s}
+.btn-mini:hover{background:var(--hairline)}
+.btn-mini:active{transform:translateY(1px)}
+.btn-mini:disabled{opacity:.4;cursor:not-allowed}
+.btn-mini--approve{background:var(--ok);color:var(--surface);border-color:var(--ok)}
+.btn-mini--approve:hover{background:oklch(45% .13 145)}
+.btn-mini--accent{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.btn-mini--accent:hover{background:oklch(52% .16 35)}
+.btn-mini--reject{color:var(--danger);border-color:oklch(85% .04 25)}
+.btn-mini--reject:hover{background:var(--danger-soft)}
+.btn-ghost{background:transparent;border:none;color:var(--muted);font-family:inherit;font-size:11px;padding:3px 8px;border-radius:4px}
+.btn-ghost:hover{background:var(--hairline);color:var(--fg)}
+
+/* ===== COMMENTS tab ===== */
+.com{display:flex;flex-direction:column;height:100%;overflow:hidden}
+.com__filter{display:flex;flex-direction:column;gap:4px;padding:10px 18px;border-bottom:1px solid var(--hairline);font-size:11px}
+.com__chip{padding:6px 10px;border-radius:6px;background:transparent;color:var(--muted);font-family:inherit;text-align:left;border:1px solid transparent;display:flex;align-items:center;gap:8px;font-size:11px;transition:background .12s}
+.com__chip-dot{width:8px;height:8px;border-radius:50%;background:var(--subtle);flex-shrink:0}
+.com__chip--all .com__chip-dot{background:var(--fg)}
+.com__chip--open .com__chip-dot{background:var(--accent)}
+.com__chip--acted .com__chip-dot{background:var(--warn)}
+.com__chip--done .com__chip-dot{background:var(--ok)}
+.com__chip b{color:var(--fg);font-weight:500;flex:1}
+.com__chip span{font-family:var(--font-mono);color:var(--subtle);font-size:10px}
+.com__chip:hover{background:var(--hairline)}
+.com__chip--on{background:var(--hairline);border-color:var(--border)}
+
+.com__list-section{display:flex;flex-direction:column;flex:1;overflow:hidden}
+.com__detail-section{display:none;flex-direction:column;flex:1;overflow:hidden}
+.com--detail .com__list-section{display:none}
+.com--detail .com__detail-section{display:flex}
+.com__list{flex:1;overflow:auto;background:oklch(98% .008 70)}
+.com__back-strip{padding:8px 14px;border-bottom:1px solid var(--hairline);background:oklch(97% .008 70);display:flex;align-items:center;gap:8px}
+.com__back{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 11px;background:var(--surface);border:1px solid var(--border);border-radius:4px;font-size:11px;color:var(--muted);font-family:inherit;font-weight:500;transition:background .12s,color .12s}
+.com__back:hover{background:var(--hairline);color:var(--fg);border-color:var(--muted)}
+.com__back-meta{font-size:10px;color:var(--subtle);font-family:var(--font-mono);letter-spacing:.04em;text-transform:uppercase;margin-left:auto}
+.com__group{padding:12px 18px 4px}
+.com__group-title{font-size:10px;color:var(--subtle);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.com__group-title b{color:var(--muted);font-weight:600}
+.com__group-title::after{content:'';flex:1;border-top:1px solid var(--hairline)}
+.com__group--hidden{display:none}
+.com__item{padding:10px 18px;border-bottom:1px solid var(--hairline);cursor:pointer;transition:background .15s}
+.com__item:hover{background:var(--hairline)}
+.com__item--active{background:var(--surface);border-left:3px solid var(--accent);padding-left:15px}
+.com__item-head{display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:11px}
+.com__num{font-family:var(--font-mono);background:var(--accent);color:var(--surface);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0}
+.com__num--acted{background:var(--warn)}
+.com__num--done{background:var(--ok)}
+.com__author{font-weight:600;font-size:11px;color:var(--fg)}
+.com__time{color:var(--subtle);font-size:10px;margin-left:auto;font-family:var(--font-mono)}
+.com__body{font-size:11.5px;color:var(--muted);line-height:1.5;margin-left:24px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.com__meta{margin-left:24px;display:flex;align-items:center;gap:8px;font-size:10px;color:var(--subtle);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.04em;margin-top:3px}
+
+/* thread drawer (lower portion of Comments tab) */
+.com__thread-head{padding:12px 18px;border-bottom:1px solid var(--hairline);background:var(--surface)}
+.com__thread-head-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.th-num{font-family:var(--font-mono);background:var(--accent);color:var(--surface);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;transition:background .2s}
+.th-num--acted{background:var(--warn)}
+.th-num--done{background:var(--ok)}
+.th-title{font-family:var(--font-display);font-size:13px;font-weight:600;flex:1}
+.th-shape{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle)}
+.th-meta{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:12px}
+.th-meta b{color:var(--fg);font-weight:500}
+
+.walker{padding:12px 18px;background:var(--surface);border-bottom:1px solid var(--hairline)}
+.walker__kicker{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:600}
+.walker__row{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:oklch(98% .008 70)}
+.walker__step{flex:1;padding:8px 10px 9px;font-size:11px;color:var(--muted);position:relative;cursor:pointer;border:none;background:transparent;text-align:left;transition:background .12s}
+.walker__step:hover{background:var(--hairline)}
+.walker__step + .walker__step{border-left:1px solid var(--border)}
+.walker__step-num{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--subtle);margin-bottom:2px;display:block}
+.walker__step-name{font-family:var(--font-display);font-size:12px;font-weight:600;color:var(--fg);letter-spacing:-.005em;display:block}
+.walker__step-hint{display:block;font-size:9.5px;color:var(--subtle);margin-top:2px;font-family:var(--font-body);line-height:1.3}
+.walker__step--done{background:var(--ok-soft)}
+.walker__step--done .walker__step-num{color:var(--ok)}
+.walker__step--done::after{content:'✓';position:absolute;top:6px;right:10px;color:var(--ok);font-size:12px;font-weight:600}
+.walker__step--current{background:var(--warn-soft);box-shadow:inset 0 -3px 0 var(--warn)}
+.walker__step--current.walker__step--at-open{background:var(--accent-soft);box-shadow:inset 0 -3px 0 var(--accent)}
+.walker__step--current.walker__step--at-open .walker__step-num{color:var(--accent)}
+.walker__step--current.walker__step--at-done{background:var(--ok-soft);box-shadow:inset 0 -3px 0 var(--ok)}
+.walker__step--current.walker__step--at-done .walker__step-num{color:var(--ok)}
+.walker__step--current .walker__step-num{color:var(--warn)}
+.walker__actions{display:flex;gap:6px;margin-top:10px;align-items:center}
+.walker__actions .btn-mini{height:28px;font-size:11px;padding:0 12px}
+.walker__advance{background:var(--ok);color:var(--surface);border-color:var(--ok)}
+.walker__advance:hover{background:oklch(45% .13 145)}
+.walker__advance--to-acted{background:var(--warn);border-color:var(--warn)}
+.walker__advance--to-acted:hover{background:oklch(50% .14 70)}
+
+.com__thread-body{flex:1;overflow:auto;padding:14px 18px;background:var(--surface)}
+.msg{display:flex;gap:10px;margin-bottom:14px}
+.msg__main{flex:1;min-width:0}
+.msg__head{display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:11px}
+.msg__author{font-weight:600;font-size:11.5px;color:var(--fg)}
+.msg__time{color:var(--subtle);font-size:10px;margin-left:auto;font-family:var(--font-mono)}
+.msg__body{font-size:12.5px;color:var(--muted);line-height:1.55;background:oklch(98% .008 70);padding:9px 12px;border-radius:6px;border:1px solid var(--hairline)}
+.msg__body b{color:var(--fg);font-weight:500}
+.msg__body mark{background:var(--accent-soft);color:var(--accent);padding:1px 4px;border-radius:3px;font-weight:500}
+.msg__body code{font-family:var(--font-mono);font-size:11px;background:var(--hairline);padding:1px 4px;border-radius:3px}
+
+/* avatar */
+.avatar{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:oklch(80% .04 30);color:oklch(35% .06 30);font-size:9px;font-weight:600;letter-spacing:.02em;flex-shrink:0;font-family:var(--font-display)}
+.avatar--c2{background:oklch(82% .05 200);color:oklch(35% .07 200)}
+.avatar--c3{background:oklch(82% .05 280);color:oklch(35% .07 280)}
+.avatar--c4{background:oklch(85% .05 145);color:oklch(38% .07 145)}
+
+.com__reply{padding:12px 18px;border-top:1px solid var(--hairline);background:var(--surface)}
+.com__reply-box{background:oklch(98% .008 70);border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--fg);min-height:54px;font-family:inherit;width:100%;outline:none;resize:vertical;transition:border-color .12s,box-shadow .12s}
+.com__reply-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.com__reply-bar{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:10.5px;color:var(--subtle);font-family:var(--font-mono)}
+.com__reply-bar .btn-mini{margin-left:auto}
+
+/* ===== MARKDOWN doc panels (SRS / Database) ===== */
+.md-bar{padding:10px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--hairline);background:var(--surface);font-size:11px;color:var(--muted);flex-wrap:wrap}
+.md-bar b{color:var(--fg);font-weight:500}
+.md-bar__spacer{flex:1}
+.md-bar__view-row,.md-bar__edit-row{display:flex;align-items:center;gap:8px;flex:1}
+.md-bar__edit-row{display:none}
+.md-bar--editing .md-bar__view-row{display:none}
+.md-bar--editing .md-bar__edit-row{display:flex}
+
+.md-status{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 9px;font-size:10px;font-weight:600;border-radius:10px;line-height:1;letter-spacing:.04em;text-transform:uppercase;font-family:var(--font-mono)}
+.md-status--pending{background:var(--accent-soft);color:var(--accent)}
+.md-status--reviewed{background:var(--ok-soft);color:var(--ok)}
+.md-status--draft{background:var(--warn-soft);color:var(--warn)}
+
+.md-wrap{flex:1;overflow:auto;padding:18px 22px 60px;background:var(--surface)}
+.md-doc{font-size:13px;line-height:1.7;color:var(--muted);font-family:var(--font-body);max-width:640px}
+.md-doc h1{font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:-.015em;color:var(--fg);margin:0 0 4px}
+.md-doc h2{font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--fg);margin:20px 0 8px;letter-spacing:-.005em}
+.md-doc h3{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--fg);margin:14px 0 6px}
+.md-doc p{margin:0 0 10px}
+.md-doc p:last-child{margin-bottom:0}
+.md-doc ul,.md-doc ol{margin:0 0 12px;padding-left:20px}
+.md-doc li{margin-bottom:4px}
+.md-doc b,.md-doc strong{color:var(--fg);font-weight:600}
+.md-doc em{font-style:italic}
+.md-doc code{font-family:var(--font-mono);font-size:12px;background:var(--hairline);padding:1px 5px;border-radius:3px;color:var(--fg)}
+.md-doc blockquote{margin:0 0 12px;padding:8px 14px;border-left:3px solid var(--accent);background:var(--accent-soft);color:var(--fg);font-style:italic;border-radius:0 4px 4px 0}
+.md-doc__source{font-family:var(--font-mono);font-size:11px;color:var(--subtle);text-transform:uppercase;letter-spacing:.06em;margin:6px 0 18px;padding-bottom:14px;border-bottom:1px solid var(--hairline)}
+.md-doc__source b{color:var(--muted);font-weight:600;text-transform:none;letter-spacing:0;font-family:var(--font-mono)}
+
+.db{width:100%;border-collapse:collapse;font-size:11.5px;margin:8px 0 14px;font-family:var(--font-mono)}
+.db th,.db td{padding:7px 10px;border:1px solid var(--hairline);text-align:left;vertical-align:top}
+.db th{background:oklch(96% .008 70);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.db td b{font-weight:600;color:var(--fg)}
+.db td code{font-size:11px;background:transparent;padding:0;color:var(--fg)}
+
+.md-editor{flex:1;display:none;flex-direction:column;overflow:hidden}
+.md-editor--on{display:flex}
+.md-editor textarea{flex:1;width:100%;padding:14px 18px;border:none;outline:none;font-family:var(--font-mono);font-size:12px;line-height:1.7;color:var(--fg);background:oklch(99% .003 80);resize:none}
+.md-view--off{display:none}
+
+/* Editor's note */
+.side-note{border-left:2px solid var(--accent);padding:6px 0 6px 14px;font-family:var(--font-display);font-size:12.5px;line-height:1.55;color:var(--muted);margin-bottom:18px}
+.side-note__kicker{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px;font-weight:600}
+.side-note b{color:var(--fg);font-weight:500}
+
+/* modal */
+.modal-wrap{position:fixed;inset:0;background:oklch(20% .02 50 / .35);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
+.modal-wrap.on{display:flex;animation:fade-in .15s ease-out}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:10px;max-width:480px;width:100%;box-shadow:0 12px 40px oklch(20% .02 50 / .15);animation:slide-up .18s ease-out}
+@keyframes slide-up{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal__head{padding:18px 22px 14px;border-bottom:1px solid var(--hairline)}
+.modal__kicker{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;display:block;margin-bottom:4px}
+.modal__title{font-family:var(--font-display);font-size:18px;font-weight:600;letter-spacing:-.015em}
+.modal__body{padding:16px 22px;font-size:13px;color:var(--muted);line-height:1.65}
+.modal__body b{color:var(--fg);font-weight:500}
+.modal__foot{padding:12px 22px;border-top:1px solid var(--hairline);display:flex;justify-content:flex-end;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 16px;font-family:inherit;font-size:12px;font-weight:500;color:var(--fg);background:var(--surface);border:1px solid var(--border);border-radius:6px;line-height:1;white-space:nowrap}
+.btn:hover{background:var(--hairline)}
+.btn--primary{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.btn--primary:hover{background:oklch(28% .02 50)}
+.btn--ghost{background:transparent;border-color:transparent;color:var(--muted)}
+
+/* toast */
+.toast-wrap{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:90;pointer-events:none}
+.toast{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;background:var(--fg);color:var(--surface);border-radius:8px;font-size:13px;box-shadow:0 8px 24px oklch(20% .02 50 / .25);animation:toast-in .22s ease-out}
+@keyframes toast-in{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.toast__dot{width:8px;height:8px;border-radius:50%;background:oklch(75% .14 145)}
+.toast b{color:var(--surface);font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="appbar">
+  <a class="appbar__brand" href="01-screens-list.html">Spec<span>Mate</span></a>
+  <div class="appbar__crumbs">
+    <a href="01-screens-list.html">Screens</a><span class="appbar__sep">/</span><b id="crumb-name">SC-002 · Sign-up</b>
+  </div>
+  <div class="appbar__spacer"></div>
+  <div class="appbar__hello">Hi, <b>Linh</b></div>
+  <div class="appbar__icon">L</div>
+</div>
+
+<div class="shell">
+
+  <!-- CENTRE: snapshot canvas -->
+  <section class="canvas">
+    <div class="canvas__bar">
+      <div class="canvas__nav">
+        <button class="btn-mini" id="prev-btn">← prev</button>
+        <button class="btn-mini" id="next-btn">next →</button>
+      </div>
+      <div class="canvas__zoom" id="zoom">
+        <button data-z="50">−</button><button class="on" data-z="100">100%</button><button data-z="150">+</button><button data-z="fit">fit</button>
+      </div>
+      <div class="canvas__meta">SC-<b id="meta-num">002</b> · <b id="meta-name">Sign-up</b></div>
+      <div class="canvas__spacer"></div>
+      <div class="canvas__url" id="canvas-url">wires.behemoth.local/acme/sign-up</div>
+      <div class="canvas__tools">
+        <button class="tool-btn tool-btn--accent" id="rerun-canvas-btn" title="Re-run AI on this Screen (FR-5)">↻ Re-run AI</button>
+        <span class="canvas__tools-sep"></span>
+        <button class="tool-btn tool-btn--on" data-tool="pin">● Pin</button>
+        <button class="tool-btn" data-tool="box">▢ Box</button>
+      </div>
+    </div>
+    <div class="snap" id="snap-wrap">
+      <div class="snap__art" id="snap-art">
+        <h2>Create your Acme account.</h2>
+        <p class="deck">A few details to get you and your team started.</p>
+        <div class="form-block">
+          <h3>Sign up</h3>
+          <div class="field-mock"></div>
+          <div class="field-mock"></div>
+          <div class="field-mock"></div>
+          <div class="button-mock"></div>
+        </div>
+        <div class="footer-mock">© Acme 2026 · Privacy · Terms</div>
+        <div id="marks"></div>
+      </div>
+      <div class="legend">
+        <span><span class="legend__dot" style="background:var(--accent)"></span>Chưa xử lý</span>
+        <span><span class="legend__dot" style="background:var(--warn)"></span>Đã xử lý</span>
+        <span><span class="legend__dot" style="background:var(--ok)"></span>Hoàn thành</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: 3-tab panel -->
+  <aside class="side">
+    <div class="side__tabs" id="side-tabs">
+      <button class="side__tab" data-tab="comments">Comments <b id="tab-c-count">7</b></button>
+      <button class="side__tab side__tab--on" data-tab="srs">SRS <b>462w</b></button>
+      <button class="side__tab" data-tab="db">Database <b>3 tbl</b></button>
+    </div>
+
+    <!-- ===== COMMENTS panel ===== -->
+    <div class="side__panel" data-panel="comments">
+      <div class="com" id="com-root">
+        <div class="com__list-section">
+          <div class="com__filter" id="com-filter">
+            <button class="com__chip com__chip--all com__chip--on" data-f="all"><span class="com__chip-dot"></span><b>All</b><span id="c-all">7</span></button>
+            <button class="com__chip com__chip--open" data-f="open"><span class="com__chip-dot"></span><b>Chưa xử lý</b><span id="c-open">4</span></button>
+            <button class="com__chip com__chip--acted" data-f="acted"><span class="com__chip-dot"></span><b>Đã xử lý</b><span id="c-acted">2</span></button>
+            <button class="com__chip com__chip--done" data-f="done"><span class="com__chip-dot"></span><b>Hoàn thành</b><span id="c-done">1</span></button>
+          </div>
+          <div class="com__list" id="com-list"></div>
+        </div>
+
+        <div class="com__detail-section">
+        <div class="com__back-strip">
+          <button class="com__back" id="com-back">← Back to list</button>
+          <span class="com__back-meta">Annotation #<span id="back-num">1</span> · click pin again to re-open</span>
+        </div>
+        <div class="com__thread-head">
+          <div class="com__thread-head-row">
+            <div class="th-num" id="th-num">1</div>
+            <div class="th-title" id="th-title">Password field needs a strength meter</div>
+            <span class="th-shape" id="th-shape">▢ Box</span>
+          </div>
+          <div class="th-meta">
+            <span><b id="th-author">An Khánh</b> · <span id="th-time">8 m ago</span></span>
+            <span>·</span>
+            <span><b id="th-replies">2</b> replies</span>
+          </div>
+        </div>
+
+        <div class="walker">
+          <div class="walker__kicker">Status · FR-9</div>
+          <div class="walker__row" id="walker-row">
+            <button class="walker__step" data-step="open">
+              <span class="walker__step-num">01</span>
+              <span class="walker__step-name">Chưa xử lý</span>
+              <span class="walker__step-hint">Open</span>
+            </button>
+            <button class="walker__step" data-step="acted">
+              <span class="walker__step-num">02</span>
+              <span class="walker__step-name">Đã xử lý</span>
+              <span class="walker__step-hint">Acted</span>
+            </button>
+            <button class="walker__step" data-step="done">
+              <span class="walker__step-num">03</span>
+              <span class="walker__step-name">Hoàn thành</span>
+              <span class="walker__step-hint">Closed</span>
+            </button>
+          </div>
+          <div class="walker__actions">
+            <button class="btn-mini" id="walk-back">← step back</button>
+            <button class="btn-mini walker__advance" id="walk-fwd">Đã xử lý →</button>
+          </div>
+        </div>
+
+        <div class="com__thread-body" id="thread-body"></div>
+
+        <div class="com__reply">
+          <textarea class="com__reply-box" id="reply-box" placeholder="Write a reply — supports @-mentions, any language…"></textarea>
+          <div class="com__reply-bar">
+            <span>⏎ send · ⌘⏎ send and mark Đã xử lý</span>
+            <button class="btn-mini" id="reply-send">Send</button>
+          </div>
+        </div>
+        </div><!-- /com__detail-section -->
+      </div>
+    </div>
+
+    <!-- ===== SRS panel ===== -->
+    <div class="side__panel side__panel--on" data-panel="srs">
+      <div class="md-bar" id="bar-srs">
+        <div class="md-bar__view-row">
+          <span class="md-status md-status--pending" id="srs-status">AI drafted · pending review</span>
+          <span><b>462</b> words</span>
+          <span class="md-bar__spacer"></span>
+          <button class="btn-mini" data-md-edit="srs">✎ Edit</button>
+          <button class="btn-mini btn-mini--approve" data-md-review="srs">✓ Mark reviewed</button>
+        </div>
+        <div class="md-bar__edit-row">
+          <span style="color:var(--accent);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:600">Editing SRS · markdown source</span>
+          <span class="md-bar__spacer"></span>
+          <button class="btn-mini" data-md-cancel="srs">Cancel</button>
+          <button class="btn-mini btn-mini--approve" data-md-save="srs">Save</button>
+        </div>
+      </div>
+      <div class="md-wrap md-view" data-view="srs">
+        <div class="side-note">
+          <span class="side-note__kicker">Editor's note · FR-3 / FR-4 / FR-5</span>
+          AI drafted this SRS from the Document Skeleton against the wireframe Snapshot. <b>Edit freely as markdown</b>, mark the doc reviewed when satisfied, or re-run the AI to redraw from scratch (your edits are kept in history).
+        </div>
+        <article class="md-doc">
+          <h1>Sign-up — SRS</h1>
+          <p class="md-doc__source">For SC-002 · Sign-up · AI drafted 18 m ago · skeleton: Starter · 5 sections</p>
+
+          <h2>Overview</h2>
+          <p>The Sign-up screen lets a new Acme team-member <b>create an account and a Workspace in one step</b>. It is the entry point for self-service onboarding; users arrive from a marketing CTA or a teammate's invite link.</p>
+
+          <h2>Primary actions</h2>
+          <ul>
+            <li><b>Submit credentials</b> — primary button posts to <code>POST /api/v1/auth/sign-up</code>; validates work email server-side; password must be 12+ chars with one number and one symbol.</li>
+            <li><b>Sign in instead</b> — secondary link at the bottom for returning users; routes to <code>/sign-in</code>.</li>
+            <li><b>Marketing opt-in</b> — checkbox defaults to <em>opt-out</em> (must be flipped to opt-in per GDPR — see annotation #2).</li>
+          </ul>
+
+          <h2>Data shown</h2>
+          <p>The Acme brand mark, a welcome line, and a single Sign-up form. The form takes <b>work email</b>, <b>password</b>, and <b>workspace name</b>. Below: marketing footer with Privacy, Terms, copyright year.</p>
+
+          <h2>Edge cases &amp; empty states</h2>
+          <ul>
+            <li>Existing email → inline error "An account already exists for this email. Sign in instead?" with a link to <code>/sign-in</code>.</li>
+            <li>Weak password → inline meter showing weak / okay / strong; submit disabled until <b>okay</b> or higher.</li>
+            <li>Workspace slug collision → inline suggestion with a numeric suffix.</li>
+            <li>Network failure → banner "Couldn't reach the server. Try again."</li>
+          </ul>
+
+          <h2>Related Screens</h2>
+          <ul>
+            <li>Comes from: marketing landing (out-of-app), Sign-in's "Create an Acme account" CTA.</li>
+            <li>Goes to: <b>SC-008 Onboarding · welcome</b> on success, <b>SC-001 Sign-in</b> via secondary link.</li>
+          </ul>
+
+          <blockquote>Annotations #1 (password strength meter) and #3 (work-email validator) are open product questions tied to this screen — see Comments tab.</blockquote>
+        </article>
+      </div>
+      <div class="md-editor" data-editor="srs">
+        <textarea spellcheck="false"># Sign-up — SRS
+
+_For SC-002 · Sign-up · AI drafted 18 m ago · skeleton: Starter · 5 sections_
+
+## Overview
+The Sign-up screen lets a new Acme team-member **create an account and a Workspace in one step**. It is the entry point for self-service onboarding; users arrive from a marketing CTA or a teammate's invite link.
+
+## Primary actions
+- **Submit credentials** — primary button posts to `POST /api/v1/auth/sign-up`; validates work email server-side; password must be 12+ chars with one number and one symbol.
+- **Sign in instead** — secondary link at the bottom for returning users; routes to `/sign-in`.
+- **Marketing opt-in** — checkbox defaults to _opt-out_ (must be flipped to opt-in per GDPR — see annotation #2).
+
+## Data shown
+The Acme brand mark, a welcome line, and a single Sign-up form. The form takes **work email**, **password**, and **workspace name**. Below: marketing footer with Privacy, Terms, copyright year.
+
+## Edge cases & empty states
+- Existing email → inline error "An account already exists for this email. Sign in instead?" with a link to `/sign-in`.
+- Weak password → inline meter showing weak / okay / strong; submit disabled until **okay** or higher.
+- Workspace slug collision → inline suggestion with a numeric suffix.
+- Network failure → banner "Couldn't reach the server. Try again."
+
+## Related Screens
+- Comes from: marketing landing (out-of-app), Sign-in's "Create an Acme account" CTA.
+- Goes to: **SC-008 Onboarding · welcome** on success, **SC-001 Sign-in** via secondary link.
+
+> Annotations #1 (password strength meter) and #3 (work-email validator) are open product questions tied to this screen — see Comments tab.
+</textarea>
+      </div>
+    </div>
+
+    <!-- ===== DATABASE panel ===== -->
+    <div class="side__panel" data-panel="db">
+      <div class="md-bar" id="bar-db">
+        <div class="md-bar__view-row">
+          <span class="md-status md-status--reviewed" id="db-status">Reviewed</span>
+          <span><b>3 tables</b> · 184 words</span>
+          <span class="md-bar__spacer"></span>
+          <button class="btn-mini" data-md-edit="db">✎ Edit</button>
+          <button class="btn-mini btn-mini--approve" data-md-review="db">✓ Mark reviewed</button>
+        </div>
+        <div class="md-bar__edit-row">
+          <span style="color:var(--accent);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:600">Editing Database · markdown source</span>
+          <span class="md-bar__spacer"></span>
+          <button class="btn-mini" data-md-cancel="db">Cancel</button>
+          <button class="btn-mini btn-mini--approve" data-md-save="db">Save</button>
+        </div>
+      </div>
+      <div class="md-wrap md-view" data-view="db">
+        <div class="side-note">
+          <span class="side-note__kicker">Editor's note · FR-6 (Database)</span>
+          Manually-authored markdown for the database touch on this Screen — tables read/written, indexes, notes. v1 does <b>not</b> AI-generate this content (deferred). Use the same Edit toggle as SRS.
+        </div>
+        <article class="md-doc">
+          <h1>Sign-up — Database touch</h1>
+          <p class="md-doc__source">For SC-002 · Sign-up · <b>Tâm</b> · 1 day ago</p>
+
+          <h2>Tables written</h2>
+          <p>The Sign-up flow writes to <code>users</code>, <code>workspaces</code>, and <code>workspace_members</code> in a single transaction. The first user is always inserted as the workspace owner.</p>
+
+          <h3>users</h3>
+          <table class="db">
+            <tr><th>column</th><th>type</th><th>notes</th></tr>
+            <tr><td><b>id</b></td><td>uuid</td><td>pk</td></tr>
+            <tr><td>email</td><td>text</td><td>unique, lowered, indexed</td></tr>
+            <tr><td>password_hash</td><td>text</td><td>bcrypt cost 12</td></tr>
+            <tr><td>marketing_opt_in</td><td>bool</td><td>default <code>false</code> (GDPR)</td></tr>
+            <tr><td>created_at</td><td>timestamp</td><td></td></tr>
+          </table>
+
+          <h3>workspaces</h3>
+          <table class="db">
+            <tr><th>column</th><th>type</th><th>notes</th></tr>
+            <tr><td><b>id</b></td><td>uuid</td><td>pk</td></tr>
+            <tr><td>slug</td><td>text</td><td>unique, lowered, alphanumeric+dash</td></tr>
+            <tr><td>name</td><td>text</td><td>display name from form</td></tr>
+            <tr><td>owner_user_id</td><td>uuid</td><td>fk → users.id</td></tr>
+            <tr><td>created_at</td><td>timestamp</td><td></td></tr>
+          </table>
+
+          <h3>workspace_members</h3>
+          <table class="db">
+            <tr><th>column</th><th>type</th><th>notes</th></tr>
+            <tr><td><b>id</b></td><td>uuid</td><td>pk</td></tr>
+            <tr><td>workspace_id</td><td>uuid</td><td>fk → workspaces.id</td></tr>
+            <tr><td>user_id</td><td>uuid</td><td>fk → users.id</td></tr>
+            <tr><td>role</td><td>enum</td><td>owner / dev / client (v1: deferred)</td></tr>
+            <tr><td>joined_at</td><td>timestamp</td><td></td></tr>
+          </table>
+
+          <h2>Indexes</h2>
+          <ul>
+            <li><code>users.email</code> — unique, btree</li>
+            <li><code>workspaces.slug</code> — unique, btree</li>
+            <li><code>workspace_members.workspace_id, user_id</code> — composite unique</li>
+          </ul>
+
+          <h2>Notes</h2>
+          <ul>
+            <li>All three inserts run in a single <code>BEGIN…COMMIT</code> — partial state is impossible.</li>
+            <li>If the email is already taken, the entire transaction rolls back and the form shows an inline error (no race window).</li>
+            <li>Workspace slug collision is handled by appending a numeric suffix server-side before re-attempting the insert (max 5 retries).</li>
+          </ul>
+        </article>
+      </div>
+      <div class="md-editor" data-editor="db">
+        <textarea spellcheck="false"># Sign-up — Database touch
+
+_For SC-002 · Sign-up · Tâm · 1 day ago_
+
+## Tables written
+The Sign-up flow writes to `users`, `workspaces`, and `workspace_members` in a single transaction. The first user is always inserted as the workspace owner.
+
+### users
+| column | type | notes |
+|---|---|---|
+| **id** | uuid | pk |
+| email | text | unique, lowered, indexed |
+| password_hash | text | bcrypt cost 12 |
+| marketing_opt_in | bool | default `false` (GDPR) |
+| created_at | timestamp | |
+
+### workspaces
+| column | type | notes |
+|---|---|---|
+| **id** | uuid | pk |
+| slug | text | unique, lowered, alphanumeric+dash |
+| name | text | display name from form |
+| owner_user_id | uuid | fk → users.id |
+| created_at | timestamp | |
+
+### workspace_members
+| column | type | notes |
+|---|---|---|
+| **id** | uuid | pk |
+| workspace_id | uuid | fk → workspaces.id |
+| user_id | uuid | fk → users.id |
+| role | enum | owner / dev / client (v1: deferred) |
+| joined_at | timestamp | |
+
+## Indexes
+- `users.email` — unique, btree
+- `workspaces.slug` — unique, btree
+- `workspace_members.workspace_id, user_id` — composite unique
+
+## Notes
+- All three inserts run in a single `BEGIN…COMMIT` — partial state is impossible.
+- If the email is already taken, the entire transaction rolls back and the form shows an inline error (no race window).
+- Workspace slug collision is handled by appending a numeric suffix server-side before re-attempting the insert (max 5 retries).
+</textarea>
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+<!-- RE-RUN AI modal -->
+<div class="modal-wrap" id="rerun-modal">
+  <div class="modal">
+    <div class="modal__head">
+      <span class="modal__kicker">FR-5 · Re-run AI</span>
+      <h3 class="modal__title">Re-draw the SRS from scratch?</h3>
+    </div>
+    <div class="modal__body">
+      <p>SpecMate will run a fresh Vision Pass against this Screen's Snapshot using the current Document Skeleton (<b>Starter · 5 sections</b>).</p>
+      <p>The current SRS will be <b>saved to history</b> and replaced with the new AI draft. You can roll back from the history menu.</p>
+      <p style="font-family:var(--font-mono);font-size:11px;color:var(--subtle);text-transform:uppercase;letter-spacing:.06em;margin-top:14px">Cost · ~$0.003 · gpt-5-nano</p>
+    </div>
+    <div class="modal__foot">
+      <button class="btn btn--ghost" data-modal-close>Cancel</button>
+      <button class="btn btn--primary" id="rerun-go">Re-run →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<script>
+(function(){
+  const $ = (s,el)=>(el||document).querySelector(s);
+  const $$ = (s,el)=>Array.from((el||document).querySelectorAll(s));
+
+  /* ====== Annotations (Comments tab) ====== */
+  const annotations = [
+    {id:1, author:'An Khánh', avc:'c3', shape:'box', pos:{top:230,left:0,width:340,height:62}, status:'open', text:'Password field needs a strength meter', time:'8 m',
+      thread:[
+        {who:'An Khánh', av:'AK', avc:'c3', t:'8 m', body:'This <b>password field</b> needs a strength meter — Acme\'s spec wants <mark>visible feedback while typing</mark>.'},
+        {who:'Linh', av:'L', avc:'', t:'5 m', body:'Good catch. Same component as <b>SC-007</b>? <mark>@Tâm</mark> can you confirm the rules?'},
+        {who:'Tâm', av:'T', avc:'c2', t:'2 m', body:'Yes, same component. Min 12 chars, 1 number, 1 symbol — meter shows weak / okay / strong. Updating today.'}
+      ]},
+    {id:2, author:'Tâm', avc:'c2', shape:'pin', pos:{top:386,left:-130}, status:'open', text:'Marketing consent checkbox is opt-out by default — needs opt-in per GDPR.', time:'22 m',
+      thread:[{who:'Tâm', av:'T', avc:'c2', t:'22 m', body:'Marketing consent checkbox is <b>opt-out</b> by default — needs to be <mark>opt-in per GDPR</mark>.'},
+              {who:'Linh', av:'L', avc:'', t:'20 m', body:'Agreed. Will flip to opt-in and add a note about EU vs US default.'}]},
+    {id:3, author:'Linh', avc:'', shape:'pin', pos:{top:74,left:80}, status:'open', text:'Should the work-email validator allow personal domains too? Need a product decision.', time:'1 h',
+      thread:[{who:'Linh', av:'L', avc:'', t:'1 h', body:'Should the work-email validator <b>allow personal domains too</b>? Need a product decision.'}]},
+    {id:4, author:'An Khánh', avc:'c3', shape:'pin', pos:{top:148,left:-160}, status:'open', text:"What's the desktop / mobile responsive behaviour? AI doc didn't say.", time:'2 h',
+      thread:[{who:'An Khánh', av:'AK', avc:'c3', t:'2 h', body:'What\'s the desktop / mobile responsive behaviour? AI doc didn\'t say.'}]},
+    {id:5, author:'Tâm', avc:'c2', shape:'box', pos:{top:430,left:0,width:300,height:48}, status:'acted', text:"Add the SSO option per Acme's request. → SSO button added.", time:'3 h',
+      thread:[{who:'Tâm', av:'T', avc:'c2', t:'3 h', body:'Add the SSO option per Acme\'s request.'},
+              {who:'Linh', av:'L', avc:'', t:'2.5 h', body:'Added — will show in tomorrow\'s standup.'},
+              {who:'Tâm', av:'T', avc:'c2', t:'30 m', body:'SSO button added to design. <b>Awaiting confirm from An Khánh.</b>'}]},
+    {id:6, author:'Linh', avc:'', shape:'pin', pos:{top:104,left:-220}, status:'acted', text:'Brand mark too small — bump 1.4×. Resized.', time:'yest.',
+      thread:[{who:'Linh', av:'L', avc:'', t:'yest.', body:'Brand mark too small — bump 1.4×.'},
+              {who:'Tâm', av:'T', avc:'c2', t:'5 h', body:'Resized in design; awaiting confirm.'}]},
+    {id:7, author:'Tâm', avc:'c2', shape:'pin', pos:{top:540,left:100}, status:'done', text:'Bg color too pink — use surface var. Closed.', time:'2 d',
+      thread:[{who:'Tâm', av:'T', avc:'c2', t:'2 d', body:'Bg color too pink — use <code>var(--surface)</code>.'},
+              {who:'Linh', av:'L', avc:'', t:'2 d', body:'Done.'}]}
+  ];
+
+  let active = 1;
+  let filter = 'all';
+  const STATUS_LABEL = {open:'Chưa xử lý', acted:'Đã xử lý', done:'Hoàn thành'};
+  const STATUS_NEXT = {open:'acted', acted:'done', done:null};
+  const STATUS_PREV = {open:null, acted:'open', done:'acted'};
+
+  function renderList(){
+    const list = $('#com-list');
+    list.innerHTML = '';
+    const groups = [{key:'open',title:'Chưa xử lý'},{key:'acted',title:'Đã xử lý'},{key:'done',title:'Hoàn thành'}];
+    groups.forEach(g=>{
+      const items = annotations.filter(a=>a.status===g.key);
+      if(filter !== 'all' && filter !== g.key) return;
+      if(items.length === 0) return;
+      const h = document.createElement('div');
+      h.className = 'com__group';
+      h.innerHTML = `<div class="com__group-title"><b>${g.title}</b> — ${items.length}</div>`;
+      list.appendChild(h);
+      items.forEach(a=>{
+        const numCls = a.status === 'acted' ? 'com__num--acted' : (a.status === 'done' ? 'com__num--done' : '');
+        const shape = a.shape === 'box' ? '▢ Box' : '● Pin';
+        const item = document.createElement('div');
+        item.className = 'com__item' + (a.id === active ? ' com__item--active' : '');
+        item.dataset.id = a.id;
+        item.innerHTML = `<div class="com__item-head">
+            <span class="com__num ${numCls}">${a.id}</span>
+            <span class="com__author">${a.author}</span>
+            <span class="com__time">${a.time}</span>
+          </div>
+          <div class="com__body">"${a.text}"</div>
+          <div class="com__meta">${shape} · ${a.thread.length-1} replies</div>`;
+        list.appendChild(item);
+      });
+    });
+    const c = {open:0, acted:0, done:0};
+    annotations.forEach(a=>c[a.status]++);
+    $('#c-open').textContent = c.open;
+    $('#c-acted').textContent = c.acted;
+    $('#c-done').textContent = c.done;
+    $('#c-all').textContent = annotations.length;
+    $('#tab-c-count').textContent = annotations.length;
+  }
+
+  function renderMarks(){
+    const marks = $('#marks');
+    marks.innerHTML = '';
+    annotations.forEach(a=>{
+      let el;
+      if(a.shape === 'box'){
+        el = document.createElement('div');
+        el.className = 'box' + (a.status==='acted'?' box--acted':(a.status==='done'?' box--done':''));
+        el.style.cssText = `top:${a.pos.top}px;left:50%;width:${a.pos.width}px;height:${a.pos.height}px;transform:translateX(-50%)`;
+        el.innerHTML = `<div class="box__label">▢ #${a.id} ${a.author}${a.id===active?' — active':''}</div>`;
+      } else {
+        el = document.createElement('div');
+        el.className = 'pin' + (a.status==='acted'?' pin--acted':(a.status==='done'?' pin--done':'')) + (a.id===active?' pin--active':'');
+        el.style.cssText = `top:${a.pos.top}px;left:50%;margin-left:${a.pos.left}px`;
+        el.textContent = a.id;
+      }
+      el.dataset.id = a.id;
+      marks.appendChild(el);
+    });
+  }
+
+  function renderThread(){
+    const a = annotations.find(x=>x.id===active);
+    if(!a) return;
+    $('#th-num').textContent = a.id;
+    $('#th-num').className = 'th-num' + (a.status==='acted'?' th-num--acted':(a.status==='done'?' th-num--done':''));
+    $('#th-title').textContent = a.text.split('.')[0].split('→')[0].trim();
+    $('#th-shape').textContent = a.shape==='box' ? '▢ Box' : '● Pin';
+    $('#th-author').textContent = a.author;
+    $('#th-time').textContent = a.time + ' ago';
+    $('#th-replies').textContent = Math.max(0, a.thread.length - 1);
+    const body = $('#thread-body');
+    body.innerHTML = '';
+    a.thread.forEach(m=>{
+      const msg = document.createElement('div');
+      msg.className = 'msg';
+      msg.innerHTML = `<span class="avatar ${m.avc?'avatar--'+m.avc:''}">${m.av}</span>
+        <div class="msg__main">
+          <div class="msg__head"><span class="msg__author">${m.who}</span><span class="msg__time">${m.t} ago</span></div>
+          <div class="msg__body">${m.body}</div>
+        </div>`;
+      body.appendChild(msg);
+    });
+    renderWalker(a);
+  }
+
+  function renderWalker(a){
+    const order = ['open','acted','done'];
+    const ai = order.indexOf(a.status);
+    $$('.walker__step').forEach((btn,i)=>{
+      btn.className = 'walker__step';
+      if(i < ai) btn.classList.add('walker__step--done');
+      else if(i === ai){
+        btn.classList.add('walker__step--current');
+        if(a.status==='open') btn.classList.add('walker__step--at-open');
+        if(a.status==='done') btn.classList.add('walker__step--at-done');
+      } else btn.classList.add('walker__step--next');
+    });
+    const back = $('#walk-back');
+    const fwd = $('#walk-fwd');
+    const prev = STATUS_PREV[a.status];
+    const next = STATUS_NEXT[a.status];
+    back.disabled = !prev;
+    back.textContent = prev ? `← ${STATUS_LABEL[prev]}` : '← step back';
+    fwd.disabled = !next;
+    fwd.className = 'btn-mini walker__advance' + (next==='acted'?' walker__advance--to-acted':'');
+    fwd.textContent = next ? `${STATUS_LABEL[next]} →` : '— at end —';
+  }
+
+  function setActive(id, openDetail){
+    active = id;
+    renderList();
+    renderMarks();
+    renderThread();
+    if(openDetail){
+      document.getElementById('com-root').classList.add('com--detail');
+      document.getElementById('back-num').textContent = id;
+    }
+  }
+  function closeDetail(){
+    document.getElementById('com-root').classList.remove('com--detail');
+  }
+
+  function moveStatus(id, newStatus){
+    const a = annotations.find(x=>x.id===id);
+    if(!a) return;
+    a.status = newStatus;
+    const note = newStatus==='acted' ? 'Status → <b>Đã xử lý</b> — team has acted.'
+              : newStatus==='done' ? 'Status → <b>Hoàn thành</b> — closed.'
+              : 'Re-opened (back to Chưa xử lý).';
+    a.thread.push({who:'Linh', av:'L', avc:'', t:'just now', body:`<i>${note}</i>`});
+    renderList(); renderMarks(); renderThread();
+    toast(`#${id} → <b>${STATUS_LABEL[newStatus]}</b>`);
+  }
+
+  /* Comments events */
+  $('#com-filter').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-f]'); if(!btn) return;
+    $$('.com__chip').forEach(b=>b.classList.remove('com__chip--on'));
+    btn.classList.add('com__chip--on');
+    filter = btn.dataset.f;
+    renderList();
+  });
+  $('#com-list').addEventListener('click', e=>{
+    const item = e.target.closest('.com__item'); if(!item) return;
+    setActive(parseInt(item.dataset.id, 10), true);
+  });
+  $('#com-back').addEventListener('click', closeDetail);
+  $('#marks').addEventListener('click', e=>{
+    const el = e.target.closest('[data-id]'); if(!el) return;
+    activateTab('comments');
+    setActive(parseInt(el.dataset.id, 10), true);
+  });
+  $('#walker-row').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-step]'); if(!btn) return;
+    moveStatus(active, btn.dataset.step);
+  });
+  $('#walk-fwd').addEventListener('click', ()=>{
+    const a = annotations.find(x=>x.id===active);
+    const next = STATUS_NEXT[a.status]; if(next) moveStatus(active, next);
+  });
+  $('#walk-back').addEventListener('click', ()=>{
+    const a = annotations.find(x=>x.id===active);
+    const prev = STATUS_PREV[a.status]; if(prev) moveStatus(active, prev);
+  });
+  $('#reply-send').addEventListener('click', ()=>{
+    const box = $('#reply-box');
+    const text = box.value.trim(); if(!text){ box.focus(); return; }
+    const a = annotations.find(x=>x.id===active);
+    a.thread.push({who:'Linh', av:'L', avc:'', t:'just now', body:text.replace(/</g,'&lt;')});
+    box.value = '';
+    renderList(); renderThread();
+    toast('Reply sent.');
+  });
+  $('#reply-box').addEventListener('keydown', e=>{
+    if(e.key === 'Enter' && (e.ctrlKey || e.metaKey)){
+      e.preventDefault();
+      const box = e.target;
+      if(box.value.trim()){
+        $('#reply-send').click();
+        const a = annotations.find(x=>x.id===active);
+        if(a.status === 'open') moveStatus(active, 'acted');
+      }
+    }
+  });
+
+  /* Tools */
+  $$('.tool-btn').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      $$('.tool-btn').forEach(x=>x.classList.remove('tool-btn--on'));
+      b.classList.add('tool-btn--on');
+      toast(`Tool: <b>${b.dataset.tool==='pin'?'● Pin':'▢ Box'}</b> — click on the snapshot to drop.`);
+    });
+  });
+
+  /* Drop new annotation on snapshot click */
+  $('#snap-art').addEventListener('click', e=>{
+    if(e.target.closest('[data-id]')) return;
+    if(e.target.closest('#marks')) return;
+    const tool = document.querySelector('.tool-btn--on').dataset.tool;
+    const rect = $('#snap-art').getBoundingClientRect();
+    const top = Math.round(e.clientY - rect.top);
+    const left = Math.round(e.clientX - rect.left - rect.width/2);
+    const id = Math.max(...annotations.map(a=>a.id)) + 1;
+    annotations.push({
+      id, author:'Linh', avc:'', shape:tool, status:'open',
+      pos: tool==='box' ? {top, left:left-100, width:200, height:48} : {top, left},
+      text:'New annotation — add a comment in the thread.', time:'just now',
+      thread:[{who:'Linh', av:'L', avc:'', t:'just now', body:'<i>New annotation — type a comment below.</i>'}]
+    });
+    activateTab('comments');
+    setActive(id, true);
+    toast(`#${id} added. <b>Chưa xử lý.</b>`);
+    $('#reply-box').focus();
+  });
+
+  /* ====== Tabs ====== */
+  function activateTab(name){
+    $$('.side__tab').forEach(t=>t.classList.toggle('side__tab--on', t.dataset.tab===name));
+    $$('.side__panel').forEach(p=>p.classList.toggle('side__panel--on', p.dataset.panel===name));
+  }
+  $('#side-tabs').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-tab]'); if(!btn) return;
+    activateTab(btn.dataset.tab);
+  });
+  function activateTabFromHash(){
+    const h = (window.location.hash || '').replace('#','');
+    if(h === 'comments' || h === 'srs' || h === 'db') activateTab(h);
+  }
+  window.addEventListener('hashchange', activateTabFromHash);
+
+  /* ====== Markdown edit toggle ====== */
+  document.addEventListener('click', e=>{
+    const editBtn = e.target.closest('[data-md-edit]');
+    if(editBtn){
+      const kind = editBtn.dataset.mdEdit;
+      document.getElementById('bar-'+kind).classList.add('md-bar--editing');
+      document.querySelector(`.md-view[data-view="${kind}"]`).classList.add('md-view--off');
+      document.querySelector(`.md-editor[data-editor="${kind}"]`).classList.add('md-editor--on');
+      document.querySelector(`.md-editor[data-editor="${kind}"] textarea`).focus();
+      toast(`Editing <b>${kind==='srs'?'SRS':'Database'}</b> markdown.`);
+      return;
+    }
+    const cancelBtn = e.target.closest('[data-md-cancel]');
+    if(cancelBtn){
+      const kind = cancelBtn.dataset.mdCancel;
+      document.getElementById('bar-'+kind).classList.remove('md-bar--editing');
+      document.querySelector(`.md-view[data-view="${kind}"]`).classList.remove('md-view--off');
+      document.querySelector(`.md-editor[data-editor="${kind}"]`).classList.remove('md-editor--on');
+      return;
+    }
+    const saveBtn = e.target.closest('[data-md-save]');
+    if(saveBtn){
+      const kind = saveBtn.dataset.mdSave;
+      document.getElementById('bar-'+kind).classList.remove('md-bar--editing');
+      document.querySelector(`.md-view[data-view="${kind}"]`).classList.remove('md-view--off');
+      document.querySelector(`.md-editor[data-editor="${kind}"]`).classList.remove('md-editor--on');
+      const status = document.getElementById(kind+'-status');
+      if(status){
+        status.className = 'md-status md-status--draft';
+        status.textContent = 'Edited · pending review';
+      }
+      toast(`Saved <b>${kind==='srs'?'SRS':'Database'}</b> · last edit Linh, just now.`);
+      return;
+    }
+    const reviewBtn = e.target.closest('[data-md-review]');
+    if(reviewBtn){
+      const kind = reviewBtn.dataset.mdReview;
+      const status = document.getElementById(kind+'-status');
+      status.className = 'md-status md-status--reviewed';
+      status.textContent = 'Reviewed';
+      toast(`Marked <b>${kind==='srs'?'SRS':'Database'} reviewed</b> by Linh, just now.`);
+      return;
+    }
+    const rerunBtn = e.target.closest('[data-md-rerun],#rerun-canvas-btn');
+    if(rerunBtn){
+      $('#rerun-modal').classList.add('on');
+      return;
+    }
+    const closeBtn = e.target.closest('[data-modal-close]');
+    if(closeBtn){
+      $$('.modal-wrap.on').forEach(m=>m.classList.remove('on'));
+      return;
+    }
+  });
+
+  $('#rerun-go').addEventListener('click', ()=>{
+    $('#rerun-modal').classList.remove('on');
+    toast('Re-running AI on SRS… <b>~3 s</b>');
+    setTimeout(()=>{
+      const status = document.getElementById('srs-status');
+      status.className = 'md-status md-status--pending';
+      status.textContent = 'AI drafted · pending review';
+      toast('SRS re-drafted. Prior version saved to history.', 3500);
+    }, 2200);
+  });
+
+  /* Zoom */
+  const snapArt = $('#snap-art');
+  $('#zoom').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-z]'); if(!btn) return;
+    $$('#zoom button').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    const z = btn.dataset.z;
+    snapArt.style.transformOrigin = 'top center';
+    snapArt.style.transform = z==='fit' ? 'scale(0.85)' : `scale(${parseInt(z,10)/100})`;
+  });
+
+  /* Prev/Next */
+  const screens = [
+    {num:'001', name:'Sign-in'},{num:'002', name:'Sign-up'},{num:'003', name:'Dashboard'},
+    {num:'004', name:'Settings'},{num:'005', name:'Billing'},{num:'006', name:'Account · profile'}
+  ];
+  let cur = 1;
+  function updateScreen(){
+    $('#crumb-name').textContent = `SC-${screens[cur].num} · ${screens[cur].name}`;
+    $('#meta-num').textContent = screens[cur].num;
+    $('#meta-name').textContent = screens[cur].name;
+  }
+  $('#prev-btn').addEventListener('click', ()=>{ cur=(cur-1+screens.length)%screens.length; updateScreen(); toast(`Loaded SC-${screens[cur].num}`); });
+  $('#next-btn').addEventListener('click', ()=>{ cur=(cur+1)%screens.length; updateScreen(); toast(`Loaded SC-${screens[cur].num}`); });
+
+  /* Keyboard */
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape'){
+      if($('.modal-wrap.on')){ $$('.modal-wrap.on').forEach(m=>m.classList.remove('on')); return; }
+      if(document.getElementById('com-root').classList.contains('com--detail') && !e.target.closest('textarea,input')){ closeDetail(); return; }
+    }
+    if(e.target.closest('textarea,input,[contenteditable]')) return;
+    if(e.key === 'ArrowLeft') $('#prev-btn').click();
+    if(e.key === 'ArrowRight') $('#next-btn').click();
+  });
+
+  function toast(html, ms){
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = '<span class="toast__dot"></span>' + html;
+    $('#toast-wrap').appendChild(t);
+    setTimeout(()=>{ t.style.transition='opacity .25s'; t.style.opacity='0'; setTimeout(()=>t.remove(),250); }, ms||2400);
+  }
+
+  /* Init */
+  renderList();
+  renderMarks();
+  renderThread();
+  activateTabFromHash();
+})();
+</script>
+</body>
+</html>

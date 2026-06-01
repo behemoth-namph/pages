@@ -1,11 +1,533 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>test</h1>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>SpecMate v1 · 01 · Screens list</title>
+<style>
+:root{
+  --bg:oklch(97% .012 80);
+  --surface:oklch(99% .005 80);
+  --fg:oklch(20% .02 60);
+  --muted:oklch(48% .015 60);
+  --subtle:oklch(68% .01 70);
+  --border:oklch(89% .012 80);
+  --hairline:oklch(93% .01 80);
+  --accent:oklch(58% .16 35);
+  --accent-soft:oklch(94% .025 35);
+  --ok:oklch(50% .13 145);
+  --ok-soft:oklch(94% .04 145);
+  --warn:oklch(55% .14 70);
+  --warn-soft:oklch(95% .04 70);
+  --danger:oklch(52% .17 25);
+  --danger-soft:oklch(95% .03 25);
+  --font-display:'Iowan Old Style','Charter',Georgia,serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono:ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--surface);color:var(--fg);font-family:var(--font-body);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;margin:0}
+h1{font-size:36px;line-height:1.15;letter-spacing:-.02em}
+h2{font-size:22px;line-height:1.25}
+h3{font-size:15px;line-height:1.3}
+h4{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+p{margin:0}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600;display:inline-block}
+.muted{color:var(--muted)}
+.subtle{color:var(--subtle)}
+.mono{font-family:var(--font-mono)}
+hr{border:none;border-top:1px solid var(--border);margin:0}
+a{color:var(--accent);text-decoration:none;cursor:pointer}
+button{cursor:pointer;font-family:inherit}
+
+/* appbar */
+.appbar{display:flex;align-items:center;padding:12px 28px;border-bottom:1px solid var(--hairline);background:var(--surface);gap:16px;position:sticky;top:0;z-index:40}
+.appbar__brand{font-family:var(--font-display);font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;color:var(--fg)}
+.appbar__brand span{color:var(--accent)}
+.appbar__build{font-family:var(--font-mono);font-size:10px;color:var(--subtle);text-transform:uppercase;letter-spacing:.1em;padding-left:14px;border-left:1px solid var(--hairline)}
+.appbar__nav{display:flex;gap:4px;margin-left:16px}
+.appbar__nav a{font-size:12px;color:var(--muted);padding:5px 10px;border-radius:5px;font-weight:500}
+.appbar__nav a.on{background:var(--hairline);color:var(--fg)}
+.appbar__nav a:hover{background:var(--hairline);color:var(--fg)}
+.appbar__spacer{flex:1}
+.appbar__hello{font-size:12px;color:var(--muted)}
+.appbar__hello b{color:var(--fg);font-weight:500}
+.appbar__icon{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);background:var(--surface);font-size:10px;font-family:var(--font-mono)}
+
+/* page chrome */
+.page{padding:36px 56px 96px;max-width:1320px;margin:0 auto}
+.page__cover{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:end;padding-bottom:28px;border-bottom:1px solid var(--fg);margin-bottom:36px}
+.page__kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.page__title{font-family:var(--font-display);font-size:54px;line-height:1;letter-spacing:-.025em;font-weight:400;color:var(--fg);margin-bottom:14px}
+.page__title em{font-style:italic;color:var(--accent)}
+.page__deck{font-family:var(--font-display);font-size:18px;line-height:1.5;color:var(--muted);max-width:520px;font-weight:400}
+.page__meta{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:12px;color:var(--muted);justify-self:end;max-width:300px}
+.page__meta dt{color:var(--subtle);text-transform:uppercase;letter-spacing:.08em;font-size:10px;padding-top:2px;font-family:var(--font-mono)}
+.page__meta dd{margin:0;font-family:var(--font-display);font-size:14px;color:var(--fg)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 16px;font-family:inherit;font-size:12px;font-weight:500;color:var(--fg);background:var(--surface);border:1px solid var(--border);border-radius:6px;line-height:1;white-space:nowrap;transition:background .12s,border-color .12s,transform .05s}
+.btn:hover{background:var(--hairline)}
+.btn:active{transform:translateY(1px)}
+.btn--primary{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.btn--primary:hover{background:oklch(28% .02 50)}
+.btn--ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn--ghost:hover{background:var(--hairline);color:var(--fg)}
+.btn--sm{height:26px;padding:0 10px;font-size:11px}
+.btn--lg{height:40px;padding:0 22px;font-size:13px}
+
+/* pills */
+.pill{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 9px;font-size:10px;font-weight:500;color:var(--muted);background:var(--hairline);border-radius:10px;line-height:1;letter-spacing:.02em}
+.pill--ok{background:var(--ok-soft);color:var(--ok)}
+.pill--warn{background:var(--warn-soft);color:var(--warn)}
+.pill--accent{background:var(--accent-soft);color:var(--accent)}
+.pill--draft{background:oklch(94% .01 70);color:var(--muted)}
+.pill--dot::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor}
+
+/* fields */
+.field{margin-bottom:14px}
+.field__label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;font-family:var(--font-mono)}
+.field__label small{color:var(--subtle);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:.02em}
+.field__ta{width:100%;padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--fg);background:var(--surface);border:1px solid var(--border);border-radius:6px;outline:none;resize:vertical;line-height:1.65;min-height:120px}
+.field__ta:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.field__hint{font-size:11px;color:var(--subtle);margin-top:6px;display:block;font-family:var(--font-body)}
+.field__hint b{color:var(--fg);font-weight:500}
+
+/* Add form section */
+.add{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;margin-bottom:60px;padding-bottom:48px;border-bottom:1px solid var(--hairline)}
+.add__head{margin-bottom:18px}
+.add__head h2{font-size:24px;margin-bottom:6px}
+.add__head p{color:var(--muted);font-size:13px}
+.add__cta-row{display:flex;align-items:center;gap:14px;margin-top:14px}
+.add__cta-row .btn{height:38px;padding:0 22px;font-size:13px}
+.add__cta-meta{font-size:11px;color:var(--subtle);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.08em}
+
+/* editor's note */
+.ed-note{border-left:2px solid var(--accent);padding:6px 0 6px 14px;font-family:var(--font-display);font-size:13px;line-height:1.55;color:var(--muted);max-width:380px}
+.ed-note__kicker{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px;font-weight:600}
+.ed-note b{color:var(--fg);font-weight:500}
+.ed-note__sig{display:block;margin-top:8px;font-size:11px;color:var(--subtle);font-family:var(--font-mono);letter-spacing:.04em}
+
+/* Screens table */
+.screens{}
+.screens__head{display:flex;align-items:flex-end;margin-bottom:18px}
+.screens__head h2{font-size:24px}
+.screens__head-meta{color:var(--muted);font-size:12px;margin-top:4px}
+.screens__head-actions{margin-left:auto;display:flex;gap:8px}
+.screens__filter{display:inline-flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.screens__filter button{height:30px;padding:0 12px;background:var(--surface);border:none;font-size:11px;color:var(--muted);border-right:1px solid var(--border);font-family:inherit;font-weight:500;transition:background .12s,color .12s}
+.screens__filter button:last-child{border-right:none}
+.screens__filter button:hover{background:var(--hairline);color:var(--fg)}
+.screens__filter button.on{background:var(--fg);color:var(--surface)}
+.screens__filter button.on:hover{background:oklch(28% .02 50)}
+
+.table{width:100%;border-collapse:collapse;font-size:13px;background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.table th,.table td{text-align:left;padding:12px 18px;border-bottom:1px solid var(--hairline);vertical-align:middle}
+.table tbody tr:last-child td{border-bottom:none}
+.table th{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;background:oklch(97% .008 70);font-family:var(--font-mono)}
+.table tbody tr{cursor:pointer;transition:background .12s}
+.table tbody tr:hover{background:oklch(96% .01 70 / .8)}
+.table tbody tr.new-row{animation:flash-in .8s ease-out}
+@keyframes flash-in{0%{background:var(--accent-soft)}100%{background:transparent}}
+.table .num{font-family:var(--font-mono);color:var(--subtle);font-size:11px;width:60px}
+.table .name{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:-.005em}
+.table .name small{display:block;color:var(--subtle);font-family:var(--font-mono);font-size:10px;font-weight:400;margin-top:2px;letter-spacing:0;max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.table .pin-cell{font-family:var(--font-mono);color:var(--fg);font-size:12px}
+.table .pin-cell--zero{color:var(--subtle)}
+.table .pin-cell b{font-weight:600}
+.table .time{color:var(--subtle);font-size:11px;font-family:var(--font-mono)}
+.table .row-action{color:var(--accent);font-weight:500;font-family:var(--font-mono);font-size:11px;letter-spacing:.04em}
+.table tbody tr:hover .row-action{text-decoration:underline}
+.table tbody tr.hidden{display:none}
+
+/* footer */
+.foot{margin-top:64px;padding-top:28px;border-top:1px solid var(--hairline);display:flex;align-items:center;gap:24px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle)}
+.foot b{color:var(--muted);font-weight:500}
+.foot kbd{background:var(--hairline);padding:2px 5px;border-radius:3px;color:var(--fg);font-family:inherit;font-size:9px}
+
+/* modal */
+.modal-wrap{position:fixed;inset:0;background:oklch(20% .02 50 / .35);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
+.modal-wrap.on{display:flex;animation:fade-in .15s ease-out}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:10px;max-width:520px;width:100%;box-shadow:0 12px 40px oklch(20% .02 50 / .15);animation:slide-up .18s ease-out}
+@keyframes slide-up{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal__head{padding:20px 22px 16px;border-bottom:1px solid var(--hairline)}
+.modal__kicker{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;display:block;margin-bottom:4px}
+.modal__title{font-family:var(--font-display);font-size:20px;font-weight:600;letter-spacing:-.015em}
+.modal__body{padding:18px 22px;font-size:13px;color:var(--muted);line-height:1.65}
+.modal__body b{color:var(--fg);font-weight:500}
+.modal__progress{margin:14px 0;background:var(--hairline);height:6px;border-radius:3px;overflow:hidden}
+.modal__progress-bar{height:100%;background:var(--accent);width:0%;transition:width .25s ease-out}
+.modal__list{margin:10px 0 0;padding:0;list-style:none;font-family:var(--font-mono);font-size:11px}
+.modal__list li{padding:5px 0;display:flex;align-items:center;gap:8px;color:var(--muted);border-top:1px solid var(--hairline)}
+.modal__list li:first-child{border-top:none}
+.modal__list li.done{color:var(--ok)}
+.modal__list li.done::before{content:'✓';color:var(--ok);font-weight:600;width:14px}
+.modal__list li.work::before{content:'○';color:var(--warn);width:14px}
+.modal__list li.wait::before{content:'·';color:var(--subtle);width:14px}
+.modal__foot{padding:14px 22px;border-top:1px solid var(--hairline);display:flex;justify-content:flex-end;gap:10px}
+
+/* toast */
+.toast-wrap{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:90;pointer-events:none}
+.toast{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;background:var(--fg);color:var(--surface);border-radius:8px;font-size:13px;box-shadow:0 8px 24px oklch(20% .02 50 / .25);animation:toast-in .22s ease-out}
+@keyframes toast-in{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.toast__dot{width:8px;height:8px;border-radius:50%;background:oklch(75% .14 145)}
+.toast b{color:var(--surface);font-weight:600}
+.toast__act{margin-left:14px;padding-left:14px;border-left:1px solid oklch(45% .02 60);color:oklch(85% .04 30);text-decoration:none;font-size:12px;font-weight:500;pointer-events:auto;cursor:pointer}
+.toast__act:hover{color:var(--surface)}
+</style>
+</head>
+<body>
+
+<div class="appbar">
+  <a class="appbar__brand" href="01-screens-list.html">Spec<span>Mate</span></a>
+  <div class="appbar__build">v1 · internal preview</div>
+  <div class="appbar__nav">
+    <a href="01-screens-list.html" class="on">Screens</a>
+    <a href="#" onclick="alert('Settings: Document Skeleton (read-only in v1 — operator config)');return false">Settings</a>
+  </div>
+  <div class="appbar__spacer"></div>
+  <div class="appbar__hello">Hi, <b>Linh</b> — display name only</div>
+  <div class="appbar__icon">L</div>
+</div>
+
+<div class="page">
+
+  <div class="page__cover">
+    <div>
+      <div class="page__kicker">Folio I · Screens</div>
+      <h1 class="page__title">A flat shelf of <em>wireframes</em> — and the documents that hang off them.</h1>
+      <p class="page__deck">Drop a list of wireframe URLs below. SpecMate captures each one, drafts a document against the current skeleton, and opens it for review. Comments and attachments live alongside.</p>
+    </div>
+    <dl class="page__meta">
+      <dt>Issue</dt><dd>I · v1 preview</dd>
+      <dt>Skeleton</dt><dd>Starter · 5 sections</dd>
+      <dt>Model</dt><dd>gpt-5-nano</dd>
+      <dt>Network</dt><dd>internal only</dd>
+    </dl>
+  </div>
+
+  <!-- ADD SCREENS form (FR-1) -->
+  <section class="add">
+    <div>
+      <div class="add__head">
+        <div class="kicker">Article one · FR-1</div>
+        <h2>Add Screens from URLs</h2>
+        <p>Paste one publicly-reachable wireframe URL per line. Up to 20 per submission. Private or auth-gated links (including Figma share URLs) are not captured.</p>
+      </div>
+      <div class="field">
+        <label class="field__label" for="urls">URL list <small>one per line · max 20</small></label>
+        <textarea class="field__ta" id="urls" rows="6">https://wires.behemoth.local/acme/orders
+https://wires.behemoth.local/acme/orders/detail
+https://wires.behemoth.local/acme/orders/refund</textarea>
+        <small class="field__hint"><b id="url-count">3</b> URLs detected. Capture runs asynchronously — Screens appear as <b>pending</b> and flip to <b>drafted</b> when the AI returns.</small>
+      </div>
+      <div class="add__cta-row">
+        <button class="btn btn--primary btn--lg" id="capture-btn">Capture &amp; draft →</button>
+        <button class="btn btn--ghost btn--sm" id="clear-btn">Clear</button>
+        <span class="add__cta-meta">⏎ to submit · esc to clear</span>
+      </div>
+    </div>
+
+    <aside>
+      <div class="ed-note">
+        <span class="ed-note__kicker">Editor's note</span>
+        The first pass is a draft, not the answer. <b>Approve, edit, or reject section by section</b> on each Screen. Re-run the AI when the skeleton changes.
+        <span class="ed-note__sig">— SM, the room</span>
+      </div>
+    </aside>
+  </section>
+
+  <!-- SCREENS list (FR-2) -->
+  <section class="screens">
+    <div class="screens__head">
+      <div>
+        <div class="kicker">Article two · FR-2</div>
+        <h2>Screens</h2>
+        <div class="screens__head-meta" id="head-meta">10 Screens · 2 pending · 6 drafted · 2 reviewed · last activity 6 min ago</div>
+      </div>
+      <div class="screens__head-actions">
+        <div class="screens__filter" id="filter">
+          <button class="on" data-filter="all">All</button>
+          <button data-filter="pending">Pending</button>
+          <button data-filter="drafted">Drafted</button>
+          <button data-filter="reviewed">Reviewed</button>
+        </div>
+        <button class="btn btn--sm" id="sort-btn">Sort: newest ↓</button>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name &amp; source URL</th>
+          <th>AI draft</th>
+          <th>Comments</th>
+          <th>Updated</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="screens-tbody">
+        <tr data-status="reviewed" data-target="02-canvas.html">
+          <td class="num">SC-001</td>
+          <td><div class="name">Sign-in<small>wires.behemoth.local/acme/sign-in</small></div></td>
+          <td><span class="pill pill--ok pill--dot">Reviewed</span></td>
+          <td class="pin-cell"><b>2</b> open · 1 done</td>
+          <td class="time">12 min ago</td>
+          <td><span class="row-action">Open →</span></td>
+        </tr>
+        <tr data-status="drafted" data-target="02-canvas.html#comments">
+          <td class="num">SC-002</td>
+          <td><div class="name">Sign-up<small>wires.behemoth.local/acme/sign-up</small></div></td>
+          <td><span class="pill pill--accent pill--dot">Drafted</span></td>
+          <td class="pin-cell"><b>4</b> open · 2 acted · 1 done</td>
+          <td class="time">18 min ago</td>
+          <td><span class="row-action">Open →</span></td>
+        </tr>
+        <tr data-status="drafted" data-target="02-canvas.html">
+          <td class="num">SC-003</td>
+          <td><div class="name">Dashboard<small>wires.behemoth.local/acme/dashboard</small></div></td>
+          <td><span class="pill pill--accent pill--dot">Drafted</span></td>
+          <td class="pin-cell"><b>1</b> open</td>
+          <td class="time">21 min ago</td>
+          <td><span class="row-action">Open →</span></td>
+        </tr>
+        <tr data-status="pending" data-target="02-canvas.html">
+          <td class="num">SC-004</td>
+          <td><div class="name">Settings<small>wires.behemoth.local/acme/settings</small></div></td>
+          <td><span class="pill pill--draft pill--dot">Pending · drafting…</span></td>
+          <td class="pin-cell pin-cell--zero">—</td>
+          <td class="time">just now</td>
+          <td><span class="row-action muted">—</span></td>
+        </tr>
+        <tr data-status="pending" data-target="02-canvas.html">
+          <td class="num">SC-005</td>
+          <td><div class="name">Billing<small>wires.behemoth.local/acme/billing</small></div></td>
+          <td><span class="pill pill--draft pill--dot">Pending · drafting…</span></td>
+          <td class="pin-cell pin-cell--zero">—</td>
+          <td class="time">just now</td>
+          <td><span class="row-action muted">—</span></td>
+        </tr>
+        <tr data-status="drafted" data-target="02-canvas.html#comments">
+          <td class="num">SC-006</td>
+          <td><div class="name">Account · profile<small>wires.behemoth.local/acme/account/profile</small></div></td>
+          <td><span class="pill pill--accent pill--dot">Drafted</span></td>
+          <td class="pin-cell"><b>3</b> open · 1 acted</td>
+          <td class="time">2 h ago</td>
+          <td><span class="row-action">Open →</span></td>
+        </tr>
+        <tr data-status="reviewed" data-target="02-canvas.html">
+          <td class="num">SC-007</td>
+          <td><div class="name">Account · password<small>wires.behemoth.local/acme/account/password</small></div></td>
+          <td><span class="pill pill--ok pill--dot">Reviewed</span></td>
+          <td class="pin-cell pin-cell--zero">all done</td>
+          <td class="time">yesterday</td>
+          <td><span class="row-action">Open →</span></td>
+        </tr>
+        <tr data-status="drafted" data-target="02-canvas.html">
+          <td class="num">SC-008</td>
+          <td><div class="name">Onboarding · welcome<small>wires.behemoth.local/acme/onboarding/welcome</small></div></td>
+          <td><span class="pill pill--accent pill--dot">Drafted</span></td>
+          <td class="pin-cell"><b>2</b> open</td>
+          <td class="time">yesterday</td>
+          <td><span class="row-action">Open →</span></td>
+        </tr>
+        <tr data-status="drafted" data-target="02-canvas.html#comments">
+          <td class="num">SC-009</td>
+          <td><div class="name">Onboarding · invite team<small>wires.behemoth.local/acme/onboarding/team</small></div></td>
+          <td><span class="pill pill--accent pill--dot">Drafted</span></td>
+          <td class="pin-cell"><b>1</b> open · 3 done</td>
+          <td class="time">2 d ago</td>
+          <td><span class="row-action">Open →</span></td>
+        </tr>
+        <tr data-status="drafted" data-target="02-canvas.html">
+          <td class="num">SC-010</td>
+          <td><div class="name">Empty state · no projects<small>wires.behemoth.local/acme/empty</small></div></td>
+          <td><span class="pill pill--warn pill--dot">Draft · re-run failed</span></td>
+          <td class="pin-cell pin-cell--zero">—</td>
+          <td class="time">3 d ago</td>
+          <td><span class="row-action">Retry →</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="foot">
+    <b>SpecMate v1</b>
+    <span>Folio I · Screens</span>
+    <span><kbd>⏎</kbd> capture · <kbd>esc</kbd> clear · <kbd>↑↓</kbd> walk rows · <kbd>⏎</kbd> open</span>
+    <span style="margin-left:auto">Demo target · 2026-06-30</span>
+    <span>Internal network only · no auth</span>
+  </div>
+
+</div>
+
+<!-- CAPTURE modal -->
+<div class="modal-wrap" id="capture-modal">
+  <div class="modal">
+    <div class="modal__head">
+      <span class="modal__kicker">FR-1 · Capture in progress</span>
+      <h3 class="modal__title">Capturing <span id="capture-count">3</span> wireframes…</h3>
+    </div>
+    <div class="modal__body">
+      <p>Each URL is fetched, screenshotted, and stored as a Snapshot. AI drafts will run asynchronously — Screens appear in the list immediately as <b>pending</b>.</p>
+      <div class="modal__progress"><div class="modal__progress-bar" id="capture-bar"></div></div>
+      <ul class="modal__list" id="capture-list"></ul>
+    </div>
+    <div class="modal__foot">
+      <button class="btn btn--ghost" id="capture-cancel">Run in background</button>
+      <button class="btn btn--primary" id="capture-done" disabled>Open list →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<script>
+(function(){
+  const $ = (s,el)=>(el||document).querySelector(s);
+  const $$ = (s,el)=>Array.from((el||document).querySelectorAll(s));
+
+  /* URL count live */
+  const ta = $('#urls');
+  const updateCount = ()=>{
+    const lines = ta.value.split('\n').map(s=>s.trim()).filter(Boolean);
+    $('#url-count').textContent = lines.length;
+    return lines;
+  };
+  ta.addEventListener('input', updateCount);
+
+  /* Clear */
+  $('#clear-btn').addEventListener('click', ()=>{ ta.value=''; updateCount(); ta.focus(); });
+
+  /* Filter chips (FR-2) */
+  const tbody = $('#screens-tbody');
+  $('#filter').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-filter]');
+    if(!btn) return;
+    $$('#filter button').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    const f = btn.dataset.filter;
+    $$('#screens-tbody tr').forEach(tr=>{
+      tr.classList.toggle('hidden', !(f==='all' || tr.dataset.status===f));
+    });
+    const visible = $$('#screens-tbody tr:not(.hidden)').length;
+    $('#head-meta').textContent = visible + ' Screens shown · filter: ' + btn.textContent;
+  });
+
+  /* Sort toggle */
+  let sortDir = 'desc';
+  $('#sort-btn').addEventListener('click', ()=>{
+    sortDir = sortDir==='desc' ? 'asc' : 'desc';
+    $('#sort-btn').textContent = sortDir==='desc' ? 'Sort: newest ↓' : 'Sort: oldest ↑';
+    const rows = $$('#screens-tbody tr');
+    rows.reverse().forEach(r=>tbody.appendChild(r));
+  });
+
+  /* Row click → navigate */
+  tbody.addEventListener('click', e=>{
+    const tr = e.target.closest('tr[data-target]');
+    if(!tr) return;
+    window.location.href = tr.dataset.target;
+  });
+
+  /* Toast helper */
+  function toast(html, ms){
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = '<span class="toast__dot"></span>' + html;
+    $('#toast-wrap').appendChild(t);
+    setTimeout(()=>{ t.style.transition='opacity .25s'; t.style.opacity='0'; setTimeout(()=>t.remove(),250); }, ms||3200);
+  }
+
+  /* Capture flow */
+  const modal = $('#capture-modal');
+  const captureList = $('#capture-list');
+  const bar = $('#capture-bar');
+  const doneBtn = $('#capture-done');
+
+  $('#capture-btn').addEventListener('click', ()=>{
+    const urls = updateCount();
+    if(urls.length === 0){ toast('No URLs to capture. Paste at least one URL.'); return; }
+    if(urls.length > 20){ toast('Max 20 URLs per submission.'); return; }
+    $('#capture-count').textContent = urls.length;
+    captureList.innerHTML = urls.map((u,i)=>`<li class="wait" data-i="${i}">${u}</li>`).join('');
+    bar.style.width = '0%';
+    doneBtn.disabled = true;
+    modal.classList.add('on');
+
+    let i = 0;
+    const step = ()=>{
+      if(i >= urls.length){
+        bar.style.width = '100%';
+        doneBtn.disabled = false;
+        captureList.querySelectorAll('li').forEach(li=>{ li.classList.remove('work'); li.classList.add('done'); });
+        return;
+      }
+      const li = captureList.querySelector(`li[data-i="${i}"]`);
+      li.classList.remove('wait'); li.classList.add('work');
+      setTimeout(()=>{
+        li.classList.remove('work'); li.classList.add('done');
+        i++;
+        bar.style.width = Math.round(i/urls.length*100) + '%';
+        step();
+      }, 450);
+    };
+    step();
+  });
+
+  $('#capture-cancel').addEventListener('click', ()=>{
+    modal.classList.remove('on');
+    toast('Capture running in background. <b>3 new Screens</b> added: SC-011, SC-012, SC-013.', 4000);
+    appendNewScreens();
+  });
+
+  $('#capture-done').addEventListener('click', ()=>{
+    modal.classList.remove('on');
+    appendNewScreens();
+    toast('<b>3 new Screens</b> added: SC-011, SC-012, SC-013. AI drafts running. <a class="toast__act" onclick="document.querySelector(\'tr[data-num=SC-011]\')?.scrollIntoView({behavior:\'smooth\',block:\'center\'});return false">Jump to →</a>');
+    ta.value = '';
+    updateCount();
+  });
+
+  let appended = false;
+  function appendNewScreens(){
+    if(appended) return; appended = true;
+    const rows = [
+      {num:'SC-011', name:'Orders', url:'wires.behemoth.local/acme/orders'},
+      {num:'SC-012', name:'Order detail', url:'wires.behemoth.local/acme/orders/detail'},
+      {num:'SC-013', name:'Order refund', url:'wires.behemoth.local/acme/orders/refund'}
+    ];
+    rows.forEach(r=>{
+      const tr = document.createElement('tr');
+      tr.className = 'new-row';
+      tr.dataset.status = 'pending';
+      tr.dataset.target = '02-canvas.html';
+      tr.dataset.num = r.num;
+      tr.innerHTML = `<td class="num">${r.num}</td>
+        <td><div class="name">${r.name}<small>${r.url}</small></div></td>
+        <td><span class="pill pill--draft pill--dot">Pending · drafting…</span></td>
+        <td class="pin-cell pin-cell--zero">—</td>
+        <td class="time">just now</td>
+        <td><span class="row-action muted">—</span></td>`;
+      tbody.insertBefore(tr, tbody.firstChild);
+    });
+    $('#head-meta').textContent = '13 Screens · 5 pending · 6 drafted · 2 reviewed · last activity just now';
+  }
+
+  /* Keyboard */
+  ta.addEventListener('keydown', e=>{
+    if(e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); $('#capture-btn').click(); }
+    if(e.key === 'Escape'){ e.preventDefault(); $('#clear-btn').click(); }
+  });
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape' && modal.classList.contains('on')){ modal.classList.remove('on'); }
+  });
+
+  updateCount();
+})();
+</script>
+</body>
 </html>
